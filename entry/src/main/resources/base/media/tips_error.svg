@@ -1,0 +1,10 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="icon_about" clip-path="url(#clip0_2393_55923)">
+<path id="Subtract" fill-rule="evenodd" clip-rule="evenodd" d="M44 24C44 35.0457 35.0457 44 24 44C12.9543 44 4 35.0457 4 24C4 12.9543 12.9543 4 24 4C35.0457 4 44 12.9543 44 24ZM22.5 32.5C22.5 31.6716 23.1716 31 24 31C24.8284 31 25.5 31.6716 25.5 32.5C25.5 33.3284 24.8284 34 24 34C23.1716 34 22.5 33.3284 22.5 32.5ZM24 28C24.8284 28 25.5 27.3284 25.5 26.5L25.5 15.5C25.5 14.6716 24.8284 14 24 14C23.1716 14 22.5 14.6716 22.5 15.5L22.5 26.5C22.5 27.3284 23.1716 28 24 28Z" fill="white" fill-opacity="0.9"/>
+</g>
+<defs>
+<clipPath id="clip0_2393_55923">
+<rect width="48" height="48" fill="white"/>
+</clipPath>
+</defs>
+</svg>

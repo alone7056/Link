@@ -1,0 +1,16 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/login/Login",
+    "pages/agreement/PrivacyAgreement",
+    "pages/agreement/UserAgreement",
+    "pages/login/Register",
+    "pages/HomeSwiper",
+    "pages/HomeTabs",
+    "pages/Test",
+    "pages/login/BackPassword",
+    "pages/my/set/SetPage",
+    "pages/my/set/PersonalInformation",
+    "pages/MallTest"
+  ]
+}

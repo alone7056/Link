@@ -1,0 +1,91 @@
+import router from '@ohos.router'
+import { userAddressDb } from '../db/UserAddressDb'
+import { userDb } from '../db/UserDb'
+import { PreferencesUtil } from '../utils/PreferencesUtil'
+
+
+@Entry
+@Component
+struct Index {
+
+  // 倒计时时长
+  @State timer: number = 1000
+
+  // 创建一个首选项对象
+  private preferenceUtil: PreferencesUtil = new PreferencesUtil()
+
+  // 页面加载时执行
+  async aboutToAppear() {
+    // 1.建库建表
+    await userDb.createUserTable()
+    // await userAddressDb.createUserAddressTable()
+
+    /* 进入登录页面、首页
+     * 首先判断是否第一次登录
+     * 不是第一次测判断是否已经登录，没有则进入登录页面
+     * 不是第一次并且已经登录，则进入首页
+     */
+
+    let url = 'pages/HomeSwiper'
+    await this.preferenceUtil.init()
+    const first_login = await this.preferenceUtil.get('firstLogin')
+
+    if (first_login != 1) {
+      await this.preferenceUtil.put('firstLogin', 1)
+      url = 'pages/login/Login'
+    }
+
+    const timeId = setInterval(async () => {
+      if (this.timer === 0) {
+        // 清空定时器
+        clearInterval(timeId)
+        const queryResult = await userDb.queryAllUser()
+        const dataStr = JSON.stringify(queryResult)
+        let whetherLogin: boolean = false
+        // 判断用户是否登录
+        if (dataStr.includes('"whetherLogin":"1"')){
+          whetherLogin = true
+        }
+        console.log('查询所有记录（Index）：' + JSON.stringify(queryResult))
+        if (queryResult.length > 0 && whetherLogin) {
+          router.replaceUrl({ url: url })
+        } else {
+          // 测试注释
+          router.replaceUrl({url: 'pages/login/Login'})
+          // router.replaceUrl({url: 'pages/HomeSwiper'})
+        }
+
+      } else {
+        this.timer -= 1000
+      }
+    }, 1000)
+  }
+
+  // 页面销毁时执行
+  aboutToDisappear(){
+    console.log('Index销毁了')
+  }
+
+  build() {
+    Stack({ alignContent: Alignment.TopEnd }) {
+
+      // 起始页面
+      Column({ space: 15 }) {
+
+        Text('这里再来个图标')
+        Text('Link').fontSize(40)
+        Text('租办公设备就来Link').fontSize(18)
+
+      }.width('100%').height('100%').justifyContent(FlexAlign.Center)
+
+
+      // // 倒计时显示
+      // Text(`${this.timer / 1000} 秒`).width(70).height(35)
+      //   .fontSize(20).fontWeight(600)
+      //   .backgroundColor('#ffcbc9c9').textAlign(TextAlign.Center)
+      //   .borderRadius(20).opacity(0.5)
+      //   .fontColor('#fffc2b2b')
+
+    }.width('100%').height('100%').padding(10).backgroundColor('#fdd633')
+  }
+}
