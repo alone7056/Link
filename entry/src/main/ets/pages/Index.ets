@@ -70,11 +70,11 @@ struct Index {
     Stack({ alignContent: Alignment.TopEnd }) {
 
       // 起始页面
-      Column({ space: 15 }) {
+      Column({ space: 30 }) {
 
-        Text('这里再来个图标')
-        Text('Link').fontSize(40)
-        Text('租办公设备就来Link').fontSize(18)
+        Image($r('app.media.icon')).objectFit(ImageFit.Contain).width(60).borderRadius(10)
+        // Text('Link').fontSize(40)
+        Text('租办公设备就来Link').fontSize(20).fontStyle(FontStyle.Italic).fontColor('#007dff')
 
       }.width('100%').height('100%').justifyContent(FlexAlign.Center)
 
@@ -86,6 +86,7 @@ struct Index {
       //   .borderRadius(20).opacity(0.5)
       //   .fontColor('#fffc2b2b')
 
-    }.width('100%').height('100%').padding(10).backgroundColor('#fdd633')
+    }.width('100%').height('100%').padding(10)
+    // .backgroundColor('#fdd633')
   }
 }

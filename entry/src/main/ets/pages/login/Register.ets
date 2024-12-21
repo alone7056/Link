@@ -40,9 +40,9 @@ struct Register {
       }.width('100%').height('7%').padding(10)
 
       // 图标
-      Row({ space: 20 }) {
-        // Image($r('app.media.1_icon')).width(50)
-        Text('Link').fontSize(30)
+      Row({ space: 10 }) {
+        Image($r('app.media.icon')).objectFit(ImageFit.Contain).width(50).borderRadius(10)
+        Text('办公设备出租').fontSize(20)
       }.width('100%').height('8%').padding({ left: 20 })
 
       // 输入框

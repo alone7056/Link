@@ -27,7 +27,7 @@ struct BackPassword {
   }
 
   build() {
-    Column() {
+    Column({space: 10}) {
       // 返回上一级与标题
       Stack() {
 
@@ -48,9 +48,9 @@ struct BackPassword {
       }.width('100%').padding(10).layoutWeight(1)
 
       // 图标
-      Row({ space: 20 }) {
-        // Image($r('app.media.1_icon')).width(50)
-        Text('Link').fontSize(30)
+      Row({ space: 10 }) {
+        Image($r('app.media.icon')).objectFit(ImageFit.Contain).width(50).borderRadius(10)
+        Text('办公设备出租').fontSize(20)
       }.width('100%').padding({ left: 25 }).layoutWeight(1)
 
       // 输入框
