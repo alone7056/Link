@@ -1,7 +1,7 @@
 
 import router from '@ohos.router'
 import common from '@ohos.app.ability.common';
-import { AccountInfo } from '../../model/AccountInfo'
+import { AccountInfo } from '../../model/RoutingData'
 import LoadingDialog from '../../utils/TipsDialog';
 import { userDb } from '../../db/UserDb';
 import { user } from '../../model/User';

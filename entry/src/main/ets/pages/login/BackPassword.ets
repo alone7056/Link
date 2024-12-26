@@ -3,7 +3,7 @@ import promptAction from '@ohos.promptAction'
 import { userDb } from '../../db/UserDb'
 import { user } from '../../model/User'
 import { CaptchaNotice } from './captchaNotice'
-import { AccountInfo } from '../../model/AccountInfo'
+import { AccountInfo } from '../../model/RoutingData'
 
 @Entry
 @Component

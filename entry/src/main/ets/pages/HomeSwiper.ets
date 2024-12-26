@@ -17,10 +17,15 @@ struct HomeSwiper {
     new TabItem($r('app.media.tab_My_0'), $r('app.media.tab_My_1'), '我的')
   ]
 
-  // 当前选中的索引
-  @State currentIndex: number = 0
+  // 当前选中的索引 父组件@Provide/子组件@Consume实现双向绑定
+  @Provide currentIndex: number = 0
   // 轮播当前索引
-  @State swiperIndex: number = 0
+  @Provide swiperIndex: number = 0
+
+  // 页面加载前执行
+  aboutToAppear(){
+
+  }
 
   build() {
     Stack(){

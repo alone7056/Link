@@ -3,7 +3,7 @@ import router from '@ohos.router'
 import { userDb } from '../../db/UserDb'
 import { user } from '../../model/User'
 import LoadingDialog from '../../utils/TipsDialog'
-import { AccountInfo } from '../../model/AccountInfo'
+import { AccountInfo } from '../../model/RoutingData'
 
 @Entry
 @Component

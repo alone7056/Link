@@ -6,6 +6,10 @@ import { MallPageClassify } from './MallPageClassify'
 export struct Mall {
   @State message: string = '商城'
 
+  // 父组件@Provide/子组件@Consume实现双向绑定 父组件HomeSwiper的属性
+  @Consume currentIndex: number;
+  @Consume swiperIndex: number;
+
   private swiperArr: any[] = [
     $rawfile('Mall/swiper1.jpg'), $rawfile('Mall/swiper2.jpg'), $rawfile('Mall/swiper3.jpg'), $rawfile('Mall/swiper1.jpg'), $rawfile('Mall/swiper2.jpg'), $rawfile('Mall/swiper3.jpg')
   ]
@@ -32,8 +36,9 @@ export struct Mall {
         .borderRadius(99)
         .margin({top: 10})
         .onClick(() => {
-          // 点击搜索框跳转至搜索页面
-
+          // 点击搜索框跳转至搜索页面 修改父组件的值实现跳转
+          this.currentIndex = 1
+          this.swiperIndex = 1
         })
 
         Row(){

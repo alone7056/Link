@@ -7,7 +7,7 @@ export struct Capabilities {
     [$rawfile('Mall/fx.png'), '推荐领佣金'],
     [$rawfile('Mall/hz.png'), '合作生态'],
     [$rawfile('Mall/kf.png'), '在线维修'],
-    [$rawfile('Mall/gywm1.png'), '关于我们'],
+    [$rawfile('Mall/gywm1.png'), '关于我'],
     [$rawfile('Mall/bjb.png'), '笔记本'],
     [$rawfile('Mall/tsj.png'), '台式机'],
     [$rawfile('Mall/ytj.png'), '一体机'],
