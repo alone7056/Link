@@ -1,5 +1,7 @@
 import { OfficeChoose } from '../model/OfficeChoose'
 
+// 商城页面
+
 // 首选办公
 export const OfficePreferredArr: OfficeChoose[] = [
   new OfficeChoose($rawfile('Mall/ThinkPad_E14.jpg'), 'ThinkPad_E14', 'i3-11/8G/256G/核显/14', 108),
@@ -33,6 +35,11 @@ export const OfficeGraphicsArr: OfficeChoose[] = [
   new OfficeChoose($rawfile('Mall/HP_288G9TX.jpg'), '惠普 88G9TX', 'i5-12/16G/1T+256G/4G独显/24', 208),
   new OfficeChoose($rawfile('Mall/HP_Z2_G9_Gen2.jpg'), '惠普 Z2 G9 Gen2', 'i7-13700K/32G/1T SSD/RTX 4070/27', 518)
 ]
+
+
+
+// 分类页面
+
 
 
 

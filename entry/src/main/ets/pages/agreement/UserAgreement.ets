@@ -15,7 +15,7 @@ struct UserAgreement {
             })
         }.width('100%').padding(10).zIndex(99)
         Row(){
-          Text('Link户协议').width('100%')
+          Text('Link用户协议').width('100%')
             .textAlign(TextAlign.Center).fontSize(20)
         }.width('100%').padding(10)
       }

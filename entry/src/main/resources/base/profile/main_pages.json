@@ -11,6 +11,8 @@
     "pages/login/BackPassword",
     "pages/my/set/SetPage",
     "pages/my/set/PersonalInformation",
-    "pages/MallTest"
+    "pages/MallTest",
+    "pages/my/set/PrivacyManagement",
+    "pages/my/set/ConcerningAuthor"
   ]
 }

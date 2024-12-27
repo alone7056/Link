@@ -36,7 +36,7 @@ export struct Mall {
         .borderRadius(99)
         .margin({top: 10})
         .onClick(() => {
-          // 点击搜索框跳转至搜索页面 修改父组件的值实现跳转
+          // 点击搜索框跳转至搜索分类页面 修改父组件的值实现跳转
           this.currentIndex = 1
           this.swiperIndex = 1
         })

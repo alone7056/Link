@@ -8,7 +8,7 @@ import { exitLogin } from '../../popUps/exitlogin'
 struct SetPage {
 
   // 选项数组
-  private SetOptionsArr: string[] = ['个人信息', '账户安全', '关于我们', '隐私管理', '个人信息手机清单', '第三方信息共享清单', '版本更新']
+  private SetOptionsArr: string[] = ['个人信息', '关于作者', '隐私协议', '个人信息手机清单', '第三方信息共享清单']
 
   // 当前用户手机号码
   @State phone: string = ''
@@ -17,7 +17,7 @@ struct SetPage {
     this.phone = AppStorage.Get('loginUserPhone')
   }
 
-  // 打卡成功弹窗
+  // 退出登录弹窗
   exitLogin: CustomDialogController = new CustomDialogController({
     builder: exitLogin({
       save: () => this.onAccept(),
@@ -70,9 +70,12 @@ struct SetPage {
             if (index == 0) {
               router.pushUrl({url: 'pages/my/set/PersonalInformation'})
             }
+            if (index == 2) {
+              router.pushUrl({url: 'pages/my/set/PrivacyManagement'})
+            }
           })
         })
-      }.width('100%').layoutWeight(10).backgroundColor('#ffffff')
+      }.width('100%').layoutWeight(8).backgroundColor('#ffffff')
 
       Blank().layoutWeight(1)
 
@@ -82,7 +85,7 @@ struct SetPage {
           this.exitLogin.open()
         })
 
-      Blank().layoutWeight(3)
+      Blank().layoutWeight(6)
 
     }.width('100%').height('100%').backgroundColor('#ffe2e0e0')
   }
