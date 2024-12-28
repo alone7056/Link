@@ -25,7 +25,7 @@ struct PrivacyAgreement {
           Span('更新日期：2024-11-11\t\t\t\t生效日期：2024-11-11\n\n\n\n\n').fontSize(13)
           Span('引言\n\n\n\n')
           Span(this.PrivacyAgreementText)
-        }.padding(10)
+        }.padding(10).copyOption(CopyOptions.InApp) // 可复制文本
       }.scrollBar(BarState.Off)
     }.width('100%').height('100%')
   }

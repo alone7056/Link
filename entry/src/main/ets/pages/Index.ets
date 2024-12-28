@@ -30,6 +30,7 @@ struct Index {
     await this.preferenceUtil.init()
     const first_login = await this.preferenceUtil.get('firstLogin')
 
+    // 第一次登录跳转至登录注册页面
     if (first_login != 1) {
       await this.preferenceUtil.put('firstLogin', 1)
       url = 'pages/login/Login'
@@ -43,16 +44,23 @@ struct Index {
         const dataStr = JSON.stringify(queryResult)
         let whetherLogin: boolean = false
         // 判断用户是否登录
-        if (dataStr.includes('"whetherLogin":"1"')){
-          whetherLogin = true
+        // if (dataStr.includes('"whetherLogin":"1"')){
+        //   whetherLogin = true
+        // }
+
+        // 找出登录状态的账号 确认用户是否登录
+        for (let index = 0; index < queryResult.length; index++) {
+          if (Number(queryResult[index].whetherLogin) == 1) {
+            whetherLogin = true
+            AppStorage.SetOrCreate('loginUserPhone', queryResult[index].phone)
+          }
         }
         console.log('查询所有记录（Index）：' + JSON.stringify(queryResult))
         if (queryResult.length > 0 && whetherLogin) {
+          console.log('查询单个记录的电话号码（Index）：' + JSON.stringify(queryResult[0].phone))
           router.replaceUrl({ url: url })
         } else {
-          // 测试注释
           router.replaceUrl({url: 'pages/login/Login'})
-          // router.replaceUrl({url: 'pages/HomeSwiper'})
         }
 
       } else {

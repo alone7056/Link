@@ -235,7 +235,8 @@ struct Login {
         AppStorage.SetOrCreate('loginUserId', queryResult.id)
         AppStorage.SetOrCreate('loginUserPhone', queryResult.phone)
         AppStorage.SetOrCreate('loginUserPassword', queryResult.Password)
-        // 日志
+
+        // 打印查询到的数据
         console.log('查询id(Login)：' + queryResult.id)
         console.log('查询phone(Login)：' + queryResult.phone)
         console.log('查询password(Login)：' + queryResult.password)

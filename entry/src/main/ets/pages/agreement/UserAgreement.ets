@@ -23,7 +23,7 @@ struct UserAgreement {
         Text(){
           Span('用户协议\n\n\n\n').fontSize(30)
           Span(this.UserAgreementText)
-        }.padding(10)
+        }.padding(10).copyOption(CopyOptions.InApp)// 可复制文本
       }.scrollBar(BarState.Off)
     }.width('100%').height('100%')
   }

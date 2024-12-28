@@ -44,7 +44,7 @@ export struct MallPageClassify {
                 Span(item.theNameOfTheDevice).width('100%').fontSize(15).fontWeight(600)
                 Span('\n'+item.introductionToParameters).width('100%').fontSize(12)
                 Span('\n\n￥' + item.monthlyPrice + '/月').fontColor('#fff85454').width('100%').fontSize(18)
-              }
+              }.copyOption(CopyOptions.InApp)
             }.width('50%').height(200).backgroundColor('#ffffff')
         })
       }

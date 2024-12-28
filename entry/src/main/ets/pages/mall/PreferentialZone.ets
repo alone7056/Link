@@ -31,11 +31,13 @@ export struct PreferentialZone {
                 .fontWeight(600)
                 .maxLines(2)
                 .textOverflow({ overflow: TextOverflow.Ellipsis })
+                .copyOption(CopyOptions.InApp)
               Text(item.disposition)
                 .fontSize(12)
                 .maxLines(1)
                 .textOverflow({ overflow: TextOverflow.Ellipsis })
                 .opacity(0.6)
+                .copyOption(CopyOptions.InApp)
               Column({ space: 5 }) {
                 Row() {
                   Text('数量有限')
