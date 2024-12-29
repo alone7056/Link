@@ -18,9 +18,12 @@ struct HomeSwiper {
   ]
 
   // 当前选中的索引 父组件@Provide/子组件@Consume实现双向绑定
-  @Provide currentIndex: number = 0
+  @Provide('currentIndex') currentIndex: number = 0
   // 轮播当前索引
-  @Provide swiperIndex: number = 0
+  @Provide('swiperIndex') swiperIndex: number = 0
+  // 当前分类
+  @Provide('currentClassify') currentClassify: number = -1
+
 
   // 页面加载前执行
   aboutToAppear(){

@@ -1,4 +1,4 @@
-import { OfficeChoose } from '../../model/OfficeChoose'
+import { equipmentSynopsis } from '../../model/EquipmentSynopsis'
 import { OfficePreferredArr, OfficePortableArr, OfficeTechnologyArr, OfficeGraphicsArr} from '../../common/PageRenderingValues'
 
 @Component
@@ -23,6 +23,7 @@ export struct MallPageClassify {
             .onClick(()=>{
               // 更新下标
               this.currentIndex = index
+              // 更新渲染的数据
               if (index == 0) {
                 this.rendering = OfficePreferredArr
               } else if (index == 1){
@@ -37,7 +38,7 @@ export struct MallPageClassify {
       }.width('94%').height(35)
 
       Flex({ wrap: FlexWrap.WrapReverse }) {
-        ForEach(this.rendering, (item: OfficeChoose, index: number)=>{
+        ForEach(this.rendering, (item: equipmentSynopsis, index: number)=>{
             Column(){
               Image(item.picturesOfTheDevice).objectFit(ImageFit.Contain).width(120)
               Text(){

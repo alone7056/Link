@@ -6,11 +6,11 @@ export struct Classify {
     [$rawfile('Mall/bjb.png'), '笔记本'],
     [$rawfile('Mall/tsj.png'), '台式机'],
     [$rawfile('Mall/ytj.png'), '一体机'],
-    [$rawfile('Mall/hydp.png'), '显示器'],
+    [$rawfile('Mall/xsq.png'), '显示器'],
     [$rawfile('Mall/hydp.png'), '会议大屏'],
-    [$rawfile('Mall/bjb.png'), '打印机'],
-    [$rawfile('Mall/tsj.png'), '单主机'],
-    [$rawfile('Mall/ytj.png'), '复合机']
+    [$rawfile('Mall/dyj.png'), '打印机'],
+    [$rawfile('Mall/dzj.png'), '单主机'],
+    [$rawfile('Mall/fhj.png'), '复合机']
   ]
 
   // 搜索关键字
@@ -20,7 +20,13 @@ export struct Classify {
   @State isUnfold: boolean  = false
 
   // 当前分类
-  @State currentClassify: number  = -1
+  @Consume('currentClassify') currentClassify: number
+
+  // 综合推荐状态默认状态
+  @State synthesisRecommend: boolean = true
+
+  // 价格排序 三种状态 -1未选中/%2等于1为升序/%2等于0为降序
+  @State PriceSort: number = -1
 
   build() {
     Column({space: 10}) {
@@ -62,6 +68,8 @@ export struct Classify {
                   .onClick(()=>{
                     // 选中分类点击事件
                     this.currentClassify = index
+                    this.synthesisRecommend = false
+                    this.PriceSort = -1
                   })
                 }
               })
@@ -104,6 +112,8 @@ export struct Classify {
               .onClick(()=>{
                 // 选中的当前分类
                 this.currentClassify = index
+                this.synthesisRecommend = false
+                this.PriceSort = -1
               })
             })
           }.width('100%').height(140).rowsTemplate('1fr 1fr').columnsTemplate('1fr 1fr 1fr 1fr 1fr').rowsGap(8)
@@ -112,14 +122,23 @@ export struct Classify {
         Divider().width('100%')
         // 综合推荐与价格排序
         Row({space: 20}){
-          Text('综合推荐').fontSize(13)
+          Text('综合推荐').fontSize(13).fontColor(this.synthesisRecommend ? '#ff13e3f3' : '#000000')
+          .onClick(()=>{
+            this.synthesisRecommend = true
+            this.currentClassify = -1
+            this.PriceSort = -1
+          })
           Row(){
             Text('价格').fontSize(13).width('60%')
+            .fontColor(this.PriceSort != -1 ? '#ff13e3f3' : '#000000')
             Column(){
-              Image($rawfile('Classify/xia0.png')).width(10).height(10).rotate({ angle: 180 })
-              Image($rawfile('Classify/xia0.png')).width(10).height(10)
+              Image(this.PriceSort %2 == 0 && this.PriceSort != -1 ? $rawfile('Classify/xia1.png') : $rawfile('Classify/xia0.png')).width(10).height(10).rotate({ angle: 180 })
+              Image(this.PriceSort %2 == 1 && this.PriceSort != -1 ? $rawfile('Classify/xia1.png') : $rawfile('Classify/xia0.png')).width(10).height(10)
             }.height('100%').width('40%')
           }.width('15%').height('100%').justifyContent(FlexAlign.Center).alignItems(VerticalAlign.Center)
+          .onClick(()=>{
+            this.PriceSort += 1
+          })
         }.width('100%').height(20).padding({right: 10, left: 10})
       }.width('94%')
 

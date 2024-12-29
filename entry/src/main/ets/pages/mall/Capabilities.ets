@@ -16,8 +16,10 @@ export struct Capabilities {
   ]
 
   // 父组件@Provide/子组件@Consume实现双向绑定 父组件HomeSwiper的属性
-  @Consume currentIndex: number;
-  @Consume swiperIndex: number;
+  @Consume('currentIndex') currentIndex: number;
+  @Consume('swiperIndex') swiperIndex: number;
+
+  @Consume('currentClassify') currentClassify: number;
 
   build() {
     Column(){
@@ -43,7 +45,18 @@ export struct Capabilities {
               
             }
 
-            if (index == this.capabilitiesArr.length - 1) {
+            if (index > 4 && index < this.capabilitiesArr.length) {
+
+              if (index == 5) {
+                this.currentClassify = 0
+              } else if (index == 6){
+                this.currentClassify = 1
+              } else if (index == 7){
+                this.currentClassify = 2
+              } else {
+                this.currentClassify = 4
+              }
+
               // 修改父组件的值实现跳转
               this.currentIndex = 1
               this.swiperIndex = 1
