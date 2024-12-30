@@ -15,6 +15,7 @@ export struct Classify {
     [$rawfile('Mall/fhj.png'), '复合机']
   ]
 
+  // 当前页面渲染数据数组
   @State rendering: equipmentSynopsis[] = synthesisRecommend
 
   // 搜索关键字
@@ -31,6 +32,12 @@ export struct Classify {
 
   // 价格排序 三种状态 -1未选中/%2等于1为升序/%2等于0为降序
   @State PriceSort: number = -1
+
+  // 降序数组
+  @State DescendingArr: equipmentSynopsis[] = []
+
+  // 升序数组
+  @State AscendingArr: equipmentSynopsis[] = []
 
   build() {
     Column({space: 10}) {
@@ -142,6 +149,14 @@ export struct Classify {
           }.width('15%').height('100%').justifyContent(FlexAlign.Center).alignItems(VerticalAlign.Center)
           .onClick(()=>{
             this.PriceSort += 1
+            // 价格排序 true升序/false降序
+            if (this.PriceSort %2 == 0 && this.PriceSort != -1) {
+              // 升序 sort()函数进行排序
+              this.AscendingArr = [...this.rendering].sort((a, b) => a.monthlyPrice - b.monthlyPrice);
+            } else {
+              // 降序
+              this.DescendingArr = [...this.rendering].sort((a, b) => b.monthlyPrice - a.monthlyPrice);
+            }
           })
         }.width('100%').height(20).padding({right: 10, left: 10})
 
@@ -149,7 +164,8 @@ export struct Classify {
 
       // 后续可以用LazyForEach优化
       List({space: 10}){
-        ForEach(this.rendering, (item: equipmentSynopsis, index: number)=>{
+        //
+        ForEach(this.PriceSort != -1 ? (this.PriceSort %2 == 0 ? this.AscendingArr : this.DescendingArr) : this.rendering, (item: equipmentSynopsis, index: number)=>{
           ListItem(){
             Row(){
               // 设备图片
@@ -169,6 +185,7 @@ export struct Classify {
                 Image($rawfile('Classify/xia0.png')).rotate({ angle: -90 }).width(15).height(15)
                 .onClick(()=>{
                   // 跳转至详情页面
+
                 })
                 // 添加购物车按钮
                 Row(){
