@@ -1,7 +1,6 @@
 import { equipmentSynopsis } from '../model/EquipmentSynopsis'
 
 // 商城页面
-
 // 首选办公
 export const OfficePreferredArr: equipmentSynopsis[] = [
   new equipmentSynopsis($rawfile('Mall/ThinkPad_E14.jpg'), 'ThinkPad_E14', 'i3-11/8G/256G/核显/14', 108),
@@ -39,10 +38,29 @@ export const OfficeGraphicsArr: equipmentSynopsis[] = [
 
 
 // 分类页面
-
 // 综合推荐
 export const synthesisRecommend: equipmentSynopsis[] = [
-  new equipmentSynopsis($rawfile('Mall/ThinkPad_E14_Gen5.jpg'), 'ThinkPad E14 Gen5', 'i7-13/16/512G/核显/14', 256),
+  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_203V5LSB2_20.jpg'), '飞利浦Philips 203V5LSB2 20英寸显示器租赁', '20/1600X900/60HZ/VGA', 20),
+  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/DE_Dell_E2016H_20.jpg'), '戴尔Dell E2016H 20英寸显示器租赁', '19.5/1600X900/60HZ/VGA+DP', 20),
+  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_203V5LSB2_21.jpg'), '飞利浦Philips 223V5LSB 21.5英寸显示器租赁', '20/1920X1080/60HZ/VGA+DP', 25),
+  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/DE_Dell_E2016H_21.jpg'), '戴尔Dell E2220H 21.5英寸显示器租赁', '21.5/1920X1080/60HZ/VGA+DP', 25),
+  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_241V8_23.jpg'), '飞利浦Philips 241V8 23英寸显示器租赁', '23.8/1920X1080/75HZ/HDMI+VGA',33),
+  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/HP_M2456_23.8.jpg'), '惠普HP M2456 23.8英寸显示器 HDMI/VGA/DP', '23.8/1920X1080/60HZ/HDMI+VGA+DP',33),
+  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_27B2N2100_27.jpg'), '飞利浦Philips 24B2N2100 27英寸显示器租赁', '27/1920X1080/100HZ/HDMI+VGA+DP',35),
+  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_241V8_23.jpg'), '飞利浦Philips 241V8 23.8英寸显示器租赁', '23.8/1920X1080/75HZ/HDMI+VGA',33),
+
+  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_241V8_23.jpg'), '飞利浦Philips 241V8 23.8英寸显示器租赁', '23.8/1920X1080/75HZ/HDMI+VGA',33),
+  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_241V8_23.jpg'), '飞利浦Philips 241V8 23.8英寸显示器租赁', '23.8/1920X1080/75HZ/HDMI+VGA',33),
+  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_241V8_23.jpg'), '飞利浦Philips 241V8 23.8英寸显示器租赁', '23.8/1920X1080/75HZ/HDMI+VGA',33),
+  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_241V8_23.jpg'), '飞利浦Philips 241V8 23.8英寸显示器租赁', '23.8/1920X1080/75HZ/HDMI+VGA',33),
+  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_241V8_23.jpg'), '飞利浦Philips 241V8 23.8英寸显示器租赁', '23.8/1920X1080/75HZ/HDMI+VGA',33),
+  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_241V8_23.jpg'), '飞利浦Philips 241V8 23.8英寸显示器租赁', '23.8/1920X1080/75HZ/HDMI+VGA',33),
+  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_241V8_23.jpg'), '飞利浦Philips 241V8 23.8英寸显示器租赁', '23.8/1920X1080/75HZ/HDMI+VGA',33),
+  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_241V8_23.jpg'), '飞利浦Philips 241V8 23.8英寸显示器租赁', '23.8/1920X1080/75HZ/HDMI+VGA',33),
+  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_241V8_23.jpg'), '飞利浦Philips 241V8 23.8英寸显示器租赁', '23.8/1920X1080/75HZ/HDMI+VGA',33),
+  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_241V8_23.jpg'), '飞利浦Philips 241V8 23.8英寸显示器租赁', '23.8/1920X1080/75HZ/HDMI+VGA',33),
+  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_241V8_23.jpg'), '飞利浦Philips 241V8 23.8英寸显示器租赁', '23.8/1920X1080/75HZ/HDMI+VGA',33),
+  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_241V8_23.jpg'), '飞利浦Philips 241V8 23.8英寸显示器租赁', '23.8/1920X1080/75HZ/HDMI+VGA',33),
 ]
 
 

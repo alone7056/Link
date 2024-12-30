@@ -1,4 +1,6 @@
-
+import { ON } from '@ohos.UiTest'
+import { synthesisRecommend } from '../../common/PageRenderingValues'
+import { equipmentSynopsis } from '../../model/EquipmentSynopsis'
 @Component
 export struct Classify {
 
@@ -12,6 +14,8 @@ export struct Classify {
     [$rawfile('Mall/dzj.png'), '单主机'],
     [$rawfile('Mall/fhj.png'), '复合机']
   ]
+
+  @State rendering: equipmentSynopsis[] = synthesisRecommend
 
   // 搜索关键字
   @State keywords: string  = ''
@@ -140,7 +144,46 @@ export struct Classify {
             this.PriceSort += 1
           })
         }.width('100%').height(20).padding({right: 10, left: 10})
+
       }.width('94%')
+
+      // 后续可以用LazyForEach优化
+      List({space: 10}){
+        ForEach(this.rendering, (item: equipmentSynopsis, index: number)=>{
+          ListItem(){
+            Row(){
+              // 设备图片
+              Image(item.picturesOfTheDevice).objectFit(ImageFit.Contain).height('100%').layoutWeight(4)
+              // 参数简述价格
+              Column({space: 5}){
+                Text(item.theNameOfTheDevice).fontSize(13).width('100%').textAlign(TextAlign.Start)
+                Text(item.introductionToParameters).fontSize(10).width('100%').textAlign(TextAlign.Start)
+                Text(){
+                  Span(item.monthlyPrice + '.').fontSize(16).fontColor('#f9543d')
+                  Span('00/月').fontSize(13).fontColor('#f9543d')
+                }.fontSize(14).width('100%').textAlign(TextAlign.Start)
+              }.height('100%').layoutWeight(8).padding(10)
+
+              Column() {
+                // 点击查看更多图标
+                Image($rawfile('Classify/xia0.png')).rotate({ angle: -90 }).width(15).height(15)
+                .onClick(()=>{
+                  // 跳转至详情页面
+                })
+                // 添加购物车按钮
+                Row(){
+                  Text('+').fontSize(16).fontWeight(500).fontColor('#ffffff')
+                }.width(20).height(20).backgroundColor('#fa6d4b').justifyContent(FlexAlign.Center).borderRadius(99)
+                .onClick(()=>{
+                  // 添加至购物车点击事件
+
+                })
+              }.height('100%').layoutWeight(1).justifyContent(FlexAlign.SpaceAround).alignItems(HorizontalAlign.Center)
+            }.width('100%').height('100%')
+          }.width('100%').height(100).backgroundColor('#ffffff').padding({right: 10})
+        })
+      }.scrollBar(BarState.Auto)
+
 
 
     }.width('100%').layoutWeight(1)
@@ -148,7 +191,7 @@ export struct Classify {
     .linearGradient({
       direction: GradientDirection.Bottom, // 渐变方向
       repeating: false, // 渐变颜色是否重复
-      colors: [['#ffe0ffff', 0.1], ['#fff5ffff', 0.5], ['#fffbffff', 0.9]] // 数组末尾元素占比小于1时满足重复着色效果
+      colors: [['#ffe0ffff', 0.1], ['#ffffff', 0.2],['#ffeae8e8', 0.3], ['#ffebeeee', 0.9]] // 数组末尾元素占比小于1时满足重复着色效果
     })
   }
 }

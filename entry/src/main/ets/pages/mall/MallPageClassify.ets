@@ -10,7 +10,7 @@ export struct MallPageClassify {
   // 轮播当前索引
   @State swiperIndex: number = 0
   // 渲染数组
-  @State rendering: any = OfficePreferredArr
+  @State rendering: equipmentSynopsis[] = OfficePreferredArr
 
   build() {
     Column(){
