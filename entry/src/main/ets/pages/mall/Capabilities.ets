@@ -1,4 +1,6 @@
 
+import router from '@ohos.router';
+import { currentClassify } from '../../model/RoutingData'
 
 @Component
 export struct Capabilities {
@@ -42,10 +44,11 @@ export struct Capabilities {
             }
           }.onClick(()=>{
             if (index == 4) {
-              
+              // 关于作者页面
+
             }
 
-            if (index > 4 && index < this.capabilitiesArr.length) {
+            if (index > 4 && index <= this.capabilitiesArr.length) {
 
               if (index == 5) {
                 this.currentClassify = 0
@@ -53,13 +56,18 @@ export struct Capabilities {
                 this.currentClassify = 1
               } else if (index == 7){
                 this.currentClassify = 2
-              } else {
+              } else if (index == 8){
                 this.currentClassify = 4
+              } else {
+                this.currentClassify = -1
               }
 
               // 修改父组件的值实现跳转
-              this.currentIndex = 1
-              this.swiperIndex = 1
+              let paramsInfo: currentClassify = {
+                currentClassify: this.currentClassify
+              }
+              // 跳转刷新HomeSwiper其子组件才会跟着刷新数据
+              router.replaceUrl({ url: 'pages/HomeSwiper' , params: paramsInfo })
             }
           })
         })

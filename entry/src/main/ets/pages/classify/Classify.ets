@@ -1,6 +1,6 @@
-import { ON } from '@ohos.UiTest'
-import { synthesisRecommend } from '../../common/PageRenderingValues'
+import { synthesisRecommend, LaptopClassify } from '../../common/PageRenderingValues'
 import { equipmentSynopsis } from '../../model/EquipmentSynopsis'
+
 @Component
 export struct Classify {
 
@@ -25,7 +25,7 @@ export struct Classify {
   @State isUnfold: boolean  = false
 
   // 当前分类
-  @Consume('currentClassify') currentClassify: number
+  @Consume('currentClassify') currentClassify: number;
 
   // 综合推荐状态默认状态
   @State synthesisRecommend: boolean = true
@@ -38,6 +38,23 @@ export struct Classify {
 
   // 升序数组
   @State AscendingArr: equipmentSynopsis[] = []
+
+  // 页面加载前执行
+  aboutToAppear(){
+    console.log('Classify开始加载了')
+    console.log('(Classify)this.currentClassify:' + this.currentClassify)
+    this.currentRendering(this.currentClassify)
+    // currentClassify非-1综合排序不显示
+    if (this.currentClassify != -1) {
+      this.synthesisRecommend = false
+    }
+  }
+
+  // 页面销毁时执行
+  aboutToDisappear(){
+    console.log('Classify销毁了')
+  }
+
 
   build() {
     Column({space: 10}) {
@@ -78,9 +95,8 @@ export struct Classify {
                   }.height('100%').layoutWeight(1)
                   .onClick(()=>{
                     // 选中分类点击事件
-                    this.currentClassify = index
                     this.synthesisRecommend = false
-                    this.PriceSort = -1
+                    this.currentRendering(index)
                   })
                 }
               })
@@ -122,9 +138,8 @@ export struct Classify {
               }.width('100%').height('100%')
               .onClick(()=>{
                 // 选中的当前分类
-                this.currentClassify = index
                 this.synthesisRecommend = false
-                this.PriceSort = -1
+                this.currentRendering(index)
               })
             })
           }.width('100%').height(140).rowsTemplate('1fr 1fr').columnsTemplate('1fr 1fr 1fr 1fr 1fr').rowsGap(8)
@@ -138,11 +153,13 @@ export struct Classify {
             this.synthesisRecommend = true
             this.currentClassify = -1
             this.PriceSort = -1
+            this.rendering = synthesisRecommend
           })
           Row(){
             Text('价格').fontSize(13).width('60%')
             .fontColor(this.PriceSort != -1 ? '#ff13e3f3' : '#000000')
             Column(){
+              // 三元表达式解决价格升序降序状态 PriceSort%2等于零时升序此时上面的图片选中状态 反之下面的图片选中状态
               Image(this.PriceSort %2 == 0 && this.PriceSort != -1 ? $rawfile('Classify/xia1.png') : $rawfile('Classify/xia0.png')).width(10).height(10).rotate({ angle: 180 })
               Image(this.PriceSort %2 == 1 && this.PriceSort != -1 ? $rawfile('Classify/xia1.png') : $rawfile('Classify/xia0.png')).width(10).height(10)
             }.height('100%').width('40%')
@@ -201,8 +218,6 @@ export struct Classify {
         })
       }.scrollBar(BarState.Auto)
 
-
-
     }.width('100%').layoutWeight(1)
     // 背景渐变色
     .linearGradient({
@@ -210,5 +225,17 @@ export struct Classify {
       repeating: false, // 渐变颜色是否重复
       colors: [['#ffe0ffff', 0.1], ['#ffffff', 0.2],['#ffeae8e8', 0.3], ['#ffebeeee', 0.9]] // 数组末尾元素占比小于1时满足重复着色效果
     })
+  }
+  // 当前页面渲染数据
+  currentRendering(index: number){
+    // 选中的当前分类
+    this.currentClassify = index
+    this.PriceSort = -1
+    if (index == 0) {
+      // 笔记本分类
+      this.rendering = LaptopClassify
+    } else if (index == 1) {
+
+    }
   }
 }

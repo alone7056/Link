@@ -3,6 +3,9 @@ import { Classify } from './classify/Classify'
 import { ShoppingCart } from './shoppingCart/shoppingCart';
 import { My } from './my/My';
 import { TabItem } from '../model/TabItem'
+import { currentClassify } from '../model/RoutingData'
+import router from '@ohos.router';
+
 
 @Entry
 @Component
@@ -27,7 +30,15 @@ struct HomeSwiper {
 
   // 页面加载前执行
   aboutToAppear(){
-
+    // 获取注册和重置密码页面传递过来的账号信息
+    try {
+      const params: currentClassify = router.getParams() as currentClassify;
+      this.currentClassify = params.currentClassify
+      this.currentIndex = 1
+      this.swiperIndex = 1
+    } catch (err) {
+      console.log('路由传参报错(HomeSwiper)')
+    }
   }
 
   build() {

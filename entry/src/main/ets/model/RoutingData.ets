@@ -3,6 +3,6 @@ export class AccountInfo{
   password?: string;
 }
 
-export class HomeCurrentIndex{
-  currentIndex: number;
+export class currentClassify{
+  currentClassify: number;
 }

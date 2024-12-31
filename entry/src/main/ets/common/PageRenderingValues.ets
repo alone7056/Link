@@ -47,21 +47,25 @@ export const synthesisRecommend: equipmentSynopsis[] = [
   new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_203V5LSB2_21.jpg'), '飞利浦Philips 223V5LSB 21.5英寸显示器租赁', '20/1920X1080/60HZ/VGA+DP', 25),
   new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_241V8_23.jpg'), '飞利浦Philips 241V8 23英寸显示器租赁', '23.8/1920X1080/75HZ/HDMI+VGA',33),
   new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_27B2N2100_27.jpg'), '飞利浦Philips 24B2N2100 27英寸显示器租赁', '27/1920X1080/100HZ/HDMI+VGA+DP',35),
-  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_241V8_23.jpg'), '飞利浦Philips 241V8 23.8英寸显示器租赁', '23.8/1920X1080/75HZ/HDMI+VGA',33),
-
-  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_241V8_23.jpg'), '飞利浦Philips 241V8 23.8英寸显示器租赁', '23.8/1920X1080/75HZ/HDMI+VGA',33),
-  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_241V8_23.jpg'), '飞利浦Philips 241V8 23.8英寸显示器租赁', '23.8/1920X1080/75HZ/HDMI+VGA',33),
-  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_241V8_23.jpg'), '飞利浦Philips 241V8 23.8英寸显示器租赁', '23.8/1920X1080/75HZ/HDMI+VGA',33),
-  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_241V8_23.jpg'), '飞利浦Philips 241V8 23.8英寸显示器租赁', '23.8/1920X1080/75HZ/HDMI+VGA',33),
-  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_241V8_23.jpg'), '飞利浦Philips 241V8 23.8英寸显示器租赁', '23.8/1920X1080/75HZ/HDMI+VGA',33),
-  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_241V8_23.jpg'), '飞利浦Philips 241V8 23.8英寸显示器租赁', '23.8/1920X1080/75HZ/HDMI+VGA',33),
-  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_241V8_23.jpg'), '飞利浦Philips 241V8 23.8英寸显示器租赁', '23.8/1920X1080/75HZ/HDMI+VGA',33),
-  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_241V8_23.jpg'), '飞利浦Philips 241V8 23.8英寸显示器租赁', '23.8/1920X1080/75HZ/HDMI+VGA',33),
-  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_241V8_23.jpg'), '飞利浦Philips 241V8 23.8英寸显示器租赁', '23.8/1920X1080/75HZ/HDMI+VGA',33),
-  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_241V8_23.jpg'), '飞利浦Philips 241V8 23.8英寸显示器租赁', '23.8/1920X1080/75HZ/HDMI+VGA',33),
-  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_241V8_23.jpg'), '飞利浦Philips 241V8 23.8英寸显示器租赁', '23.8/1920X1080/75HZ/HDMI+VGA',33),
-  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_241V8_23.jpg'), '飞利浦Philips 241V8 23.8英寸显示器租赁', '23.8/1920X1080/75HZ/HDMI+VGA',33),
+  new equipmentSynopsis($rawfile('Classify/synthesisRecommend/FLP_Philips_241V8_23.jpg'), '飞利浦Philips 241V8 23.8英寸显示器租赁', '23.8/1920X1080/75HZ/HDMI+VGA',33)
 ]
+
+export const LaptopClassify: equipmentSynopsis[] = [
+  new equipmentSynopsis($rawfile('Mall/ThinkPad_E14.jpg'), 'ThinkPad_E14', 'i3-11/8G/256G/核显/14', 108),
+  new equipmentSynopsis($rawfile('Mall/HP_440G7.jpg'), '惠普 440G7', 'i5-10/8G/256G/核显/14', 118),
+  new equipmentSynopsis($rawfile('Mall/ThinkPad_E14_Gen5.jpg'), 'ThinkPad E14 Gen5', 'i7-13/16/512G/核显/14', 256),
+  new equipmentSynopsis($rawfile('Mall/ThinkPad_P16V.jpg'), 'ThinkPad P16V', 'i7-13/16G/512G/4G独显/16', 458),
+  new equipmentSynopsis($rawfile('Mall/ThinkPad_E480.jpg'), 'ThinkPad_E480', 'i3-7/8G/256G/核显/14', 80),
+  new equipmentSynopsis($rawfile('Mall/ThinkPad_E14Gen1.jpg'), 'ThinkPad_E14Gen1', 'i3-10/8G/256G/核显/14', 103),
+  new equipmentSynopsis($rawfile('Mall/HP_440G7.jpg'), '惠普 430G8', 'i5-11/8G/256G/核显/13.3', 128),
+  new equipmentSynopsis($rawfile('Mall/DE_CM3980.jpg'), 'ThinkPad X390', 'i5-10/8G/256G/核显/13.3', 123),
+  new equipmentSynopsis($rawfile('Mall/ThinkPad_X13.jpg'), 'ThinkPad X13', 'i5-10/8G/256G/核显/13.3', 128),
+  new equipmentSynopsis($rawfile('Mall/ThinkPad_X13.jpg'), 'ThinkPad X13', 'i5-10/8G/256G/核显/13.3', 153),
+  new equipmentSynopsis($rawfile('Mall/ThinkPad_E141.jpg'), 'ThinkPad E14', 'i5-13/8G/512G/核显/14', 208),
+  new equipmentSynopsis($rawfile('Mall/ThinkPad_E14_Gen4.jpg'), 'ThinkPad E14 Gen4', 'i5-12/16G/256G * 2/核显/14', 178),
+]
+
+
 
 
 
