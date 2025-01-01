@@ -13,7 +13,7 @@ export struct PreferentialZone {
       Row({ space: 8 }) {
         Text('特价专区').fontColor('#ffffff').fontSize(18)
         Text('秒杀价')
-          .fontColor('#ffe3734f')
+          .fontColor('#fe5b53')
           .fontSize(15)
           .width(60)
           .textAlign(TextAlign.Center)
@@ -46,7 +46,7 @@ export struct PreferentialZone {
                     .textAlign(TextAlign.Center)
                     .borderRadius(3)
                     .width(60)
-                    .backgroundColor('#fff87575')
+                    .backgroundColor('#ec5155')
                 }.width('100%').layoutWeight(1)
 
                 Row() {
@@ -65,7 +65,7 @@ export struct PreferentialZone {
                   .height('100%')
                   .layoutWeight(2)
                   .textAlign(TextAlign.Center)
-                  .backgroundColor('#ffff6363')
+                  .backgroundColor('#e44454')
                   .borderRadius({ topRight: 99, bottomRight: 99 })
                 }.width('100%').layoutWeight(2)
               }.height('50%').backgroundColor('#fffcdcdc').borderRadius(10).padding(4)
@@ -84,7 +84,7 @@ export struct PreferentialZone {
     }
     .width('94%')
     .height(180)
-    .backgroundColor('#fff3664e')
+    .backgroundColor('#fe5b53')
     .padding(10)
     .borderRadius(10)
   }

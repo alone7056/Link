@@ -43,6 +43,7 @@ struct Index {
         const queryResult = await userDb.queryAllUser()
         const dataStr = JSON.stringify(queryResult)
         let whetherLogin: boolean = false
+
         // 判断用户是否登录
         // if (dataStr.includes('"whetherLogin":"1"')){
         //   whetherLogin = true

@@ -9,7 +9,7 @@ export struct My {
 
   aboutToAppear() {
     // 获取登录手机号 预览器无法预览先注释
-    this.phone = AppStorage.Get('loginUserPhone')
+    // this.phone = AppStorage.Get('loginUserPhone')
   }
 
   build() {

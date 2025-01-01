@@ -62,11 +62,11 @@ export struct Capabilities {
                 this.currentClassify = -1
               }
 
-              // 修改父组件的值实现跳转
+              // 路由传递参数
               let paramsInfo: currentClassify = {
                 currentClassify: this.currentClassify
               }
-              // 跳转刷新HomeSwiper其子组件才会跟着刷新数据
+              // 路由跳转刷新HomeSwiper其子组件才会跟着刷新数据
               router.replaceUrl({ url: 'pages/HomeSwiper' , params: paramsInfo })
             }
           })

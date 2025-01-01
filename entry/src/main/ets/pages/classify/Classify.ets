@@ -1,5 +1,6 @@
-import { synthesisRecommend, LaptopClassify } from '../../common/PageRenderingValues'
+import { synthesisRecommend, LaptopClassify, DesktopClassify} from '../../common/PageRenderingValues'
 import { equipmentSynopsis } from '../../model/EquipmentSynopsis'
+import LoadingDialog from '../../utils/TipsDialog'
 
 @Component
 export struct Classify {
@@ -39,6 +40,9 @@ export struct Classify {
   // 升序数组
   @State AscendingArr: equipmentSynopsis[] = []
 
+  // 搜索结果数组
+  @State searchResults: equipmentSynopsis[] = []
+
   // 页面加载前执行
   aboutToAppear(){
     console.log('Classify开始加载了')
@@ -62,7 +66,7 @@ export struct Classify {
       Row(){
         Stack(){
           Image($rawfile('Mall/search.png')).objectFit(ImageFit.Contain).width(18).margin({right: 260}).zIndex(1)
-          TextInput({placeholder: '搜一搜'}).backgroundColor('#ffffff').width('84%').borderRadius(0).zIndex(0)
+          TextInput({placeholder: '搜一搜', text: this.keywords}).backgroundColor('#ffffff').width('84%').borderRadius(0).zIndex(0)
             .onChange((v: string)=>{
               // 搜索关键字保存
               this.keywords = v
@@ -74,7 +78,24 @@ export struct Classify {
         Text('搜索').fontSize(17).height('100%').layoutWeight(1).textAlign(TextAlign.Center)
           .onClick(()=>{
             // 搜索点击事件
-
+            LoadingDialog.showLoading('正在搜索')
+            let timer = 1000
+            const timeId = setInterval(()=>{
+              if (timer === 0) {
+                // 清除LoadingDialog显示
+                LoadingDialog.hide()
+                // 根据关键字筛选数组
+                this.searchResults = this.rendering.filter(equipmentSynopsis => equipmentSynopsis.theNameOfTheDevice.toLowerCase().includes(this.keywords.toLowerCase()));
+                // 判断搜索是否有结果输出相对于的提示
+                if (this.searchResults.length == 0) {
+                  LoadingDialog.showFailure('未找到相关设备请重新搜索')
+                }
+                // 清空定时器
+                clearInterval(timeId)
+              } else {
+                timer -= 1000
+              }
+            }, 1000)
           })
 
       }.width('94%').height(45).backgroundColor('#ffffff').borderRadius(99).margin({top: 10})
@@ -151,6 +172,8 @@ export struct Classify {
           Text('综合推荐').fontSize(13).fontColor(this.synthesisRecommend ? '#ff13e3f3' : '#000000')
           .onClick(()=>{
             this.synthesisRecommend = true
+            this.keywords = ''
+            this.searchResults = []
             this.currentClassify = -1
             this.PriceSort = -1
             this.rendering = synthesisRecommend
@@ -182,7 +205,7 @@ export struct Classify {
       // 后续可以用LazyForEach优化
       List({space: 10}){
         //
-        ForEach(this.PriceSort != -1 ? (this.PriceSort %2 == 0 ? this.AscendingArr : this.DescendingArr) : this.rendering, (item: equipmentSynopsis, index: number)=>{
+        ForEach(this.PriceSort != -1 ? (this.PriceSort %2 == 0 ? this.AscendingArr : this.DescendingArr) : this.searchResults.length > 0 ? this.searchResults : this.rendering, (item: equipmentSynopsis, index: number)=>{
           ListItem(){
             Row(){
               // 设备图片
@@ -218,6 +241,10 @@ export struct Classify {
         })
       }.scrollBar(BarState.Auto)
 
+      Row(){
+        Text('没有更多了').fontSize(20).fontStyle(FontStyle.Italic).fontColor('#007dff')
+      }.width('100%').height(50).justifyContent(FlexAlign.Center)
+
     }.width('100%').layoutWeight(1)
     // 背景渐变色
     .linearGradient({
@@ -230,12 +257,33 @@ export struct Classify {
   currentRendering(index: number){
     // 选中的当前分类
     this.currentClassify = index
+    this.keywords = ''
+    this.searchResults = []
     this.PriceSort = -1
-    if (index == 0) {
-      // 笔记本分类
-      this.rendering = LaptopClassify
-    } else if (index == 1) {
-
-    }
+    // if (index == 0) {
+    //   // 笔记本分类
+    //   this.rendering = LaptopClassify
+    // } else if (index == 1) {
+    //   this.rendering = DesktopClassify
+    // }
+    LoadingDialog.showLoading('正在加载')
+    let timer = 500
+    const timeId = setInterval(()=>{
+      if (timer === 0) {
+        // 清除LoadingDialog显示
+        LoadingDialog.hide()
+        // 根据关键字筛选数组
+        if (index == 0) {
+          // 笔记本分类
+          this.rendering = LaptopClassify
+        } else if (index == 1) {
+          this.rendering = DesktopClassify
+        }
+        // 清空定时器
+        clearInterval(timeId)
+      } else {
+        timer -= 500
+      }
+    }, 500)
   }
 }

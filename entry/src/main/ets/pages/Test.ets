@@ -7,19 +7,39 @@ struct Test {
   @StorageLink('aProp') aProp: number = 48
 
   aboutToAppear(){
-    let people = [
+    // 大小排序
+    let people1 = [
       { name: 'John', age: 45 },
       { name: 'Alice', age: 23 },
       { name: 'Bob', age: 30 }
     ];
 
     // 使用展开运算符创建原数组的一个副本
-    let sortedPeople1 = [...people].sort((a, b) => b.age - a.age);
-    let sortedPeople2 = [...people].sort((a, b) => a.age - b.age);
+    let sortedPeople1 = [...people1].sort((a, b) => b.age - a.age);
+    let sortedPeople2 = [...people1].sort((a, b) => a.age - b.age);
 
-    console.log('Original array:', JSON.stringify(people));
+    console.log('Original array:', JSON.stringify(people1));
     console.log('Sorted array:', JSON.stringify(sortedPeople2));
+
+    // 构建子搜索
+    let people2 = [
+      { name: 'John Doe', age: 45 },
+      { name: 'Alice Johnson', age: 23 },
+      { name: 'Bob Smith', age: 30 },
+      { name: 'Michael Brown', age: 17 }
+    ];
+
+    // 定义关键字
+    let keyword = 'John';
+
+    // 使用filter方法筛选出包含关键字的对象
+    let filteredPeople = people2.filter(person => person.name.includes(keyword));
+
+    console.log('Original array:', JSON.stringify(people2));
+    console.log('Filtered array:', JSON.stringify(filteredPeople));
   }
+
+
 
   build() {
     Row() {
