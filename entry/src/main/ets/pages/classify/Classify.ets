@@ -1,4 +1,4 @@
-import { synthesisRecommend, LaptopClassify, DesktopClassify } from '../../common/PageRenderingValues'
+import { synthesisRecommend, LaptopClassify, DesktopClassify,allInOneMachineClassify, DisplayClassify, conferenceScreenClassify, printerClassify, singleHostClassify, compoundingMachineClassify} from '../../common/PageRenderingValues'
 import { equipmentSynopsis } from '../../model/EquipmentSynopsis'
 import LoadingDialog from '../../utils/TipsDialog'
 import { ClassifyComponent } from './ClassifyComponent'
@@ -264,8 +264,8 @@ export struct Classify {
               Image(item.picturesOfTheDevice).objectFit(ImageFit.Contain).height('100%').layoutWeight(4)
               // 参数简述价格
               Column({ space: 5 }) {
-                Text(item.theNameOfTheDevice).fontSize(13).width('100%').textAlign(TextAlign.Start)
-                Text(item.introductionToParameters).fontSize(10).width('100%').textAlign(TextAlign.Start)
+                Text(item.theNameOfTheDevice).fontSize(13).width('100%').textAlign(TextAlign.Start).maxLines(2)
+                Text(item.introductionToParameters).fontSize(10).width('100%').textAlign(TextAlign.Start).maxLines(2)
                 Text() {
                   Span(item.monthlyPrice + '.').fontSize(16).fontColor('#f9543d')
                   Span('00/月').fontSize(13).fontColor('#f9543d')
@@ -326,11 +326,28 @@ export struct Classify {
     } else if (index == 1) {
       // 台式机分类
       this.rendering = DesktopClassify
+    } else if (index == 2) {
+      // 一体机分类
+      this.rendering = allInOneMachineClassify
+    } else if (index == 3) {
+      // 显示器分类
+      this.rendering = DisplayClassify
+    } else if (index == 4){
+      // 会议大屏分类
+      this.rendering = conferenceScreenClassify
+    } else if (index == 5){
+      //打印机分类
+      this.rendering = printerClassify
+    } else if (index == 6){
+      // 单主机分类
+      this.rendering = singleHostClassify
+    } else {
+      // 复合机分类
+      this.rendering = compoundingMachineClassify
     }
   }
 
   obtainClassifyComponent(){
-
     // 当前数据源
     let currentDataSource: equipmentSynopsis[] = this.PriceSort != -1 ? (this.PriceSort %2 == 0 ? this.AscendingArr : this.DescendingArr ) : this.searchResults.length > 0 ? this.searchResults : this.rendering
     // 清空
