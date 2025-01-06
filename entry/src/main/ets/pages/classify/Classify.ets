@@ -1,4 +1,4 @@
-import { synthesisRecommend, LaptopClassify, DesktopClassify,allInOneMachineClassify, DisplayClassify, conferenceScreenClassify, printerClassify, singleHostClassify, compoundingMachineClassify} from '../../common/PageRenderingValues'
+import { synthesisRecommend, LaptopClassify, DesktopClassify,allInOneMachineClassify, DisplayClassify, conferenceScreenClassify, printerClassify, singleHostClassify} from '../../common/PageRenderingValues'
 import { equipmentSynopsis } from '../../model/EquipmentSynopsis'
 import LoadingDialog from '../../utils/TipsDialog'
 import { ClassifyComponent } from './ClassifyComponent'
@@ -12,8 +12,7 @@ export struct Classify {
     [$rawfile('Mall/xsq.png'), '显示器'],
     [$rawfile('Mall/hydp.png'), '会议大屏'],
     [$rawfile('Mall/dyj.png'), '打印机'],
-    [$rawfile('Mall/dzj.png'), '单主机'],
-    [$rawfile('Mall/fhj.png'), '复合机']
+    [$rawfile('Mall/dzj.png'), '单主机']
   ]
 
   // 当前页面渲染数据数组/默认数据
@@ -49,11 +48,11 @@ export struct Classify {
   // 页面加载前执行
   aboutToAppear() {
     console.log('Classify开始加载了')
-    console.log('(Classify)this.currentClassify:' + this.currentClassify)
-    this.currentRendering(this.currentClassify)
-    // currentClassify非-1综合排序不显示
+    // currentClassify非-1显示其他分类综合推荐不显示
+    console.log('(Classify)this.currentClassify = ' + this.currentClassify)
     if (this.currentClassify != -1) {
       this.synthesisRecommend = false
+      this.currentRendering(this.currentClassify)
     }
   }
 
@@ -296,11 +295,13 @@ export struct Classify {
             }.width('100%').height('100%')
           }.width('100%').height(100).backgroundColor('#ffffff').padding({ right: 10 })
         })
-      }.scrollBar(BarState.Auto)
+      }.scrollBar(BarState.Auto).edgeEffect(EdgeEffect.Spring)
 
-      Row() {
-        Text('没有更多了').fontSize(20).fontStyle(FontStyle.Italic).fontColor('#007dff')
-      }.width('100%').height(50).justifyContent(FlexAlign.Center)
+      if (this.rendering.length > 5) {
+        Row() {
+          Text('没有更多了').fontSize(20).fontStyle(FontStyle.Italic).fontColor('#007dff')
+        }.width('100%').height(50).justifyContent(FlexAlign.Center)
+      }
 
     }.width('100%').layoutWeight(1)
     // 背景渐变色
@@ -338,12 +339,9 @@ export struct Classify {
     } else if (index == 5){
       //打印机分类
       this.rendering = printerClassify
-    } else if (index == 6){
+    } else {
       // 单主机分类
       this.rendering = singleHostClassify
-    } else {
-      // 复合机分类
-      this.rendering = compoundingMachineClassify
     }
   }
 
