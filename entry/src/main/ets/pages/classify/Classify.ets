@@ -1,7 +1,18 @@
-import { synthesisRecommend, LaptopClassify, DesktopClassify,allInOneMachineClassify, DisplayClassify, conferenceScreenClassify, printerClassify, singleHostClassify} from '../../common/PageRenderingValues'
+import router from '@ohos.router'
+import {
+  synthesisRecommend,
+  LaptopClassify,
+  DesktopClassify,
+  allInOneMachineClassify,
+  DisplayClassify,
+  conferenceScreenClassify,
+  printerClassify,
+  singleHostClassify
+} from '../../common/PageRenderingValues'
 import { equipmentSynopsis } from '../../model/EquipmentSynopsis'
 import LoadingDialog from '../../utils/TipsDialog'
 import { ClassifyComponent } from './ClassifyComponent'
+import { DeviceInformation } from '../../model/RoutingData'
 
 @Component
 export struct Classify {
@@ -256,7 +267,7 @@ export struct Classify {
       // 后续可以用LazyForEach优化
       List({ space: 10 }) {
         //
-        ForEach(this.PriceSort != -1 ? (this.PriceSort %2 == 0 ? this.AscendingArr : this.DescendingArr ) : this.searchResults.length > 0 ? this.searchResults : this.rendering, (item: equipmentSynopsis, index: number) => {
+        ForEach(this.PriceSort != -1 ? (this.PriceSort % 2 == 0 ? this.AscendingArr : this.DescendingArr) : this.searchResults.length > 0 ? this.searchResults : this.rendering, (item: equipmentSynopsis, index: number) => {
           ListItem() {
             Row() {
               // 设备图片
@@ -266,6 +277,7 @@ export struct Classify {
                 Text(item.theNameOfTheDevice).fontSize(13).width('100%').textAlign(TextAlign.Start).maxLines(2)
                 Text(item.introductionToParameters).fontSize(10).width('100%').textAlign(TextAlign.Start).maxLines(2)
                 Text() {
+                  Span('￥').fontSize(13).fontColor('#f9543d')
                   Span(item.monthlyPrice + '.').fontSize(16).fontColor('#f9543d')
                   Span('00/月').fontSize(13).fontColor('#f9543d')
                 }.fontSize(14).width('100%').textAlign(TextAlign.Start)
@@ -274,10 +286,6 @@ export struct Classify {
               Column() {
                 // 点击查看更多图标
                 Image($rawfile('Classify/xia0.png')).rotate({ angle: -90 }).width(15).height(15)
-                  .onClick(() => {
-                    // 跳转至详情页面
-
-                  })
                 // 添加购物车按钮
                 Row() {
                   Text('+').fontSize(16).fontWeight(500).fontColor('#ffffff')
@@ -293,7 +301,22 @@ export struct Classify {
                 })
               }.height('100%').layoutWeight(1).justifyContent(FlexAlign.SpaceAround).alignItems(HorizontalAlign.Center)
             }.width('100%').height('100%')
-          }.width('100%').height(100).backgroundColor('#ffffff').padding({ right: 10 })
+          }
+          .width('100%')
+          .height(100)
+          .backgroundColor('#ffffff')
+          .padding({ right: 10 })
+          .onClick(() => {
+            // 跳转至详情页面
+            let paramsInfo: DeviceInformation = {
+              theNameOfTheDevice: item.theNameOfTheDevice,
+              propagandaHeadline: item.propagandaHeadline,
+              introductionToParameters: item.introductionToParameters,
+              monthlyPrice: item.monthlyPrice,
+              equipmentType: item.equipmentType
+            }
+            router.pushUrl({ url: 'pages/classify/ProductDetailsPage', params: paramsInfo })
+          })
         })
       }.scrollBar(BarState.Auto).edgeEffect(EdgeEffect.Spring)
 
@@ -333,10 +356,10 @@ export struct Classify {
     } else if (index == 3) {
       // 显示器分类
       this.rendering = DisplayClassify
-    } else if (index == 4){
+    } else if (index == 4) {
       // 会议大屏分类
       this.rendering = conferenceScreenClassify
-    } else if (index == 5){
+    } else if (index == 5) {
       //打印机分类
       this.rendering = printerClassify
     } else {
@@ -345,9 +368,9 @@ export struct Classify {
     }
   }
 
-  obtainClassifyComponent(){
+  obtainClassifyComponent() {
     // 当前数据源
-    let currentDataSource: equipmentSynopsis[] = this.PriceSort != -1 ? (this.PriceSort %2 == 0 ? this.AscendingArr : this.DescendingArr ) : this.searchResults.length > 0 ? this.searchResults : this.rendering
+    let currentDataSource: equipmentSynopsis[] = this.PriceSort != -1 ? (this.PriceSort % 2 == 0 ? this.AscendingArr : this.DescendingArr) : this.searchResults.length > 0 ? this.searchResults : this.rendering
     // 清空
     this.dataSource.deleteAll()
     for (let i = 0; i < currentDataSource.length; i++) {

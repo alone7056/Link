@@ -12,6 +12,7 @@
     "pages/my/set/PersonalInformation",
     "pages/MallTest",
     "pages/my/set/PrivacyManagement",
-    "pages/my/set/ConcerningAuthor"
+    "pages/my/set/ConcerningAuthor",
+    "pages/classify/ProductDetailsPage"
   ]
 }
