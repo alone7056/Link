@@ -285,6 +285,45 @@ export const LaptopDetails: Laptop[] = [
     ]
   ),
 
+  new Laptop('ThinkPad E14 Gen1', 'ThinkPad', 'E14 2020款',
+    [
+    $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E14_Gen1/ThinkPad_E14_Gen1_Swiper1.jpg'),
+    $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E14_Gen1/ThinkPad_E14_Gen1_Swiper2.jpg'),
+    $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E14_Gen1/ThinkPad_E14_Gen1_Swiper3.jpg'),
+    $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E14_Gen1/ThinkPad_E14_Gen1_Swiper4.jpg'),
+    $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E14_Gen1/ThinkPad_E14_Gen1_Swiper5.jpg')
+    ],
+
+    [
+      ['I5-1135G7/16G/512G SSD/核显/14/FHD', '163'],
+      ['I3-10110U/8G/256G SSD/核显/14/FHD', '103'],
+      ['I3-1115G4/8G/256G SSD/核显/14/FHD', '108'],
+      ['I5-10210U/8G/256G SSD/核显/14/FHD', '123'],
+      ['I5-1135G7/8G/256G SSD/核显/14/FHD', '148'],
+      ['I3-10110U/8G/256G SSD/核显/14/FHD', '78'],
+    ],
+
+    [
+    $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E14_Gen1/ProductDetails1.jpg'),
+    $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E14_Gen1/ProductDetails2.jpg'),
+    $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E14_Gen1/ProductDetails3.jpg')
+    ],
+    [
+      ['ThinkPad', 'E14 2020款', 'Win10家庭版'],
+      ['325*232*20.9mm', '约1.77KG', '黑色'],
+      ['Intel 酷睿 i3', 'i3-10110U', '1.6GHz/4.2GHz', '四核心/八线程'],
+      ['DDR4', '8G'],
+      ['固态硬盘', '256G'],
+      ['核芯显卡', 'IntelGMAHD', '共享系统内存'],
+      ['14英寸', '1920*1080'],
+      ['720p HD摄像头', '', ''],
+      ['支持蓝牙5.0模块', '802.11ax（WiFi6)', '10/100/1000Mbps网卡'],
+      ['耳麦二合一接口*1', 'HDMI*1', 'USB3.0*2，USB2.0*1，RJ45*1，全功能type-c，电源接口'],
+      ['锂聚合物电池45Wh'],
+      ['次新*1']
+    ]
+  ),
+
   new Laptop('ThinkPad X390', 'ThinkPad', 'X390',
     [$rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_X390/ThinkPad_X390_Swiper1.jpg')],
     [['I5-10210U/8G/256G SSD/核显/13.3/HD', '88'], ['I5-10210U/16G/512G SSD/核显/13.3/HD', '112']],
@@ -293,7 +332,6 @@ export const LaptopDetails: Laptop[] = [
     $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_X390/ProductDetails2.jpg'),
     $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_X390/ProductDetails3.jpg'),
     $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_X390/ProductDetails4.jpg'),
-    $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_X390/ProductDetails5.jpg'),
     $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_X390/ProductDetails5.jpg')
     ],
     [
@@ -306,7 +344,7 @@ export const LaptopDetails: Laptop[] = [
       ['13.3英寸', '1366*768'],
       ['720p HD摄像头', '', ''],
       ['支持蓝牙', 'Intel 9560 AC', '无'],
-      ['耳机/麦克风两用接口', '2×USB 3.1Gen1，1×Type-C，1×Thunderbolt 3.0，HDMI，RJ45', ''],
+      ['耳机/麦克风两用接口', 'HDMI', '2×USB 3.1Gen1，1×Type-C，1×Thunderbolt 3.0，HDMI，RJ45'],
       ['4芯48WHr'],
       ['次新*1']
     ]
