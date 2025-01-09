@@ -273,6 +273,7 @@ struct MoreLogin {
             }
 
             if (label == '直接试用') {
+              AppStorage.SetOrCreate('loginUserPhone', '游客用户')
               router.replaceUrl({url: 'pages/HomeSwiper'})
             }
 

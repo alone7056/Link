@@ -274,8 +274,8 @@ export struct Classify {
               Image(item.picturesOfTheDevice).objectFit(ImageFit.Contain).height('100%').layoutWeight(4)
               // 参数简述价格
               Column({ space: 5 }) {
-                Text(item.theNameOfTheDevice).fontSize(13).width('100%').textAlign(TextAlign.Start).maxLines(2)
-                Text(item.introductionToParameters).fontSize(10).width('100%').textAlign(TextAlign.Start).maxLines(2)
+                Text(item.theNameOfTheDevice).fontSize(14).width('100%').textAlign(TextAlign.Start).maxLines(2)
+                Text(item.introductionToParameters).fontSize(12).width('100%').textAlign(TextAlign.Start).maxLines(2)
                 Text() {
                   Span('￥').fontSize(13).fontColor('#f9543d')
                   Span(item.monthlyPrice + '.').fontSize(16).fontColor('#f9543d')
@@ -318,7 +318,7 @@ export struct Classify {
             router.pushUrl({ url: 'pages/classify/ProductDetailsPage', params: paramsInfo })
           })
         })
-      }.scrollBar(BarState.Auto).edgeEffect(EdgeEffect.Spring)
+      }.width('100%').scrollBar(BarState.Auto).edgeEffect(EdgeEffect.Spring)
 
       if (this.rendering.length > 5) {
         Row() {

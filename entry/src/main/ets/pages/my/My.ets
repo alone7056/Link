@@ -9,7 +9,7 @@ export struct My {
 
   aboutToAppear() {
     // 获取登录手机号 预览器无法预览先注释
-    // this.phone = AppStorage.Get('loginUserPhone')
+    this.phone = AppStorage.Get('loginUserPhone')
   }
 
   build() {
@@ -28,7 +28,7 @@ export struct My {
         // 用户头像手机号码
         Row({ space: 15 }) {
           Image($rawfile('My/tx.jpg')).objectFit(ImageFit.Contain).width(50).borderRadius(99)
-          Text(this.phone.substring(0, 3) + '****' + this.phone.substring(7, 12)).fontSize(20)
+          Text(this.phone == '游客用户' ? this.phone : this.phone.substring(0, 3) + '****' + this.phone.substring(7, 12)).fontSize(20)
         }
         .width('100%')
         .layoutWeight(1)

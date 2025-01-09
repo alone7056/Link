@@ -255,7 +255,7 @@ export const singleHostClassify: equipmentSynopsis[] = [
 // 笔记本详情
 export const LaptopDetails: Laptop[] = [
 
-  new Laptop('ThinkPad E490', 'ThinkPad', 'E490',
+  new Laptop('ThinkPad E490',
     [
     $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E490/ThinkPad_E490_Swiper1.jpg'),
     $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E490/ThinkPad_E490_Swiper2.jpg'),
@@ -285,7 +285,7 @@ export const LaptopDetails: Laptop[] = [
     ]
   ),
 
-  new Laptop('ThinkPad E14 Gen1', 'ThinkPad', 'E14 2020款',
+  new Laptop('ThinkPad E14 Gen1',
     [
     $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E14_Gen1/ThinkPad_E14_Gen1_Swiper1.jpg'),
     $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E14_Gen1/ThinkPad_E14_Gen1_Swiper2.jpg'),
@@ -296,7 +296,6 @@ export const LaptopDetails: Laptop[] = [
 
     [
       ['I5-1135G7/16G/512G SSD/核显/14/FHD', '163'],
-      ['I3-10110U/8G/256G SSD/核显/14/FHD', '103'],
       ['I3-1115G4/8G/256G SSD/核显/14/FHD', '108'],
       ['I5-10210U/8G/256G SSD/核显/14/FHD', '123'],
       ['I5-1135G7/8G/256G SSD/核显/14/FHD', '148'],
@@ -324,7 +323,7 @@ export const LaptopDetails: Laptop[] = [
     ]
   ),
 
-  new Laptop('ThinkPad X390', 'ThinkPad', 'X390',
+  new Laptop('ThinkPad X390',
     [$rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_X390/ThinkPad_X390_Swiper1.jpg')],
     [['I5-10210U/8G/256G SSD/核显/13.3/HD', '88'], ['I5-10210U/16G/512G SSD/核显/13.3/HD', '112']],
     [

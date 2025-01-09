@@ -2,17 +2,20 @@ import router from '@ohos.router';
 import { DeviceInformation } from '../../model/RoutingData'
 import { LaptopDetails } from '../../common/PageRenderingValues'
 import { Laptop } from '../../model/Laptop'
+import { chooseConfigure } from '../popUps/chooseConfigure';
 
 @Entry
 @Component
 struct ProductDetailsPage {
-  @State theNameOfTheDevice: string = ''; // 设备名称
+  @Provide('theNameOfTheDevice') theNameOfTheDevice: string = ''; // 设备名称
   @State propagandaHeadline: string = ''; // 设备标题
-  @State introductionToParameters: string = ''; // 参数简介
-  @State monthlyPrice: number = 0; // 月租价格
-  @State equipmentType: string = ''; // 设备类型
+  @Provide('introductionToParameters') introductionToParameters: string = '' // 参数简介
+  @Provide('monthlyPrice') monthlyPrice: number = 0 // 月租价格
+  @Provide('equipmentType') equipmentType: string = ''; // 设备类型
   @State currentIndex: number = 0; // 当前索引
 
+  @Provide('lease') lease: number[] = [12, 24, 12] // 租期
+  @Provide('leaseIndex') leaseIndex: number = 0
   @State productDetailsArr: string[] = ['商品详情', '商品参数']
 
   @State LaptopParameterInformation: string[][] = [
@@ -29,6 +32,8 @@ struct ProductDetailsPage {
     ['电池描述', '电池'],
     ['配置清单', '电源适配器']
   ]
+
+  // 当前渲染数据
   @State rendering: Laptop[] = undefined;
 
 
@@ -69,6 +74,27 @@ struct ProductDetailsPage {
       }
     }
 
+  }
+
+  // 退出登录弹窗
+  chooseConfigure: CustomDialogController = new CustomDialogController({
+    builder: chooseConfigure({
+      save: () => this.onAccept(),
+      cancel: () => this.onCancel()
+    }),
+    alignment: DialogAlignment.Bottom, // 弹窗对齐方式
+    offset: { dx: 0, dy: 0 }, // 设置弹窗的偏移量，这里 dy 为 50 表示弹窗底部距离屏幕底部有 50px 的间隔
+    customStyle: true, // 是否自定义样式
+  })
+
+  // 确认方法
+  async onAccept() {
+
+  }
+
+  // 取消方法
+  onCancel() {
+    this.chooseConfigure.close()
   }
 
   build() {
@@ -139,6 +165,10 @@ struct ProductDetailsPage {
                   Blank()
                   Image($r('app.media.img_1')).width(10)
                 }.width('100%').layoutWeight(1).padding({ right: 10 })
+                .onClick(()=>{
+                  // 打开配置选择弹窗
+                  this.chooseConfigure.open()
+                })
 
                 Divider().width('85%').margin({ right: 50 })
 
@@ -148,7 +178,7 @@ struct ProductDetailsPage {
                       Span('首月租金：')
                       Span('￥' + this.monthlyPrice).fontColor('#f9543d')
                       Span(' ，租期')
-                      Span(' 12 ').fontColor('#f9543d')
+                      Span(this.lease[2] + '').fontColor('#f9543d')
                       Span('个月 ')
                       Span('固定租期').fontColor('#f9543d')
                     }.width('95%').fontSize(15)
@@ -207,9 +237,9 @@ struct ProductDetailsPage {
                             .textAlign(TextAlign.Start)
                             .backgroundColor('#ffffff')
                             .padding({ left: 10 })
-                            .border({width: {bottom : indexMin > 0 && indexMin < itemMin.length - 2 ? 1 : 0}})
+                            .border({width: {bottom : indexMin > 0 && indexMin < item.length - 1 ? 1 : 0}, color: '#f7f7f7'})
                         }
-                      }.width('100%').height(50).backgroundColor('#ffd2cfcf').padding({ left: 15 })
+                      }.width('100%').height(50).backgroundColor('#f7f7f7').padding({ left: 15 })
                     })
                   }
                 })
