@@ -3,7 +3,7 @@ import { Classify } from './classify/Classify'
 import { ShoppingCart } from './shoppingCart/shoppingCart';
 import { My } from './my/My';
 import { TabItem } from '../model/TabItem'
-import { currentClassify } from '../model/RoutingData'
+import { currentIndex } from '../model/RoutingData'
 import router from '@ohos.router';
 
 
@@ -32,10 +32,15 @@ struct HomeSwiper {
   aboutToAppear(){
     // 获取注册和重置密码页面传递过来的账号信息
     try {
-      const params: currentClassify = router.getParams() as currentClassify;
-      this.currentClassify = params.currentClassify
-      this.currentIndex = 1
-      this.swiperIndex = 1
+      const params: currentIndex = router.getParams() as currentIndex;
+      if (params.type == 'classifyIndex') { // 调整至分类搜索并选中传来的索引
+        this.currentClassify = params.currentClassify
+        this.currentIndex = 1
+        this.swiperIndex = 1
+      } else if (params.type == 'swiperIndex') { // 跳转至购物车
+        this.currentIndex = 2
+        this.swiperIndex = 2
+      }
     } catch (err) {
       console.log('路由传参报错(HomeSwiper)')
     }

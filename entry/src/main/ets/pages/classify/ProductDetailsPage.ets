@@ -1,5 +1,5 @@
 import router from '@ohos.router';
-import { DeviceInformation } from '../../model/RoutingData'
+import { currentIndex, DeviceInformation } from '../../model/RoutingData'
 import { LaptopDetails } from '../../common/PageRenderingValues'
 import { Laptop } from '../../model/Laptop'
 import { chooseConfigure } from '../popUps/chooseConfigure';
@@ -14,10 +14,10 @@ struct ProductDetailsPage {
   @Provide('equipmentType') equipmentType: string = ''; // 设备类型
   @State currentIndex: number = 0; // 当前索引
 
-  @Provide('lease') lease: number[] = [12, 24, 12] // 租期
+
+  @Provide('lease') lease: number[] = [12, 24, 0] // 租期
   @Provide('leaseIndex') leaseIndex: number = 0
   @State productDetailsArr: string[] = ['商品详情', '商品参数']
-
   @State LaptopParameterInformation: string[][] = [
     ['基本信息', '品牌', '型号', '操作系统'],
     ['外观尺寸', '尺寸', '重量', '颜色'],
@@ -35,7 +35,6 @@ struct ProductDetailsPage {
 
   // 当前渲染数据
   @State rendering: Laptop[] = undefined;
-
 
   aboutToAppear() {
 
@@ -131,7 +130,10 @@ struct ProductDetailsPage {
             Row() {
               Text() {
                 Span('￥').fontSize(14).fontColor('#f9543d')
-                Span(this.monthlyPrice + '.').fontSize(20).fontColor('#f9543d').fontWeight(500)
+                Span(this.lease[2] == 24 ? this.monthlyPrice - 10 + '.' : this.monthlyPrice + '.')
+                  .fontSize(20)
+                  .fontColor('#f9543d')
+                  .fontWeight(500)
                 Span('00/月').fontSize(16).fontColor('#f9543d').fontWeight(500)
               }.fontSize(14).width('100%').textAlign(TextAlign.Start)
             }.width('100%').padding(10)
@@ -158,14 +160,16 @@ struct ProductDetailsPage {
               Column() {
                 Row() {
 
-                  Text(this.introductionToParameters).fontSize(15).opacity(0.7)
+                  Text(this.introductionToParameters)
+                    .fontSize(15)
+                    .opacity(0.7)
                     .width('90%')
                     .textOverflow({ overflow: TextOverflow.Ellipsis })
                     .maxLines(1)
                   Blank()
                   Image($r('app.media.img_1')).width(10)
                 }.width('100%').layoutWeight(1).padding({ right: 10 })
-                .onClick(()=>{
+                .onClick(() => {
                   // 打开配置选择弹窗
                   this.chooseConfigure.open()
                 })
@@ -176,7 +180,7 @@ struct ProductDetailsPage {
                   Row() {
                     Text() {
                       Span('首月租金：')
-                      Span('￥' + this.monthlyPrice).fontColor('#f9543d')
+                      Span(this.lease[2] == 24 ? '￥' + (this.monthlyPrice - 10) : '￥' + this.monthlyPrice).fontColor('#f9543d')
                       Span(' ，租期')
                       Span(this.lease[2] + '').fontColor('#f9543d')
                       Span('个月 ')
@@ -231,13 +235,20 @@ struct ProductDetailsPage {
                             .height('100%')
                             .layoutWeight(1)
                             .textAlign(TextAlign.Start)
+                            .fontWeight(500)
+                            .fontSize(15)
                           Text(itemMin.slice(itemMin.indexOf(':') + 1, itemMin.length))
                             .height('100%')
                             .layoutWeight(3)
                             .textAlign(TextAlign.Start)
                             .backgroundColor('#ffffff')
                             .padding({ left: 10 })
-                            .border({width: {bottom : indexMin > 0 && indexMin < item.length - 1 ? 1 : 0}, color: '#f7f7f7'})
+                            .fontSize(15)
+                            .opacity(0.8)
+                            .border({
+                              width: { bottom: indexMin > 0 && indexMin < item.length - 1 ? 1 : 0 },
+                              color: '#f7f7f7'
+                            })
                         }
                       }.width('100%').height(50).backgroundColor('#f7f7f7').padding({ left: 15 })
                     })
@@ -249,14 +260,70 @@ struct ProductDetailsPage {
         }.width('100%')
       }
       .width('100%')
-      .layoutWeight(11)
+      .layoutWeight(13)
       .edgeEffect(EdgeEffect.None)
       .scrollBar(BarState.Off)
       .backgroundColor('#ffeae9e9')
 
+      // 最下边功能按键
       Row() {
 
-      }.width('100%').layoutWeight(1).backgroundColor('#ff0073ff')
+        Column({ space: 10 }) {
+          Image($r('app.media.tab_mall_0')).width(20).height(20)
+          Text('商城').fontSize(14)
+        }
+        .layoutWeight(1)
+        .height('100%')
+        .justifyContent(FlexAlign.Center)
+        .alignItems(HorizontalAlign.Center)
+        .onClick(() => {
+          // 跳转至商城页面点击事件
+          router.replaceUrl({url: 'pages/HomeSwiper'}) // 销毁跳转
+        })
+
+        Column({ space: 10 }) {
+          Image($r('app.media.tab_ShoppingCart_0')).width(20).height(20)
+          Text('购物车').fontSize(14)
+        }
+        .layoutWeight(1)
+        .height('100%')
+        .justifyContent(FlexAlign.Center)
+        .alignItems(HorizontalAlign.Center)
+        .onClick(() => {
+          // 跳转至购物车页面点击事件
+
+          let paramsInfo: currentIndex = {
+            type: 'swiperIndex',
+            currentClassify: 0
+          }
+          // 路由跳转刷新HomeSwiper其子组件才会跟着刷新数据
+          router.replaceUrl({ url: 'pages/HomeSwiper' , params: paramsInfo })
+        })
+
+        Row() {
+          Text('立即租赁').fontColor('#ffffff')
+        }
+        .layoutWeight(2)
+        .height('100%')
+        .backgroundColor('#2e99ff')
+        .justifyContent(FlexAlign.Center)
+        .onClick(() => {
+          // 立即租赁点击事件
+
+        })
+
+        Row() {
+          Text('加入购物车').fontColor('#ffffff')
+        }
+        .layoutWeight(2)
+        .height('100%')
+        .backgroundColor('#0d87fc')
+        .justifyContent(FlexAlign.Center)
+        .onClick(() => {
+          // 加入购物车打开选择配置弹窗点击事件
+          this.chooseConfigure.open()
+        })
+      }.width('100%').layoutWeight(1).backgroundColor('#ffffff')
 
     }.width('100%').height('100%')
   }

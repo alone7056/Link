@@ -1,6 +1,6 @@
 
 import router from '@ohos.router';
-import { currentClassify } from '../../model/RoutingData'
+import { currentIndex } from '../../model/RoutingData'
 
 @Component
 export struct Capabilities {
@@ -21,6 +21,7 @@ export struct Capabilities {
   @Consume('currentIndex') currentIndex: number;
   @Consume('swiperIndex') swiperIndex: number;
 
+  // 应用当前导航页面
   @Consume('currentClassify') currentClassify: number;
 
   build() {
@@ -63,7 +64,8 @@ export struct Capabilities {
               }
 
               // 路由传递参数
-              let paramsInfo: currentClassify = {
+              let paramsInfo: currentIndex = {
+                type: 'classifyIndex',
                 currentClassify: this.currentClassify
               }
               // 路由跳转刷新HomeSwiper其子组件才会跟着刷新数据

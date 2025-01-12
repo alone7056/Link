@@ -3,7 +3,8 @@ export class AccountInfo {
   password?: string;
 }
 
-export class currentClassify {
+export class currentIndex {
+  type: string;
   currentClassify: number;
 }
 

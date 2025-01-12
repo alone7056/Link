@@ -32,8 +32,9 @@ export struct chooseConfigure {
   aboutToDisappear(){
     console.log('(chooseConfigure)销毁了')
     if (this.leaseIndex == 1) {
-      this.monthlyPrice -= 10
       this.lease[2] = 24
+    } else {
+      this.lease[2] = 12
     }
   }
 

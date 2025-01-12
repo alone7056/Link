@@ -55,7 +55,7 @@ export const synthesisRecommend: equipmentSynopsis[] = [
 
   // 笔记本
   new equipmentSynopsis($rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E490/ThinkPad_E490_Swiper1.jpg'), 'ThinkPad E490', 'ThinkPad E490 14英寸笔记本电脑', 'I3-8145U/8G/256G SSD/核显/14/HD', 65, 'Laptop'),
-  new equipmentSynopsis($rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E14_Gen1/ThinkPad_E14_Gen1_Swiper1.jpg'), 'ThinkPad E14 Gen1', 'ThinkPad E14 Gen1 14英寸笔记本电脑租赁', 'ThinkPad E14 Gen1 14英寸笔记本电脑租赁', 78, 'Laptop'),
+  new equipmentSynopsis($rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E14_Gen1/ThinkPad_E14_Gen1_Swiper1.jpg'), 'ThinkPad E14 Gen1', 'ThinkPad E14 Gen1 14英寸笔记本电脑租赁', 'I3-10110U/8G/256G SSD/核显/14/FHD', 78, 'Laptop'),
   new equipmentSynopsis($rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E480/ThinkPad_E480_Swiper1.jpg'), 'ThinkPad E480', 'ThinkPad E480 14英寸笔记本电脑', 'I3-7020U/8G/256G SSD/核显/14/HD', 60, 'Laptop'),
   new equipmentSynopsis($rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E14_Gen2/ThinkPad_E14_Gen2_Swiper1.jpg'), 'ThinkPad E14', 'ThinkPad E14 Gen2 14英寸笔记本电脑租赁', 'I3-1115G4/8G/256G SSD/核显/14/FHD', 88, 'Laptop'),
   new equipmentSynopsis($rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_L14/ThinkPad_L14_Swiper1.jpg'), 'ThinkPad L14', 'ThinkPad L14 14英寸笔记本电脑租赁', 'I5-10210U/16G/256G SSD/R625 2G独显14/FHD', 95, 'Laptop'),
@@ -115,7 +115,7 @@ export const synthesisRecommend: equipmentSynopsis[] = [
 // 笔记本分类
 export const LaptopClassify: equipmentSynopsis[] = [
   new equipmentSynopsis($rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E490/ThinkPad_E490_Swiper1.jpg'), 'ThinkPad E490', 'ThinkPad E490 14英寸笔记本电脑', 'I3-8145U/8G/256G SSD/核显/14/HD', 65, 'Laptop'),
-  new equipmentSynopsis($rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E14_Gen1/ThinkPad_E14_Gen1_Swiper1.jpg'), 'ThinkPad E14 Gen1', 'ThinkPad E14 Gen1 14英寸笔记本电脑租赁', 'ThinkPad E14 Gen1 14英寸笔记本电脑租赁', 78, 'Laptop'),
+  new equipmentSynopsis($rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E14_Gen1/ThinkPad_E14_Gen1_Swiper1.jpg'), 'ThinkPad E14 Gen1', 'ThinkPad E14 Gen1 14英寸笔记本电脑租赁', 'I3-10110U/8G/256G SSD/核显/14/FHD', 78, 'Laptop'),
   new equipmentSynopsis($rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E480/ThinkPad_E480_Swiper1.jpg'), 'ThinkPad E480', 'ThinkPad E480 14英寸笔记本电脑', 'I3-7020U/8G/256G SSD/核显/14/HD', 60, 'Laptop'),
   new equipmentSynopsis($rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E14_Gen2/ThinkPad_E14_Gen2_Swiper1.jpg'), 'ThinkPad E14', 'ThinkPad E14 Gen2 14英寸笔记本电脑租赁', 'I3-1115G4/8G/256G SSD/核显/14/FHD', 88, 'Laptop'),
   new equipmentSynopsis($rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_L14/ThinkPad_L14_Swiper1.jpg'), 'ThinkPad L14', 'ThinkPad L14 14英寸笔记本电脑租赁', 'I5-10210U/16G/256G SSD/R625 2G独显14/FHD', 95, 'Laptop'),
@@ -263,12 +263,18 @@ export const LaptopDetails: Laptop[] = [
     $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E490/ThinkPad_E490_Swiper4.jpg'),
     $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E490/ThinkPad_E490_Swiper5.jpg')
     ],
-    [['I3-8145U/16/512G SSD/核显/14/HD', '88'], ['I3-8145U/8G/256G SSD/核显/14/HD', '65']],
+
+    [
+      ['I3-8145U/16/512G SSD/核显/14/HD', '88'],
+      ['I3-8145U/8G/256G SSD/核显/14/HD', '65']
+    ],
+
     [
     $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E490/ProductDetails1.jpg'),
     $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E490/ProductDetails2.jpg'),
     $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E490/ProductDetails3.jpg')
     ],
+
     [
       ['ThinkPad', 'E490', 'Win10家庭版'],
       ['329×242×21.9mm', '约1.78kg', '黑色'],
