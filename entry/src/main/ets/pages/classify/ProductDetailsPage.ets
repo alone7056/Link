@@ -1,12 +1,13 @@
 import router from '@ohos.router';
 import { currentIndex, DeviceInformation } from '../../model/RoutingData'
-import { LaptopDetails } from '../../common/PageRenderingValues'
-import { Laptop } from '../../model/Laptop'
+import { LaptopDetails, LaptopParameterInformation, DisplayDetails, DisplayParameterInformation, DesktopDetails, DesktopParameterInformation} from '../../common/PageRenderingValues'
+import { deviceDetails } from '../../model/EquipmentClass'
 import { chooseConfigure } from '../popUps/chooseConfigure';
 
 @Entry
 @Component
 struct ProductDetailsPage {
+
   @Provide('theNameOfTheDevice') theNameOfTheDevice: string = ''; // 设备名称
   @State propagandaHeadline: string = ''; // 设备标题
   @Provide('introductionToParameters') introductionToParameters: string = '' // 参数简介
@@ -15,28 +16,17 @@ struct ProductDetailsPage {
   @State currentIndex: number = 0; // 当前索引
 
 
-  @Provide('lease') lease: number[] = [12, 24, 0] // 租期
+  @Provide('lease') lease: number[] = [12, 24, 12] // 租期
   @Provide('leaseIndex') leaseIndex: number = 0
   @State productDetailsArr: string[] = ['商品详情', '商品参数']
-  @State LaptopParameterInformation: string[][] = [
-    ['基本信息', '品牌', '型号', '操作系统'],
-    ['外观尺寸', '尺寸', '重量', '颜色'],
-    ['处理器', 'CPU系列', 'CPU型号', '主频/睿频', '核心/线程'],
-    ['内存', '内存类型', '内存容量'],
-    ['硬盘', '硬盘类型', '硬盘容量'],
-    ['显卡', '显卡类型', '显存容量'],
-    ['显示器', '屏幕尺寸', '分辨率'],
-    ['多媒体设备', '720摄像头'],
-    ['网络通信', '内置蓝牙', '无线网卡', '有线网卡'],
-    ['I/O接口', '音频接口', '视频接口', '其他接口'],
-    ['电池描述', '电池'],
-    ['配置清单', '电源适配器']
-  ]
 
   // 当前渲染数据
-  @State rendering: Laptop[] = undefined;
+  @State rendering: deviceDetails[] = undefined;
+  // 当前设备参数信息
+  @State currentDeviceParameters: string[][] = []
 
   aboutToAppear() {
+    this.currentDeviceParameters.length = 0
 
     // 获取分类搜索页面传递过来的值
     try {
@@ -59,19 +49,47 @@ struct ProductDetailsPage {
       console.log('路由传参报错')
     }
 
+    // 笔记本类
     if (this.equipmentType == 'Laptop') {
-      this.rendering = LaptopDetails.filter(Laptop => Laptop.TheNameOfTheNotebook.includes(this.theNameOfTheDevice));
+      this.rendering = LaptopDetails.filter(Laptop => Laptop.TheNameOfTheDevice.includes(this.theNameOfTheDevice));
+      this.currentDeviceParameters = LaptopParameterInformation
       console.log('(ProductDetailsPage)this.rendering.length:' + this.rendering.length)
     }
 
-    for (let indexMax = 0; indexMax < this.LaptopParameterInformation.length; indexMax++) {
-      for (let indexMin = 0; indexMin < this.LaptopParameterInformation[indexMax].length; indexMin++) {
+    // 显示器类
+    if (this.equipmentType == 'Display') {
+      this.rendering = DisplayDetails.filter(Display => Display.TheNameOfTheDevice.includes(this.theNameOfTheDevice));
+      this.currentDeviceParameters = DisplayParameterInformation
+      console.log('(ProductDetailsPage)this.rendering.length:' + this.rendering.length)
+    }
+
+    // 台式机类
+    if (this.equipmentType == 'Desktop') {
+      this.rendering = DesktopDetails.filter(Display => Display.TheNameOfTheDevice.includes(this.theNameOfTheDevice));
+      this.currentDeviceParameters = DesktopParameterInformation
+      console.log('(ProductDetailsPage)this.rendering.length:' + this.rendering.length)
+    }
+
+    // 双层循环遍历当前要渲染的数据源 并拼接字段和数据方便后续操作
+    for (let indexMax = 0; indexMax < this.currentDeviceParameters.length; indexMax++) {
+      for (let indexMin = 0; indexMin < this.currentDeviceParameters[indexMax].length; indexMin++) {
         if (indexMin > 0) {
-          this.LaptopParameterInformation[indexMax][indexMin] = this.LaptopParameterInformation[indexMax][indexMin] + ':' + this.rendering[0].ProductParameters[indexMax][indexMin - 1]
-          console.log(`(ProductDetailsPage)this.LaptopParameterInformation[${indexMax}][${indexMin}]=${this.LaptopParameterInformation[indexMax][indexMin]}`)
+          // 消除多余字符
+          this.currentDeviceParameters[indexMax][indexMin] = this.currentDeviceParameters[indexMax][indexMin] + '#'
+          this.currentDeviceParameters[indexMax][indexMin] = this.currentDeviceParameters[indexMax][indexMin].slice(0, this.currentDeviceParameters[indexMax][indexMin].indexOf('#'))
+          // 拼接字段与数据
+          this.currentDeviceParameters[indexMax][indexMin] +=  '#' + this.rendering[0].ProductParameters[indexMax][indexMin - 1]
+          // 控制台打印调试
+          console.log(`(ProductDetailsPage)this.rendering[0].ProductParameters[${indexMax}][${indexMin - 1}]=${this.rendering[0].ProductParameters[indexMax][indexMin - 1]}`)
+          console.log(`(ProductDetailsPage)this.currentDeviceParameters[${indexMax}][${indexMin}]=${this.currentDeviceParameters[indexMax][indexMin]}`)
         }
       }
     }
+
+  }
+
+  // 页面销毁执行
+  aboutToDisappear(){
 
   }
 
@@ -105,6 +123,7 @@ struct ProductDetailsPage {
             .onClick(() => {
               // 返回上一级
               router.back()
+              this.currentDeviceParameters = []
             })
         }.width('93%').justifyContent(FlexAlign.Start)
       }.width('100%').layoutWeight(1)
@@ -121,6 +140,7 @@ struct ProductDetailsPage {
               }
               .width('100%')
               .loop(true) // 列表循环
+              // 当轮播图数组长度大于1自动轮播反之取消自动轮播
               .autoPlay(this.rendering[0].particularsSwiper.length > 1 ? true : false) // 自动轮播
               .interval(3000) // 间隔时间
             }.width('100%').height(300)
@@ -130,7 +150,8 @@ struct ProductDetailsPage {
             Row() {
               Text() {
                 Span('￥').fontSize(14).fontColor('#f9543d')
-                Span(this.lease[2] == 24 ? this.monthlyPrice - 10 + '.' : this.monthlyPrice + '.')
+                // 如果租期是24个月每个月租期优惠10元 但如果是显示器租期为24个月每个月优惠5元
+                Span(this.lease[2] == 24 ? this.equipmentType == 'Display' ? this.monthlyPrice - 5 + '.' : this.monthlyPrice - 10 + '.'  : this.monthlyPrice + '.')
                   .fontSize(20)
                   .fontColor('#f9543d')
                   .fontWeight(500)
@@ -180,7 +201,7 @@ struct ProductDetailsPage {
                   Row() {
                     Text() {
                       Span('首月租金：')
-                      Span(this.lease[2] == 24 ? '￥' + (this.monthlyPrice - 10) : '￥' + this.monthlyPrice).fontColor('#f9543d')
+                      Span(this.lease[2] == 24 ? this.equipmentType == 'Display' ? '￥' + (this.monthlyPrice - 5) : '￥' + (this.monthlyPrice - 10) : '￥' + this.monthlyPrice).fontColor('#f9543d')
                       Span(' ，租期')
                       Span(this.lease[2] + '').fontColor('#f9543d')
                       Span('个月 ')
@@ -189,7 +210,7 @@ struct ProductDetailsPage {
                   }.width('100%').layoutWeight(1)
 
                   Row() {
-                    Text('到期归还Link，租期未满12个月需自行垫付运费等相关费用').width('95%').fontSize(15)
+                    Text('到期归还Link，租期未满'+ this.lease[2] +'个月需自行垫付运费等相关费用').width('95%').fontSize(15)
                   }.width('100%').layoutWeight(1).opacity(0.7)
                 }.width('100%').layoutWeight(2)
               }.height('100%').layoutWeight(4)
@@ -224,25 +245,27 @@ struct ProductDetailsPage {
                   Image(item).objectFit(ImageFit.Contain).width('100%')
                 })
               } else {
-                ForEach(this.LaptopParameterInformation, (item, indexMax: number) => {
+                ForEach(this.currentDeviceParameters, (item, indexMax: number) => {
                   Column() {
                     ForEach(item, (itemMin: string, indexMin: number) => {
                       Row() {
                         if (indexMin == 0) {
                           Text(itemMin).height('100%').layoutWeight(1).textAlign(TextAlign.Start)
                         } else {
-                          Text(itemMin.slice(0, itemMin.indexOf(':')))
+                          Text(itemMin.slice(0, itemMin.indexOf('#')))
                             .height('100%')
                             .layoutWeight(1)
                             .textAlign(TextAlign.Start)
                             .fontWeight(500)
                             .fontSize(15)
-                          Text(itemMin.slice(itemMin.indexOf(':') + 1, itemMin.length))
+                          Text(itemMin.slice(itemMin.indexOf('#') + 1, itemMin.length))
                             .height('100%')
                             .layoutWeight(3)
                             .textAlign(TextAlign.Start)
+                            .textOverflow({ overflow: TextOverflow.Ellipsis })
+                            .maxLines(2)
                             .backgroundColor('#ffffff')
-                            .padding({ left: 10 })
+                            .padding({ left: 10, right: 10})
                             .fontSize(15)
                             .opacity(0.8)
                             .border({

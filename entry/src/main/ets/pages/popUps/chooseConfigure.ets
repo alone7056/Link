@@ -1,6 +1,6 @@
 
-import { LaptopDetails } from '../../common/PageRenderingValues';
-import { Laptop } from '../../model/Laptop';
+import { LaptopDetails, DisplayDetails, DesktopDetails} from '../../common/PageRenderingValues';
+import { deviceDetails } from '../../model/EquipmentClass';
 @CustomDialog
 export struct chooseConfigure {
   // 控制器
@@ -16,16 +16,26 @@ export struct chooseConfigure {
   @Consume('leaseIndex') leaseIndex: number; // 租期下标——默认12个月
 
   // 当前渲染数据
-  @State rendering: Laptop[] = undefined;
+  @State rendering: deviceDetails[] = undefined;
 
   // 弹窗记载前执行
   aboutToAppear(){
     console.log('(chooseConfigure)加载了')
+
+    // 笔记本
     console.log('(chooseConfigure):' + this.theNameOfTheDevice + '|'  + this.introductionToParameters + '|' + this.monthlyPrice + '|' + this.equipmentType)
     if (this.equipmentType == 'Laptop') {
-      this.rendering = LaptopDetails.filter(Laptop => Laptop.TheNameOfTheNotebook.includes(this.theNameOfTheDevice));
-      console.log('(chooseConfigure)this.rendering.length:' + this.rendering.length)
+      this.rendering = LaptopDetails.filter(Laptop => Laptop.TheNameOfTheDevice.includes(this.theNameOfTheDevice));
     }
+    // 显示器
+    if (this.equipmentType == 'Display') {
+      this.rendering = DisplayDetails.filter(Display => Display.TheNameOfTheDevice.includes(this.theNameOfTheDevice));
+    }
+    // 台式机
+    if (this.equipmentType == 'Desktop') {
+      this.rendering = DesktopDetails.filter(Desktop => Desktop.TheNameOfTheDevice.includes(this.theNameOfTheDevice));
+    }
+
   }
 
   // 弹窗销毁后执行
@@ -53,8 +63,8 @@ export struct chooseConfigure {
           Row(){
             Text(){
               Span('￥').fontSize(12).fontColor('#e44454')
-              Span(this.monthlyPrice + '').fontSize(18).fontColor('#e44454')
-              Span('.00/月').fontSize(14).fontColor('#e44454')
+              Span(this.lease[2] == 24 ? this.equipmentType == 'Display' ? this.monthlyPrice - 5 + '.' : this.monthlyPrice - 10 + '.'  : this.monthlyPrice + '.').fontSize(18).fontColor('#e44454')
+              Span('00/月').fontSize(14).fontColor('#e44454')
             }
           }.width('100%').layoutWeight(1).justifyContent(FlexAlign.Start)
 
@@ -79,6 +89,8 @@ export struct chooseConfigure {
           ForEach(this.rendering[0].optionalConfiguration, (item: string[], index: number)=>{
             Row(){
               Text(item[0]).height('100%').padding(5).borderRadius(99)
+                .textOverflow({ overflow: TextOverflow.Ellipsis })
+                .maxLines(1)
                 .fontSize(14)
                 .fontColor(this.introductionToParameters == item[0] ? '#e44454' : '#000000')
                 .backgroundColor('#fff1efef')
@@ -103,7 +115,8 @@ export struct chooseConfigure {
                     Row() {
                       Text() {
                         Span('首月租金：')
-                        Span(index == 0 ? '￥' + this. monthlyPrice : '￥' + (this.monthlyPrice - 10)).fontColor('#f9543d')
+                        // 租金为24个月的每月优惠10元 显示器优惠5元
+                        Span(index == 0 ? '￥' + this. monthlyPrice : this.equipmentType == 'Display' ? '￥' + (this.monthlyPrice - 5) : '￥' + (this.monthlyPrice - 10)).fontColor('#f9543d')
                         Span(' ，租期')
                         Span(item + '').fontColor('#f9543d')
                         Span('个月 ')
@@ -112,7 +125,7 @@ export struct chooseConfigure {
                     }.width('100%').layoutWeight(1)
 
                     Row() {
-                      Text('到期归还Link，租期未满12个月需自行垫付运费等相关费用').width('95%').fontSize(15)
+                      Text('到期归还Link，租期未满'+ item +'个月需自行垫付运费等相关费用').width('95%').fontSize(15)
                     }.width('100%').layoutWeight(1).opacity(0.7)
                   }.height('100%').layoutWeight(6).padding({left: 10})
 

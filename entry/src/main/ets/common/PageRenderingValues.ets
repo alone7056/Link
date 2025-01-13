@@ -1,5 +1,5 @@
 import { equipmentSynopsis } from '../model/EquipmentSynopsis'
-import { Laptop } from '../model/Laptop'
+import { deviceDetails } from '../model/EquipmentClass'
 
 // 商城页面
 // 首选办公
@@ -252,10 +252,31 @@ export const singleHostClassify: equipmentSynopsis[] = [
 ]
 
 
-// 笔记本详情
-export const LaptopDetails: Laptop[] = [
 
-  new Laptop('ThinkPad E490',
+
+
+
+// 笔记本电脑参数信息
+export const LaptopParameterInformation: string[][] = [
+  ['基本信息', '品牌', '型号', '操作系统'],
+  ['外观尺寸', '尺寸', '重量', '颜色'],
+  ['处理器', 'CPU系列', 'CPU型号', '主频/睿频', '核心/线程'],
+  ['内存', '内存类型', '内存容量'],
+  ['硬盘', '硬盘类型', '硬盘容量'],
+  ['显卡', '显卡类型', '显存容量'],
+  ['显示器', '屏幕尺寸', '分辨率'],
+  ['多媒体设备', '摄像头'],
+  ['网络通信', '内置蓝牙', '无线网卡', '有线网卡'],
+  ['I/O接口', '音频接口', '视频接口', '其他接口'],
+  ['电池描述', '电池'],
+  ['配置清单', '电源适配器']
+]
+
+// 笔记本详情
+export const LaptopDetails: deviceDetails[] = [
+// 设备名称ID标识
+  new deviceDetails('ThinkPad E490',
+    // 轮播图
     [
     $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E490/ThinkPad_E490_Swiper1.jpg'),
     $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E490/ThinkPad_E490_Swiper2.jpg'),
@@ -263,35 +284,49 @@ export const LaptopDetails: Laptop[] = [
     $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E490/ThinkPad_E490_Swiper4.jpg'),
     $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E490/ThinkPad_E490_Swiper5.jpg')
     ],
-
+    // 可选配置
     [
       ['I3-8145U/16/512G SSD/核显/14/HD', '88'],
       ['I3-8145U/8G/256G SSD/核显/14/HD', '65']
     ],
-
+    // 详情介绍图
     [
     $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E490/ProductDetails1.jpg'),
     $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E490/ProductDetails2.jpg'),
     $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E490/ProductDetails3.jpg')
     ],
-
+    // 详细参数
     [
+      // 基本信息/品牌/型号
       ['ThinkPad', 'E490', 'Win10家庭版'],
+      // 外观尺寸/尺寸/重量/颜色
       ['329×242×21.9mm', '约1.78kg', '黑色'],
+      // 处理器/CPU系列/CPU型号/主频睿频/核心线程
       ['Intel 酷睿 i3', 'i3-8145U', '2.1/3.9GHz', '双核/四线程'],
+      // 内存/内存类型/容量
       ['DDR4', '8G'],
+      // 硬盘/硬盘类型/硬盘容量
       ['固态硬盘', '256G'],
-      ['核芯显卡', 'IntelGMAHD', '共享系统内存'],
+      // 显卡/显卡类型/显卡容量
+      ['核芯显卡', '共享系统内存'],
+      // 屏幕/屏幕尺寸/屏幕分辨率
       ['14英寸', '1366*768'],
-      ['720p HD摄像头', '', ''],
+      // 多媒体设备/摄像头
+      ['720p HD摄像头'],
+      // 网络通讯/内置蓝牙/无线网卡/有线网卡
       ['蓝牙4.1模块', '支持802.11ac无线协议', '1000mbps以太网卡'],
+      // IO接口/音频接口/视频接口/其他接口
       ['耳机/麦克风两用接口', 'HDMI接口', '2×USB 3.1Gen1，1×Type-C，1×Thunderbolt 3.0，HDMI，RJ45'],
+      // 电池描述/电池
       ['锂电池'],
+      // 配件清单/电源适配器
       ['次新*1']
     ]
   ),
 
-  new Laptop('ThinkPad E14 Gen1',
+  // 设备名称ID标识
+  new deviceDetails('ThinkPad E14 Gen1',
+    // 轮播图
     [
     $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E14_Gen1/ThinkPad_E14_Gen1_Swiper1.jpg'),
     $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E14_Gen1/ThinkPad_E14_Gen1_Swiper2.jpg'),
@@ -299,7 +334,7 @@ export const LaptopDetails: Laptop[] = [
     $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E14_Gen1/ThinkPad_E14_Gen1_Swiper4.jpg'),
     $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E14_Gen1/ThinkPad_E14_Gen1_Swiper5.jpg')
     ],
-
+    // 可选配置
     [
       ['I5-1135G7/16G/512G SSD/核显/14/FHD', '163'],
       ['I3-1115G4/8G/256G SSD/核显/14/FHD', '108'],
@@ -307,30 +342,46 @@ export const LaptopDetails: Laptop[] = [
       ['I5-1135G7/8G/256G SSD/核显/14/FHD', '148'],
       ['I3-10110U/8G/256G SSD/核显/14/FHD', '78'],
     ],
-
+    // 详情介绍图
     [
     $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E14_Gen1/ProductDetails1.jpg'),
     $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E14_Gen1/ProductDetails2.jpg'),
     $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_E14_Gen1/ProductDetails3.jpg')
     ],
+    // 详细参数
     [
+      // 基本信息/品牌/型号
       ['ThinkPad', 'E14 2020款', 'Win10家庭版'],
+      // 外观尺寸/尺寸/重量/颜色
       ['325*232*20.9mm', '约1.77KG', '黑色'],
+      // 处理器/CPU系列/CPU型号/主频睿频/核心线程
       ['Intel 酷睿 i3', 'i3-10110U', '1.6GHz/4.2GHz', '四核心/八线程'],
+      // 内存/内存类型/容量
       ['DDR4', '8G'],
+      // 硬盘/硬盘类型/硬盘容量
       ['固态硬盘', '256G'],
-      ['核芯显卡', 'IntelGMAHD', '共享系统内存'],
+      // 显卡/显卡类型/显卡容量
+      ['核芯显卡', '共享系统内存'],
+      // 屏幕/屏幕尺寸/屏幕分辨率
       ['14英寸', '1920*1080'],
-      ['720p HD摄像头', '', ''],
+      // 多媒体设备/摄像头
+      ['720p HD摄像头'],
+      // 网络通讯/内置蓝牙/无线网卡/有线网卡
       ['支持蓝牙5.0模块', '802.11ax（WiFi6)', '10/100/1000Mbps网卡'],
+      // IO接口/音频接口/视频接口/其他接口
       ['耳麦二合一接口*1', 'HDMI*1', 'USB3.0*2，USB2.0*1，RJ45*1，全功能type-c，电源接口'],
+      // 电池描述/电池
       ['锂聚合物电池45Wh'],
+      // 配件清单/电源适配器
       ['次新*1']
     ]
   ),
 
-  new Laptop('ThinkPad X390',
+  // 设备名称ID标识
+  new deviceDetails('ThinkPad X390',
+    // 轮播图
     [$rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_X390/ThinkPad_X390_Swiper1.jpg')],
+    // 可选配置
     [['I5-10210U/8G/256G SSD/核显/13.3/HD', '88'], ['I5-10210U/16G/512G SSD/核显/13.3/HD', '112']],
     [
     $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_X390/ProductDetails1.jpg'),
@@ -339,24 +390,268 @@ export const LaptopDetails: Laptop[] = [
     $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_X390/ProductDetails4.jpg'),
     $rawfile('ProductDetails/Laptop/ThinkPad/ThinkPad_X390/ProductDetails5.jpg')
     ],
+    // 详细参数
     [
+      // 基本信息/品牌/型号
       ['ThinkPad', 'X390', 'Win10'],
+      // 外观尺寸/尺寸/重量/颜色
       ['312x217x16.9mm', '约1.3Kg', '黑色'],
+      // 处理器/CPU系列/CPU型号/主频睿频/核心线程
       ['Intel 酷睿 i5', 'i5-10210u', '1.6GHz/4.2GHz', '四核心/八线程'],
+      // 内存/内存类型/容量
       ['DDR4', '8G'],
+      // 硬盘/硬盘类型/硬盘容量
       ['固态硬盘', '256G'],
-      ['核芯显卡', 'IntelGMAHD', '共享系统内存'],
+      // 显卡/显卡类型/显卡容量
+      ['核芯显卡', '共享系统内存'],
+      // 屏幕/屏幕尺寸/屏幕分辨率
       ['13.3英寸', '1366*768'],
-      ['720p HD摄像头', '', ''],
+      // 多媒体设备/摄像头
+      ['720p HD摄像头'],
+      // 网络通讯/内置蓝牙/无线网卡/有线网卡
       ['支持蓝牙', 'Intel 9560 AC', '无'],
+      // IO接口/音频接口/视频接口/其他接口
       ['耳机/麦克风两用接口', 'HDMI', '2×USB 3.1Gen1，1×Type-C，1×Thunderbolt 3.0，HDMI，RJ45'],
+      // 电池描述/电池
       ['4芯48WHr'],
+      // 配件清单/电源适配器
       ['次新*1']
     ]
   ),
 
 ]
 
+// 显示器参数信息
+export const DisplayParameterInformation: string[][] = [
+  ['基本信息', '品牌', '型号'],
+  ['外观尺寸', '尺寸','重量', '壁挂', '底座'],
+  ['显示参数', '面板类型', '面板尺寸', '屏幕比例', '屏幕分辨率'],
+  ['接口参数', '显示接口', '其他接口'],
+  ['配件信息', '适配器', '显示器连接线']
+]
+
+// 显示器详情
+export const DisplayDetails: deviceDetails[] = [
+  // 设备名称ID标识
+  new deviceDetails('飞利浦Philips 203V5LSB2',
+    // 轮播图
+    [
+    $rawfile('ProductDetails/Display/FLP/FLP_Philips_203V5LSB2_20/FLP_PHilips_203V5LSB2_20_Swiper1.jpg'),
+    $rawfile('ProductDetails/Display/FLP/FLP_Philips_203V5LSB2_20/FLP_PHilips_203V5LSB2_20_Swiper2.jpg'),
+    $rawfile('ProductDetails/Display/FLP/FLP_Philips_203V5LSB2_20/FLP_PHilips_203V5LSB2_20_Swiper3.jpg'),
+    $rawfile('ProductDetails/Display/FLP/FLP_Philips_203V5LSB2_20/FLP_PHilips_203V5LSB2_20_Swiper4.jpg'),
+    $rawfile('ProductDetails/Display/FLP/FLP_Philips_203V5LSB2_20/FLP_PHilips_203V5LSB2_20_Swiper5.jpg')
+    ],
+    // 可选配置
+    [
+      ['20/1600x900/60Hz/VGA', '20']
+    ],
+    // 详情介绍图
+    [
+    $rawfile('ProductDetails/Display/FLP/FLP_Philips_203V5LSB2_20/ProductDetails1.jpg'),
+    $rawfile('ProductDetails/Display/FLP/FLP_Philips_203V5LSB2_20/ProductDetails2.jpg'),
+    $rawfile('ProductDetails/Display/FLP/FLP_Philips_203V5LSB2_20/ProductDetails3.jpg'),
+    $rawfile('ProductDetails/Display/FLP/FLP_Philips_203V5LSB2_20/ProductDetails4.jpg')
+    ],
+    // 详细参数
+    [
+      // 品牌/型号
+      ['飞利浦', '203V5LSB2'],
+      // 尺寸/重量/是否支持壁挂/底座
+      ['537.8×166×356.1 毫米', '约3.26千克', '不支持', '普通'],
+      // 面板类型/屏幕尺寸/屏幕比例/分辨率
+      ['IPS', '19.5英寸', '16:9', '1600x900'],
+      // 显示接口/其他接口
+      ['VGA', '无'],
+      // 电源线/显示器连接线
+      ['次新*1', 'VGA*1']
+    ]
+  ),
+
+  // 设备名称ID标识
+  new deviceDetails('戴尔Dell E2016H',
+    // 轮播图
+    [
+    $rawfile('ProductDetails/Display/Dell/Dell_E2016H_20/Dell_E2016H_20_Swiper1.jpg'),
+    $rawfile('ProductDetails/Display/Dell/Dell_E2016H_20/Dell_E2016H_20_Swiper2.jpg'),
+    $rawfile('ProductDetails/Display/Dell/Dell_E2016H_20/Dell_E2016H_20_Swiper3.jpg'),
+    $rawfile('ProductDetails/Display/Dell/Dell_E2016H_20/Dell_E2016H_20_Swiper4.jpg'),
+    $rawfile('ProductDetails/Display/Dell/Dell_E2016H_20/Dell_E2016H_20_Swiper5.jpg')
+    ],
+    // 可选配置
+    [['19.5/1600x900/60Hz/VGA+DP', '20']],
+    // 详情介绍图
+    [
+    $rawfile('ProductDetails/Display/Dell/Dell_E2016H_20/ProductDetails1.jpg'),
+    $rawfile('ProductDetails/Display/Dell/Dell_E2016H_20/ProductDetails2.jpg'),
+    $rawfile('ProductDetails/Display/Dell/Dell_E2016H_20/ProductDetails3.jpg')
+    ],
+    // 详细参数
+    [
+      // 品牌/型号
+      ['戴尔', 'E2016H'],
+      // 尺寸/重量/是否支持壁挂/底座
+      ['537.8×166×356.1 毫米', '约3.26千克', '不支持', '普通'],
+      // 面板类型/屏幕尺寸/屏幕比例/分辨率
+      ['IPS', '19.5英寸', '16:9', '1600x900'],
+      // 显示接口/其他接口
+      ['VGA，DP', '无'],
+      // 电源线/显示器连接线
+      ['次新*1', 'DP*1']
+    ]
+  ),
+
+  // 设备名称ID标识
+  new deviceDetails('飞利浦Philips 223V5LSB',
+    // 轮播图
+    [
+    $rawfile('ProductDetails/Display/FLP/FLP_Philips_223V5LSB_21.5/FLP_Philips_223V5LSB_21.5_Swiper1.jpg'),
+    $rawfile('ProductDetails/Display/FLP/FLP_Philips_223V5LSB_21.5/FLP_Philips_223V5LSB_21.5_Swiper2.jpg'),
+    $rawfile('ProductDetails/Display/FLP/FLP_Philips_223V5LSB_21.5/FLP_Philips_223V5LSB_21.5_Swiper3.jpg'),
+    $rawfile('ProductDetails/Display/FLP/FLP_Philips_223V5LSB_21.5/FLP_Philips_223V5LSB_21.5_Swiper4.jpg'),
+    $rawfile('ProductDetails/Display/FLP/FLP_Philips_223V5LSB_21.5/FLP_Philips_223V5LSB_21.5_Swiper5.jpg')
+    ],
+    // 可选配置
+    [['21.5/1920x1080/60Hz/VGA+DVI', '25']],
+    // 详情介绍图
+    [
+    $rawfile('ProductDetails/Display/FLP/FLP_Philips_223V5LSB_21.5/ProductDetails1.jpg'),
+    $rawfile('ProductDetails/Display/FLP/FLP_Philips_223V5LSB_21.5/ProductDetails2.jpg'),
+    $rawfile('ProductDetails/Display/FLP/FLP_Philips_223V5LSB_21.5/ProductDetails3.jpg')
+    ],
+    // 详细参数
+    [
+    // 品牌/型号
+      ['飞利浦', '223V5LSB'],
+      // 尺寸/重量/是否支持壁挂/底座
+      ['537.8×166×356.1 毫米', '约3.12千克', '不支持', '普通'],
+      // 面板类型/屏幕尺寸/屏幕比例/分辨率
+      ['IPS', '21.5英寸', '16:9', '1920x1080'],
+      // 显示接口/其他接口
+      ['VGA', '无'],
+      // 电源线/显示器连接线
+      ['次新*1', 'VGA*1']
+    ]
+  ),
+
+
+]
+
+// 台式机参数信息
+export const DesktopParameterInformation: string[][] = [
+  ['基本信息', '品牌', '型号', '操作系统'],
+  ['外观尺寸', '机箱尺寸', '主机重量'],
+  ['处理器', 'CPU系列', 'CPU型号', '主屏/睿频', '核心/线程'],
+  ['内存', '内存类型', '内存容量'],
+  ['硬盘', '硬盘类型', '硬盘容量'],
+  ['显卡', '显卡类型', '显存容量'],
+  ['通讯', '有线网卡', '无线网卡'],
+  ['显示器', '品牌型号', '分辨率', '尺寸', '显示接口'],
+  ['I/O接口', '音频接口', '视频接口', '数据接口', '其他接口'],
+  ['配置清单', '电源线', '键盘', '鼠标', '显示器连接线']
+]
+
+// 台式机详情
+export const DesktopDetails: deviceDetails[] = [
+  // 设备名称ID标识
+  new deviceDetails('Link S20',
+    // 轮播图
+    [
+    $rawfile('ProductDetails/Desktop/Link/Link_S20/Link_S20_Swiper1.jpg'),
+    $rawfile('ProductDetails/SingleHost/Link/Link_S20/Link_S20_Swiper1.jpg'),
+    $rawfile('ProductDetails/SingleHost/Link/Link_S20/Link_S20_Swiper2.jpg'),
+    $rawfile('ProductDetails/SingleHost/Link/Link_S20/Link_S20_Swiper3.jpg')
+    ],
+    // 可选配置
+    [
+      ['G4900/8G/240G SSD/核显/飞利浦223S5LHSB 21.5英寸显示器', '78'],
+      ['G4930/8G/120G SSD/核显/戴尔 E2219HN 21.5英寸显示器', '73'],
+      ['I5-9400/8G/240G SSD/核显/飞利浦223S5LHSB 21.5英寸显示器', '108'],
+      ['I3-9100/8G/240G SSD/核显/飞利浦223S5LHSB 21.5英寸显示器', '98'],
+      ['I5-9400/8G/240G SSD/核显/惠普M2256 21.5英寸显示器', '108'],
+      ['G4900/8G/240G SSD/核显/飞利浦243S7QDSBF 23.8英寸显示器', '71'],
+      ['I3-9100/8G/240G SSD/核显/飞利浦243S7QDSBF 23.8英寸显示器', '98'],
+      ['I5-9400/8G/240G SSD/核显/飞利浦243S7QDSBF 23.8英寸显示器', '116']
+
+    ],
+    // 详情介绍图
+    [
+    $rawfile('ProductDetails/SingleHost/Link/Link_S20/ProductDetails1.jpg'),
+    $rawfile('ProductDetails/SingleHost/Link/Link_S20/ProductDetails2.jpg')
+    ],
+    // 详细参数
+    [
+      // 品牌/型号
+      ['Link', 'S20', 'win10'],
+      // 外观尺寸/机箱尺寸/主机重量
+      ['356*169*385MM', '约5.2kg（不含显示器）'],
+      // 处理器/CPU系列/CPU型号/主屏睿频/核心线程
+      ['Intel 酷睿 赛扬双核', 'G4900', '2.5GHz', '2核4线程'],
+      // 内存/内存类型/内存容量
+      ['DDR4', '8G'],
+      // 硬盘/硬盘类型/硬盘容量
+      ['固态硬盘', '256G'],
+      // 显卡/显卡类型/显卡容量
+      ['核芯显卡', '共享系统内存'],
+      // 通讯/有线网卡/无线网卡
+      ['10/100/1000Mbps网卡', '无'],
+      // 显示器/品牌型号/分辨率/屏幕尺寸/显示接口
+      ['飞利浦 243S7QDSBF', '1920*1080', '23.8英寸', 'VGA、DVI、HDMI'],
+      // IO接口/音频接口/视频接口/数据接口/其他接口
+      ['前置：前置通用音频接口*1、后置：后置音频输入*1，音频输出*1', 'DP接口*2', '前置USB3.2*4，Type-C*1；后置USB3.2*3，USB2.0*3', '电源接口，RJ45（网络接口）'],
+      // 配置清单/电源线/键盘/鼠标/显示器连接线
+      ['次新*2', '次新*1', '次新*1', '次新*1']
+    ]
+  ),
+
+  // 设备名称ID标识
+  new deviceDetails('联想Lenovo E96X',
+    // 轮播图
+    [
+    $rawfile('ProductDetails/Desktop/Lenovo/Lenove_E96X/Lenove_E96X_Swiper1.jpg'),
+    $rawfile('ProductDetails/SingleHost/Lenovo/Lenove_E96X/Lenove_E96X_Swiper1.png'),
+    $rawfile('ProductDetails/SingleHost/Lenovo/Lenove_E96X/Lenove_E96X_Swiper2.jpg'),
+    $rawfile('ProductDetails/SingleHost/Lenovo/Lenove_E96X/Lenove_E96X_Swiper3.jpg'),
+    $rawfile('ProductDetails/SingleHost/Lenovo/Lenove_E96X/Lenove_E96X_Swiper4.jpg')
+
+    ],
+    // 可选配置
+    [
+      ['G4900/8G/256G SSD/核显/联想T2055 20英寸显示器', '73'],
+      ['G4900/8G/256G SSD/核显/惠普M2256 21.5英寸显示器', '78']
+    ],
+    // 详情介绍图
+    [
+    $rawfile('ProductDetails/SingleHost/Lenovo/Lenove_E96X/ProductDetails1.jpg'),
+    $rawfile('ProductDetails/SingleHost/Lenovo/Lenove_E96X/ProductDetails2.jpg'),
+    $rawfile('ProductDetails/SingleHost/Lenovo/Lenove_E96X/ProductDetails3.jpg'),
+    $rawfile('ProductDetails/SingleHost/Lenovo/Lenove_E96X/ProductDetails4.jpg')
+    ],
+    // 详细参数
+    [
+    // 品牌/型号/操作系统
+      ['联想', 'E96X', 'win10'],
+      // 外观尺寸/机箱尺寸/主机重量
+      ['376*321*165mm', '约7kg（不含显示器）'],
+      // 处理器/CPU系列/CPU型号/主屏睿频/核心线程
+      ['Intel 酷睿 赛扬双核', 'G4900', '2.5GHz', '2核4线程'],
+      // 内存/内存类型/内存容量
+      ['DDR4', '8G'],
+      // 硬盘/硬盘类型/硬盘容量
+      ['固态硬盘', '256G'],
+      // 显卡/显卡类型/显卡容量
+      ['核芯显卡', '共享系统内存'],
+      // 通讯/有线网卡/无线网卡
+      ['10/100/1000Mbps网卡', '无'],
+      // 显示器/品牌型号/分辨率/屏幕尺寸/显示接口
+      ['联想 T2055', '1600x900', '19.5英寸', 'VGA'],
+      // IO接口/音频接口/视频接口/数据接口/其他接口
+      ['耳机接口、麦克风接口', 'VGA接口、HDMI接口', 'USB 3.1 Gen1*6；USB 2.0 *4', 'PS/2接口、电源接口、串口'],
+      // 配置清单/电源线/键盘/鼠标/显示器连接线
+      ['次新*2', '次新*1', '次新*1', '次新*1']
+    ]
+  ),
+]
 
 
 
