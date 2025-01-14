@@ -1,5 +1,6 @@
 
-import { LaptopDetails, DisplayDetails, DesktopDetails} from '../../common/PageRenderingValues';
+import promptAction from '@ohos.promptAction';
+import { LaptopDetails, DisplayDetails, DesktopDetails, allInOneMachineDetails, conferenceScreenDetails} from '../../common/PageRenderingValues';
 import { deviceDetails } from '../../model/EquipmentClass';
 @CustomDialog
 export struct chooseConfigure {
@@ -18,6 +19,9 @@ export struct chooseConfigure {
   // 当前渲染数据
   @State rendering: deviceDetails[] = undefined;
 
+  // 租赁数量
+  @State numberOfLeases: number = 1;
+
   // 弹窗记载前执行
   aboutToAppear(){
     console.log('(chooseConfigure)加载了')
@@ -35,6 +39,15 @@ export struct chooseConfigure {
     if (this.equipmentType == 'Desktop') {
       this.rendering = DesktopDetails.filter(Desktop => Desktop.TheNameOfTheDevice.includes(this.theNameOfTheDevice));
     }
+    // 台式机
+    if (this.equipmentType == 'allInOneMachine') {
+      this.rendering = allInOneMachineDetails.filter(allInOneMachine => allInOneMachine.TheNameOfTheDevice.includes(this.theNameOfTheDevice));
+    }
+    // 会议大屏
+    if (this.equipmentType == 'conferenceScreen') {
+      this.rendering = conferenceScreenDetails.filter(conferenceScreen => conferenceScreen.TheNameOfTheDevice.includes(this.theNameOfTheDevice));
+    }
+
 
   }
 
@@ -63,7 +76,7 @@ export struct chooseConfigure {
           Row(){
             Text(){
               Span('￥').fontSize(12).fontColor('#e44454')
-              Span(this.lease[2] == 24 ? this.equipmentType == 'Display' ? this.monthlyPrice - 5 + '.' : this.monthlyPrice - 10 + '.'  : this.monthlyPrice + '.').fontSize(18).fontColor('#e44454')
+              Span(this.lease[2] == 24 ? this.monthlyPrice <= 40 ? this.monthlyPrice - 5 + '.' : this.monthlyPrice - 10 + '.'  : this.monthlyPrice + '.').fontSize(18).fontColor('#e44454')
               Span('00/月').fontSize(14).fontColor('#e44454')
             }
           }.width('100%').layoutWeight(1).justifyContent(FlexAlign.Start)
@@ -116,7 +129,7 @@ export struct chooseConfigure {
                       Text() {
                         Span('首月租金：')
                         // 租金为24个月的每月优惠10元 显示器优惠5元
-                        Span(index == 0 ? '￥' + this. monthlyPrice : this.equipmentType == 'Display' ? '￥' + (this.monthlyPrice - 5) : '￥' + (this.monthlyPrice - 10)).fontColor('#f9543d')
+                        Span(index == 0 ? '￥' + this. monthlyPrice : this.monthlyPrice <= 40 ? '￥' + (this.monthlyPrice - 5) : '￥' + (this.monthlyPrice - 10)).fontColor('#f9543d')
                         Span(' ，租期')
                         Span(item + '').fontColor('#f9543d')
                         Span('个月 ')
@@ -142,7 +155,28 @@ export struct chooseConfigure {
 
           }.width('100%').height(180)
 
+          // 租赁数量
+          Row(){
+            Text('数量').height('100%').layoutWeight(2)
+            Row({space: 5}){
+              Text('-').height('70%').layoutWeight(3).backgroundColor('#f5f5f5').borderRadius({topLeft: 99, bottomLeft: 99}).textAlign(TextAlign.Center)
+                .onClick(()=>{
+                  this.numberOfLeases--
+                  if (this.numberOfLeases == 0) {
+                    this.numberOfLeases = 1
+                    promptAction.showToast({message: '租赁数量不能小于1！', bottom: 80})
+                  }
+                })
+              Text(this.numberOfLeases + '').height('70%').layoutWeight(4).backgroundColor('#f5f5f5').textAlign(TextAlign.Center)
+              Text('+').height('70%').layoutWeight(3).backgroundColor('#f5f5f5').borderRadius({topRight: 99, bottomRight: 99}).textAlign(TextAlign.Center)
+                .onClick(()=>{
+                  this.numberOfLeases++
+                })
+            }.height('100%').layoutWeight(1)
+          }.width('100%').height(50)
+
         }.width('100%').padding(12)
+
 
       }.width('100%').layoutWeight(6)
 

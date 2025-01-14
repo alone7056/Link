@@ -4,8 +4,8 @@ export class AccountInfo {
 }
 
 export class currentIndex {
-  type: string;
-  currentClassify: number;
+  type: string; // 类型
+  currentClassify: number; // 分类下标
 }
 
 export class DeviceInformation {

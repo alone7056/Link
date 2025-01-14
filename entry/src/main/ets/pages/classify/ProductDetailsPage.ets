@@ -1,6 +1,6 @@
 import router from '@ohos.router';
 import { currentIndex, DeviceInformation } from '../../model/RoutingData'
-import { LaptopDetails, LaptopParameterInformation, DisplayDetails, DisplayParameterInformation, DesktopDetails, DesktopParameterInformation} from '../../common/PageRenderingValues'
+import { LaptopDetails, LaptopParameterInformation, DisplayDetails, DisplayParameterInformation, DesktopDetails, DesktopParameterInformation, allInOneMachineDetails, allInOneMachineParameterInformation, conferenceScreenDetails, conferenceScreenParameterInformation} from '../../common/PageRenderingValues'
 import { deviceDetails } from '../../model/EquipmentClass'
 import { chooseConfigure } from '../popUps/chooseConfigure';
 
@@ -69,6 +69,20 @@ struct ProductDetailsPage {
       this.currentDeviceParameters = DesktopParameterInformation
       console.log('(ProductDetailsPage)this.rendering.length:' + this.rendering.length)
     }
+
+    // 一体机类
+    if (this.equipmentType == 'allInOneMachine') {
+      this.rendering = allInOneMachineDetails.filter(Display => Display.TheNameOfTheDevice.includes(this.theNameOfTheDevice));
+      this.currentDeviceParameters = allInOneMachineParameterInformation
+      console.log('(ProductDetailsPage)this.rendering.length:' + this.rendering.length)
+    }
+    // 会议大屏类
+    if (this.equipmentType == 'conferenceScreen') {
+      this.rendering = conferenceScreenDetails.filter(conferenceScreen => conferenceScreen.TheNameOfTheDevice.includes(this.theNameOfTheDevice));
+      this.currentDeviceParameters = conferenceScreenParameterInformation
+      console.log('(ProductDetailsPage)this.rendering.length:' + this.rendering.length)
+    }
+
 
     // 双层循环遍历当前要渲染的数据源 并拼接字段和数据方便后续操作
     for (let indexMax = 0; indexMax < this.currentDeviceParameters.length; indexMax++) {
@@ -151,7 +165,7 @@ struct ProductDetailsPage {
               Text() {
                 Span('￥').fontSize(14).fontColor('#f9543d')
                 // 如果租期是24个月每个月租期优惠10元 但如果是显示器租期为24个月每个月优惠5元
-                Span(this.lease[2] == 24 ? this.equipmentType == 'Display' ? this.monthlyPrice - 5 + '.' : this.monthlyPrice - 10 + '.'  : this.monthlyPrice + '.')
+                Span(this.lease[2] == 24 ? this.monthlyPrice <= 40 ? this.monthlyPrice - 5 + '.' : this.monthlyPrice - 10 + '.'  : this.monthlyPrice + '.')
                   .fontSize(20)
                   .fontColor('#f9543d')
                   .fontWeight(500)
@@ -201,7 +215,7 @@ struct ProductDetailsPage {
                   Row() {
                     Text() {
                       Span('首月租金：')
-                      Span(this.lease[2] == 24 ? this.equipmentType == 'Display' ? '￥' + (this.monthlyPrice - 5) : '￥' + (this.monthlyPrice - 10) : '￥' + this.monthlyPrice).fontColor('#f9543d')
+                      Span(this.lease[2] == 24 ? this.monthlyPrice <= 40 ? '￥' + (this.monthlyPrice - 5) : '￥' + (this.monthlyPrice - 10) : '￥' + this.monthlyPrice).fontColor('#f9543d')
                       Span(' ，租期')
                       Span(this.lease[2] + '').fontColor('#f9543d')
                       Span('个月 ')
@@ -218,6 +232,7 @@ struct ProductDetailsPage {
 
             Divider().width('100%')
 
+            // 配件选择弹窗
             Row() {
 
             }.width('100%').height(50).backgroundColor('#ffffff')
