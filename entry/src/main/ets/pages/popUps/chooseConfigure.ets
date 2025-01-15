@@ -1,7 +1,14 @@
 
 import promptAction from '@ohos.promptAction';
-import { LaptopDetails, DisplayDetails, DesktopDetails, allInOneMachineDetails, conferenceScreenDetails} from '../../common/PageRenderingValues';
-import { deviceDetails } from '../../model/EquipmentClass';
+import { deviceDetails } from '../../model/EquipmentClass'
+import { LaptopDetails } from '../../common/NotebookDataSheet'
+import { DisplayDetails } from '../../common/DisplayDatasheet'
+import { DesktopDetails } from '../../common/DesktopDataSheet'
+import { allInOneMachineDetails } from '../../common/AllInOneDataSheet'
+import { conferenceScreenDetails } from '../../common/ConferenceDashboardDataSheet'
+import { printerDetails } from '../../common/PrinterDatasheet'
+import { singleHostDetails } from '../../common/SingleHostDatasheet'
+
 @CustomDialog
 export struct chooseConfigure {
   // 控制器
@@ -47,7 +54,14 @@ export struct chooseConfigure {
     if (this.equipmentType == 'conferenceScreen') {
       this.rendering = conferenceScreenDetails.filter(conferenceScreen => conferenceScreen.TheNameOfTheDevice.includes(this.theNameOfTheDevice));
     }
-
+    // 打印机
+    if (this.equipmentType == 'printer') {
+      this.rendering = printerDetails.filter(printer => printer.TheNameOfTheDevice.includes(this.theNameOfTheDevice));
+    }
+    // 单主机
+    if (this.equipmentType == 'singleHost') {
+      this.rendering = singleHostDetails.filter(singleHost => singleHost.TheNameOfTheDevice.includes(this.theNameOfTheDevice));
+    }
 
   }
 

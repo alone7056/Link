@@ -1,8 +1,15 @@
 import router from '@ohos.router';
 import { currentIndex, DeviceInformation } from '../../model/RoutingData'
-import { LaptopDetails, LaptopParameterInformation, DisplayDetails, DisplayParameterInformation, DesktopDetails, DesktopParameterInformation, allInOneMachineDetails, allInOneMachineParameterInformation, conferenceScreenDetails, conferenceScreenParameterInformation} from '../../common/PageRenderingValues'
 import { deviceDetails } from '../../model/EquipmentClass'
 import { chooseConfigure } from '../popUps/chooseConfigure';
+import { LaptopDetails, LaptopParameterInformation } from '../../common/NotebookDataSheet'
+import { DisplayDetails, DisplayParameterInformation } from '../../common/DisplayDatasheet'
+import { DesktopDetails, DesktopParameterInformation } from '../../common/DesktopDataSheet'
+import { allInOneMachineDetails, allInOneMachineParameterInformation } from '../../common/AllInOneDataSheet'
+import { conferenceScreenDetails, conferenceScreenParameterInformation } from '../../common/ConferenceDashboardDataSheet'
+import { printerDetails, printerParameterInformation } from '../../common/PrinterDatasheet'
+import { singleHostDetails, singleHostParameterInformation} from '../../common/SingleHostDatasheet'
+
 
 @Entry
 @Component
@@ -83,6 +90,19 @@ struct ProductDetailsPage {
       console.log('(ProductDetailsPage)this.rendering.length:' + this.rendering.length)
     }
 
+    // 打印机类
+    if (this.equipmentType == 'printer') {
+      this.rendering = printerDetails.filter(printer => printer.TheNameOfTheDevice.includes(this.theNameOfTheDevice));
+      this.currentDeviceParameters = printerParameterInformation
+      console.log('(ProductDetailsPage)this.rendering.length:' + this.rendering.length)
+    }
+
+    // 单主机类
+    if (this.equipmentType == 'singleHost') {
+      this.rendering = singleHostDetails.filter(singleHost => singleHost.TheNameOfTheDevice.includes(this.theNameOfTheDevice));
+      this.currentDeviceParameters = singleHostParameterInformation
+      console.log('(ProductDetailsPage)this.rendering.length:' + this.rendering.length)
+    }
 
     // 双层循环遍历当前要渲染的数据源 并拼接字段和数据方便后续操作
     for (let indexMax = 0; indexMax < this.currentDeviceParameters.length; indexMax++) {
@@ -137,7 +157,6 @@ struct ProductDetailsPage {
             .onClick(() => {
               // 返回上一级
               router.back()
-              this.currentDeviceParameters = []
             })
         }.width('93%').justifyContent(FlexAlign.Start)
       }.width('100%').layoutWeight(1)
@@ -232,9 +251,15 @@ struct ProductDetailsPage {
 
             Divider().width('100%')
 
-            // 配件选择弹窗
+            // 搭配配件弹窗
             Row() {
+              Row(){
+                Text('配送至').fontSize(15).opacity(0.7)
+              }.height('100%').layoutWeight(1).justifyContent(FlexAlign.End).padding(10)
 
+              Row(){
+
+              }.height('100%').layoutWeight(4)
             }.width('100%').height(50).backgroundColor('#ffffff')
           }
 
@@ -306,7 +331,7 @@ struct ProductDetailsPage {
       // 最下边功能按键
       Row() {
 
-        Column({ space: 10 }) {
+        Column({ space: 5 }) {
           Image($r('app.media.tab_mall_0')).width(20).height(20)
           Text('商城').fontSize(14)
         }
@@ -319,7 +344,7 @@ struct ProductDetailsPage {
           router.replaceUrl({url: 'pages/HomeSwiper'}) // 销毁跳转
         })
 
-        Column({ space: 10 }) {
+        Column({ space: 5 }) {
           Image($r('app.media.tab_ShoppingCart_0')).width(20).height(20)
           Text('购物车').fontSize(14)
         }
@@ -329,7 +354,6 @@ struct ProductDetailsPage {
         .alignItems(HorizontalAlign.Center)
         .onClick(() => {
           // 跳转至购物车页面点击事件
-
           let paramsInfo: currentIndex = {
             type: 'swiperIndex',
             currentClassify: 0

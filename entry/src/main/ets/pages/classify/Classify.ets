@@ -1,14 +1,5 @@
 import router from '@ohos.router'
-import {
-  synthesisRecommend,
-  LaptopClassify,
-  DesktopClassify,
-  allInOneMachineClassify,
-  DisplayClassify,
-  conferenceScreenClassify,
-  printerClassify,
-  singleHostClassify
-} from '../../common/PageRenderingValues'
+import {synthesisRecommend, LaptopClassify, DesktopClassify, allInOneMachineClassify, DisplayClassify, conferenceScreenClassify, printerClassify, singleHostClassify} from '../../common/PageRenderingValues'
 import { equipmentSynopsis } from '../../model/EquipmentSynopsis'
 import LoadingDialog from '../../utils/TipsDialog'
 import { ClassifyComponent } from './ClassifyComponent'
@@ -271,7 +262,7 @@ export struct Classify {
           ListItem() {
             Row() {
               // 设备图片
-              Image(item.picturesOfTheDevice).objectFit(ImageFit.Contain).height('100%').layoutWeight(4)
+              Image(typeof item.picturesOfTheDevice == 'string' ? '../' + item.picturesOfTheDevice : item.picturesOfTheDevice).objectFit(ImageFit.Contain).height('100%').layoutWeight(4)
               // 参数简述价格
               Column({ space: 5 }) {
                 Text(item.theNameOfTheDevice).fontSize(14).width('100%').textAlign(TextAlign.Start).maxLines(2)
@@ -315,6 +306,8 @@ export struct Classify {
               monthlyPrice: item.monthlyPrice,
               equipmentType: item.equipmentType
             }
+            // 测试输出
+            console.log('(Classify)theNameOfTheDevice图片地址：'+item.picturesOfTheDevice)
             router.pushUrl({ url: 'pages/classify/ProductDetailsPage', params: paramsInfo })
           })
         })
