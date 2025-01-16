@@ -218,7 +218,7 @@ export const printerClassify: equipmentSynopsis[] = [
 // 单主机分类
 export const singleHostClassify: equipmentSynopsis[] = [
   new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Link/Link_S20/Link_S20_Swiper1.jpg', 'Link S20', 'Link S20 单主机电脑租赁', 'G4900/8G/240G SSD/核显', 48, 'singleHost'),
-  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Lenovo/Lenove_E96X/Lenove_E96X_Swiper1.png', '联想Lenovo E96X', '联想Lenovo E96X 单主机电脑租赁', '4900/8G/256G SSD/核显', 63, 'singleHost'),
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Lenovo/Lenove_E96X/Lenove_E96X_Swiper1.png', '联想Lenovo E96X', '联想Lenovo E96X 单主机电脑租赁', ' G4900/8G/256G SSD/核显', 63, 'singleHost'),
   new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/HP/HP_288G4/HP_288G4_Swiper1.jpg', '惠普HP 288G4', '惠普HP 288G4 单主机电脑租赁', 'G4900/8G/256G SSD/核显', 63, 'AllInOneMachine'),
   new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Dell/Dell_3967MT/Dell_3967MT_Swiper1.jpg', '戴尔Dell 3967MT', '戴尔Dell 3967MT 单主机电脑租赁', 'I5-6/8G/256G SSD/核显', 65, 'singleHost'),
   new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Lenovo/Lenove_E97/Lenove_E97_Swiper1.png', '联想Lenovo E97', '联想Lenovo E97 单主机电脑租赁', 'G5905/8G/256G SSD/核显', 73, 'singleHost'),
