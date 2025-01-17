@@ -76,7 +76,7 @@ export struct Mall {
         // 底部标签
         Column(){
           Text('@22软件技术1班').fontSize(12).opacity(0.9)
-          Text('版权所有').fontSize(12).opacity(0.9)
+          Text('去码头整点薯条版权所有').fontSize(12).opacity(0.9)
         }.width('100%').height(100).justifyContent(FlexAlign.Center).alignItems(HorizontalAlign.Center)
 
       }.width('100%').layoutWeight(1).backgroundColor('#ffefefef')

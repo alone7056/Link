@@ -1,5 +1,7 @@
 import { equipmentSynopsis } from '../../model/EquipmentSynopsis'
 import { OfficePreferredArr, OfficePortableArr, OfficeTechnologyArr, OfficeGraphicsArr} from '../../common/PageRenderingValues'
+import { DeviceInformation } from '../../model/RoutingData'
+import router from '@ohos.router'
 
 @Component
 export struct MallPageClassify {
@@ -40,13 +42,24 @@ export struct MallPageClassify {
       Flex({ wrap: FlexWrap.WrapReverse }) {
         ForEach(this.rendering, (item: equipmentSynopsis, index: number)=>{
             Column(){
-              Image(item.picturesOfTheDevice).objectFit(ImageFit.Contain).width(120)
-              Text(){
-                Span(item.theNameOfTheDevice).width('100%').fontSize(15).fontWeight(600)
-                Span('\n'+item.introductionToParameters).width('100%').fontSize(12)
-                Span('\n\n￥' + item.monthlyPrice + '/月').fontColor('#fff85454').width('100%').fontSize(18)
-              }.copyOption(CopyOptions.InApp)
-            }.width('50%').height(200).backgroundColor('#ffffff')
+              Image(typeof item.picturesOfTheDevice == 'string' ? '../' + item.picturesOfTheDevice : item.picturesOfTheDevice).objectFit(ImageFit.Contain).width(120)
+              Text(item.theNameOfTheDevice).width('100%').fontSize(15).fontWeight(600).copyOption(CopyOptions.InApp).maxLines(1).textOverflow({ overflow: TextOverflow.Ellipsis })
+              Text('\n'+item.introductionToParameters).width('100%').fontSize(12).copyOption(CopyOptions.InApp).maxLines(2).textOverflow({ overflow: TextOverflow.Ellipsis })
+              Text('\n\n￥' + item.monthlyPrice + '/月').fontColor('#fff85454').width('100%').fontSize(18).copyOption(CopyOptions.InApp)
+            }.width('50%').height(200).backgroundColor('#ffffff').padding(10)
+          .onClick(()=>{
+            // 跳转至详情页面
+            let paramsInfo: DeviceInformation = {
+              theNameOfTheDevice: item.theNameOfTheDevice,
+              propagandaHeadline: item.propagandaHeadline,
+              introductionToParameters: item.introductionToParameters,
+              monthlyPrice: item.monthlyPrice,
+              equipmentType: item.equipmentType
+            }
+            // 测试输出
+            console.log('(Classify)theNameOfTheDevice图片地址：'+item.picturesOfTheDevice)
+            router.pushUrl({ url: 'pages/classify/ProductDetailsPage', params: paramsInfo })
+          })
         })
       }
       .width('100%')

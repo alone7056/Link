@@ -311,7 +311,7 @@ export struct Classify {
             router.pushUrl({ url: 'pages/classify/ProductDetailsPage', params: paramsInfo })
           })
         })
-      }.width('100%').scrollBar(BarState.Auto).edgeEffect(EdgeEffect.Spring)
+      }.width('100%').height(!this.isUnfold ? 570 : 455).scrollBar(BarState.Auto).edgeEffect(EdgeEffect.Spring)
 
       if (this.rendering.length > 5) {
         Row() {

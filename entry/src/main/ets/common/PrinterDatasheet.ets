@@ -109,4 +109,72 @@ export const printerDetails: deviceDetails[] = [
       ['全新*1', '全新*1', '全新*1']
     ]
   ),
+
+  // 设备名称ID标识
+  new deviceDetails('爱普生 WF-C5890a',
+    // 轮播图
+    [
+    $rawfile('ProductDetails/Printer/APS/APS_WF-C5890A/APS_WF-C5890A_Swiper1.jpg'),
+    $rawfile('ProductDetails/Printer/APS/APS_WF-C5890A/APS_WF-C5890A_Swiper2.jpg'),
+    $rawfile('ProductDetails/Printer/APS/APS_WF-C5890A/APS_WF-C5890A_Swiper3.jpg'),
+    $rawfile('ProductDetails/Printer/APS/APS_WF-C5890A/APS_WF-C5890A_Swiper4.jpg')
+    ],
+    // 可选配置
+    [['含每月3000张黑白打印量，300张彩色打印量，超印部分黑白0.04元/张，彩色0.4元/张', '228']],
+    // 详情介绍图
+    [
+    $rawfile('ProductDetails/Printer/APS/APS_WF-C5890A/ProductDetails1.jpg'),
+    $rawfile('ProductDetails/Printer/APS/APS_WF-C5890A/ProductDetails2.jpg')
+    ],
+    // 详细参数
+    [
+    // ['基本信息', '品牌', '型号', '打印类型'],
+      ['爱普生', 'WF-C5890a', 'A4彩色商用喷墨传真一体机'],
+      // ['外观尺寸', '外观尺寸','重量', '最大幅面'],
+      ['425 x 535 x 357 mm', '18.7KG', 'A4'],
+      // ['打印功能', '分辨率', '打印速度'],
+      ['最大4800 x 1200 dpi', '标准模式25页/分钟'],
+      // ['复印能力', '复印分辨率', '最大复印页数'],
+      ['600 x 600 dpi', '1-999'],
+      // ['扫描功能', '扫描类型', '扫描分辨率'],
+      ['平板彩色图像扫描仪，支持自动双面扫描', '最大1200 x 2400 dpi'],
+      // ['配件清单', '电源线', '打印机数据线', '传真线']
+      ['全新*1', '全新*1', '全新*1']
+    ]
+  ),
+
+  // 设备名称ID标识
+  new deviceDetails('爱普生 L15168',
+    // 轮播图
+    [
+    $rawfile('ProductDetails/Printer/APS/APS_L15168/APS_L15168_Swiper1.jpg'),
+    $rawfile('ProductDetails/Printer/APS/APS_L15168/APS_L15168_Swiper2.jpg'),
+    $rawfile('ProductDetails/Printer/APS/APS_L15168/APS_L15168_Swiper3.jpg')
+    ],
+    // 可选配置
+    [['含每月3000张黑白打印量，300张彩色打印量，超印部分黑白0.04元/张，彩色0.4元/张', '266']],
+    // 详情介绍图
+    [
+    $rawfile('ProductDetails/Printer/APS/APS_L15168/ProductDetails1.jpg'),
+    $rawfile('ProductDetails/Printer/APS/APS_L15168/ProductDetails2.jpg'),
+    $rawfile('ProductDetails/Printer/APS/APS_L15168/ProductDetails3.jpg'),
+    $rawfile('ProductDetails/Printer/APS/APS_L15168/ProductDetails4.jpg')
+    ],
+    // 详细参数
+    [
+    // ['基本信息', '品牌', '型号', '打印类型'],
+      ['爱普生', 'L15168', 'A3+彩色喷墨数码复合机'],
+      // ['外观尺寸', '外观尺寸','重量', '最大幅面'],
+      ['515×500×350mm', '21KG', 'A3+'],
+      // ['打印功能', '分辨率', '打印速度'],
+      ['4800 x 1200 dpi （带有智能墨滴变换技术）', '黑彩同速：标准模式单面打印约25页/分钟；双面打印约21页/分钟'],
+      // ['复印能力', '复印分辨率', '最大复印页数'],
+      ['600 x 600 dpi', '1-999'],
+      // ['扫描功能', '扫描类型', '扫描分辨率'],
+      ['平板彩色图像扫描仪，支持自动双面扫描', '最大1200 x 2400 dpi'],
+      // ['配件清单', '电源线', '打印机数据线', '传真线']
+      ['全新*1', '全新*1', '全新*1']
+    ]
+  ),
+
 ]

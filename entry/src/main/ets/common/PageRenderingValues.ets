@@ -3,36 +3,36 @@ import { equipmentSynopsis } from '../model/EquipmentSynopsis'
 // 商城页面
 // 首选办公
 export const OfficePreferredArr: equipmentSynopsis[] = [
-  new equipmentSynopsis($rawfile('Mall/ThinkPad_E14.jpg'), 'ThinkPad E14', 'ThinkPad E14', 'i3-11/8G/256G/核显/14', 108, 'Laptop'),
-  new equipmentSynopsis($rawfile('Mall/Link.jpg'), 'Link-R S2000', 'Link-R S2000', 'i9-14/32G/2048G/独显/27', 648, 'Desktop'),
-  new equipmentSynopsis($rawfile('Mall/HP_440G7.jpg'), '惠普 440G7', '惠普 440G7', 'i5-10/8G/256G/核显/14', 118, 'Laptop'),
-  new equipmentSynopsis($rawfile('Mall/DE_CM3980.jpg'), '戴尔 成铭3980', '戴尔 成铭3980', 'i3-8/8G/256G/核显/21.4', 95, 'Desktop'),
-  new equipmentSynopsis($rawfile('Mall/ThinkPad_E480.jpg'), 'ThinkPad E480', 'ThinkPad E480', 'i3-7/8G/256G/核显/14', 80, 'Laptop'),
-  new equipmentSynopsis($rawfile('Mall/ThinkPad_E14Gen1.jpg'), 'ThinkPad E14Gen1', 'ThinkPad E14Gen1', 'i3-10/8G/256G/核显/14', 103, 'Laptop')
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Link/Link_S20/Link_S20_Swiper1.jpg', 'Link S20', 'Link S20 单主机电脑租赁', 'G4900/8G/240G SSD/核显', 48, 'singleHost'),
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/Laptop/ThinkPad/ThinkPad_E490/ThinkPad_E490_Swiper1.jpg', 'ThinkPad E490', 'ThinkPad E490 14英寸笔记本电脑', 'I3-8145U/8G/256G SSD/核显/14/HD', 65, 'Laptop'),
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/AllInOneMachine/Link/Link_D22/Link_D22_Swiper1.jpg', 'Link D22', 'Link D22 21.5英寸一体机电脑', 'i5-12400/16G/512G SSD/核显/21.5/FHD', 118, 'allInOneMachine'),
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/Laptop/Dell/Dell_5400/Dell_5400_Swiper1.jpg', '戴尔Dell 5400', '戴尔Dell 5400 笔记本电脑租赁', 'I5-8365U/8G/256G SSD/核显/14/FHD', 80, 'Laptop'),
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/Laptop/ThinkPad/ThinkPad_L14/ThinkPad_L14_Swiper1.jpg', 'ThinkPad L14', 'ThinkPad L14 14英寸笔记本电脑租赁', 'I5-10210U/16G/256G SSD/R625 2G独显14/FHD', 95, 'Laptop'),
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/Laptop/HP/HP_440G8/HP_440G8_Swiper1.jpg', '惠普HP 440G8', '惠普HP 440G8 14英寸笔记本电脑租赁', 'I5-1135G7/16G/512G SSD/核显/14/FHD', 113, 'Laptop'),
 ]
 
 // 便携办公
 export const OfficePortableArr: equipmentSynopsis[] = [
-  new equipmentSynopsis($rawfile('Mall/HP_440G7.jpg'), '惠普 430G8', '惠普 430G8', 'i5-11/8G/256G/核显/13.3', 128, 'Laptop'),
-  new equipmentSynopsis($rawfile('Mall/DE_CM3980.jpg'), 'ThinkPad X390', 'ThinkPad X390', 'i5-10/8G/256G/核显/13.3', 123, 'Desktop'),
-  new equipmentSynopsis($rawfile('Mall/ThinkPad_X13.jpg'), 'ThinkPad X13', 'ThinkPad X13', 'i5-10/8G/256G/核显/13.3', 128, 'Laptop'),
-  new equipmentSynopsis($rawfile('Mall/ThinkPad_X13.jpg'), 'ThinkPad X13', 'ThinkPad X13', 'i5-10/8G/256G/核显/13.3', 153, 'Laptop')
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/Laptop/Apple/Apple_MacBook_Pro_2024/Apple_MacBook_Pro_2024_Swiper1.jpg', '苹果Apple MacBook Pro 2024', '苹果Apple MacBook Pro 14.2英寸笔记本电脑租赁 2024款 MW2W3CH/A', 'M4 10核中央处理器/16G/512G SSD/10核图形处理器/银色/14.2/3K', 498, 'Laptop'),
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/Laptop/Huawei/Huawei_MateBook_X_Pro_2024/Huawei_MateBook_X_Pro_2024_Swiper1.jpg', '华为笔记本 MateBook X Pro 2024', '华为笔记本 MateBook X Pro 2024', 'Ultra7-155H/16G/1T SSD/核显/黑色/14.2/3K', 578, 'Laptop'),
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/Laptop/Lenovo/Lenovo_YTS14/Lenovo_YTS14_Swiper1.png', '联想Lenovo 扬天S14', '联想Lenovo 扬天S14 笔记本电脑租赁', 'I5-1155G7/8G/512G SSD/核显/14/FHD', 108, 'Laptop'),
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/AllInOneMachine/Apple_iMac/Apple_iMac_24_2021/Apple_iMac_24_Swiper1.jpg', '苹果Apple iMac 2021', '【特价】苹果Apple iMac 24英寸一体机电脑 2021款 MGTF3CH/A', 'M1 8核中央处理器/8G/256G SSD/7核图形处理器/银色/24/4.5K', 288, 'allInOneMachine'),
 ]
 
 // 技术开发
 export const OfficeTechnologyArr: equipmentSynopsis[] = [
-  new equipmentSynopsis($rawfile('Mall/HP_400G9_SFFR.jpg'), '惠普 H400G9 SFF R', '惠普 H400G9 SFF R', 'i5-13/16G/512G/核显/23.8', 158, 'Desktop'),
-  new equipmentSynopsis($rawfile('Mall/ThinkPad_E141.jpg'), 'ThinkPad E14', 'ThinkPad E14', 'i5-13/8G/512G/核显/14', 208, 'Laptop'),
-  new equipmentSynopsis($rawfile('Mall/ThinkPad_E14_Gen4.jpg'), 'ThinkPad E14 Gen4', 'ThinkPad E14 Gen4', 'i5-12/16G/256G * 2/核显/14', 178, 'Laptop'),
-  new equipmentSynopsis($rawfile('Mall/HP_288G9.jpg'), '惠普 288G9', '惠普 288G9', 'i5-12/8G/256G/核显/21.5', 128, 'Desktop')
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/Laptop/ThinkPad/ThinkPad_E490/ThinkPad_E490_Swiper1.jpg', 'ThinkPad E490', 'ThinkPad E490 14英寸笔记本电脑', 'I3-8145U/8G/256G SSD/核显/14/HD', 65, 'Laptop'),
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/Laptop/Lenovo/Lenovo_YTS14/Lenovo_YTS14_Swiper1.png', '联想Lenovo 扬天S14', '联想Lenovo 扬天S14 笔记本电脑租赁', 'I5-1155G7/8G/512G SSD/核显/14/FHD', 108, 'Laptop'),
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/Laptop/Apple/Apple_MacBook_Pro_2019/Apple_MacBook_Pro_2019_Swiper1.jpg', '苹果Apple MacBook Pro 2019', '【特价】苹果Apple MacBook Pro 13.3英寸笔记本电脑 2019款 MV962CH/A', 'I5-8代 2.4GHz/8G/256G SSD/核显/深空灰/13.3/2K/Touch Bar', 178, 'Laptop'),
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/Laptop/HP/HP_440G10/HP_440G10_Swiper1.jpg', '惠普HP 440G10', '惠普HP 440G10 14英寸笔记本电脑租赁', 'I5-1340P/8G/512G SSD/核显/14/FHD', 158, 'Laptop'),
 ]
 
 // 图形处理
 export const OfficeGraphicsArr: equipmentSynopsis[] = [
-  new equipmentSynopsis($rawfile('Mall/ThinkPad_E14_Gen5.jpg'), 'ThinkPad E14 Gen5', 'ThinkPad E14 Gen5', 'i7-13/16/512G/核显/14', 256, 'Laptop'),
-  new equipmentSynopsis($rawfile('Mall/ThinkPad_P16V.jpg'), 'ThinkPad P16V', 'ThinkPad P16V', 'i7-13/16G/512G/4G独显/16', 458, 'Laptop'),
-  new equipmentSynopsis($rawfile('Mall/HP_288G9TX.jpg'), '惠普 88G9TX', '惠普 88G9TX', 'i5-12/16G/1T+256G/4G独显/24英寸显示器', 208, 'Desktop'),
-  new equipmentSynopsis($rawfile('Mall/HP_Z2_G9_Gen2.jpg'), '惠普 Z2 G9 Gen2', '惠普 Z2 G9 Gen2', 'i7-13700K/32G/1T SSD/RTX 4070/27', 518, 'Desktop')
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/Laptop/ThinkPad/ThinkPad_P16V/ThinkPad_P16V_Swiper1.jpg', 'ThinkPad P16v', 'ThinkPad P16v 16英寸笔记本电脑租赁', 'I7-13700H/16G/512G SSD/RTXA500 4G独显/16/FHD', 458, 'Laptop'),
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/Desktop/Lenovo/Lenove_M930T/Lenove_M930T_Swiper2.png', '联想Lenovo M930t', '联想Lenovo M930t 台式机电脑租赁', 'I5-10400/16G/1T SSD/GT1030 2G独显/惠普M2256 21.5英寸显示器', 163, 'Desktop'),
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/HP/HP_Z2G9_Gen2/HP_Z2G9_Gen2_Swiper1.jpg', '惠普HP Z2G9', '惠普HP Z2G9 Gen2 工作站租赁', 'I7-13700K/32G/1T SSD/RTX4060 8G独显', 483, 'singleHost'),
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Link/Link_S20/Link_S20_Swiper1.jpg', 'Link S20', 'Link S20 单主机电脑租赁', '14900K/64G/4T SSD/RTX A100', 1899, 'singleHost'),
 ]
 
 
@@ -95,20 +95,20 @@ export const synthesisRecommend: equipmentSynopsis[] = [
   // 一体机
   new equipmentSynopsis('../../resources/rawfile/ProductDetails/AllInOneMachine/Link/Link_D22/Link_D22_Swiper1.jpg', 'Link D22', 'Link D22 21.5英寸一体机电脑', 'i5-12400/16G/512G SSD/核显/21.5/FHD', 118, 'allInOneMachine'),
   new equipmentSynopsis('../../resources/rawfile/ProductDetails/AllInOneMachine/Apple_iMac/Apple_iMac_24_2021/Apple_iMac_24_Swiper1.jpg', '苹果Apple iMac 2021', '【特价】苹果Apple iMac 24英寸一体机电脑 2021款 MGTF3CH/A', 'M1 8核中央处理器/8G/256G SSD/7核图形处理器/银色/24/4.5K', 288, 'allInOneMachine'),
-  new equipmentSynopsis('../../resources/rawfile/ProductDetails/AllInOneMachine/Apple_iMac/Apple_iMac_24_2024/Apple_iMac_24_Swiper1.jpg', '苹果Apple iMac2024', '苹果Apple iMac 24英寸一体机电脑租赁 2024款 Z1E2', 'M4 8核中央处理器/16G/512G SSD/8核图形处理器/银色/24/4.5K', 538, 'allInOneMachine'),
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/AllInOneMachine/Apple_iMac/Apple_iMac_24_2024/Apple_iMac_24_Swiper1.jpg', '苹果Apple iMac 2024', '苹果Apple iMac 24英寸一体机电脑租赁 2024款 Z1E2', 'M4 8核中央处理器/16G/512G SSD/8核图形处理器/银色/24/4.5K', 538, 'allInOneMachine'),
   new equipmentSynopsis('../../resources/rawfile/ProductDetails/AllInOneMachine/Link/Link_D22/Link_D22_Swiper1.jpg', 'Link D23', 'Link D23 23.9英寸一体机电脑', 'i5-13600K/32G/1T SSD/核显/23.9/HD', 225, 'allInOneMachine'),
 
   // 单主机
-  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Link/Link_S20/Link_S20_Swiper1.jpg', 'Link S20', 'Link S20 单主机电脑租赁', 'G4900/8G/240G SSD/核显', 48, 'AllInOneMachine'),
-  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Lenovo/Lenove_E96X/Lenove_E96X_Swiper1.png', '联想Lenovo E96X', '联想Lenovo E96X 单主机电脑租赁', '4900/8G/256G SSD/核显', 63, 'AllInOneMachine'),
-  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/HP/HP_288G4/HP_288G4_Swiper1.jpg', '惠普HP 288G4', '惠普HP 288G4 单主机电脑租赁', 'G4900/8G/256G SSD/核显', 63, 'AllInOneMachine'),
-  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Dell/Dell_3967MT/Dell_3967MT_Swiper1.jpg', '戴尔Dell 3967MT', '戴尔Dell 3967MT 单主机电脑租赁', 'I5-6/8G/256G SSD/核显', 65, 'AllInOneMachine'),
-  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Lenovo/Lenove_E97/Lenove_E97_Swiper1.png', '联想Lenovo E97', '联想Lenovo E97 单主机电脑租赁', 'G5905/8G/256G SSD/核显', 73, 'AllInOneMachine'),
-  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Lenovo/Lenove_E98/Lenove_E98_Swiper1.png', '联想Lenovo E98', '联想Lenovo E98 单主机电脑租赁', 'G5905/8G/256G SSD/核显', 73, 'AllInOneMachine'),
-  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/HP/HP_680G3/HP_680G3_Swiper1.jpg', '惠普HP 680G3', '惠普HP 680G3 单主机电脑租赁', 'I5-6/8G/256G SSD/核显', 83, 'AllInOneMachine'),
-  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Link/Link_S20/Link_S20_Swiper1.jpg', 'Link S20', 'Link S20 单主机电脑租赁', '14900K/64G/4T SSD/RTX A100', 1899, 'AllInOneMachine'),
-  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Dell/Dell_CM3991/Dell_CM3991_Swiper1.jpg', '戴尔Dell 成铭3991', '戴尔Dell 成铭3991 单主机电脑租赁', 'I3-10100/8G/256G SSD/核显', 88, 'AllInOneMachine'),
-  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/HP/HP_288G6/HP_288G6_Swiper1.jpg', '惠普HP 288G6', '惠普HP 288G6 单主机电脑租赁', 'I5-10500/8G/256G SSD/核显', 103, 'AllInOneMachine'),
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Link/Link_S20/Link_S20_Swiper1.jpg', 'Link S20', 'Link S20 单主机电脑租赁', 'G4900/8G/240G SSD/核显', 48, 'singleHost'),
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Lenovo/Lenove_E96X/Lenove_E96X_Swiper1.png', '联想Lenovo E96X', '联想Lenovo E96X 单主机电脑租赁', '4900/8G/256G SSD/核显', 63, 'singleHost'),
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/HP/HP_288G4/HP_288G4_Swiper1.jpg', '惠普HP 288G4', '惠普HP 288G4 单主机电脑租赁', 'G4900/8G/256G SSD/核显', 63, 'singleHost'),
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Dell/Dell_3967MT/Dell_3967MT_Swiper1.jpg', '戴尔Dell 3967MT', '戴尔Dell 3967MT 单主机电脑租赁', 'I5-6/8G/256G SSD/核显', 65, 'singleHost'),
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Lenovo/Lenove_E97/Lenove_E97_Swiper1.png', '联想Lenovo E97', '联想Lenovo E97 单主机电脑租赁', 'G5905/8G/256G SSD/核显', 73, 'singleHost'),
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Lenovo/Lenove_E98/Lenove_E98_Swiper1.png', '联想Lenovo E98', '联想Lenovo E98 单主机电脑租赁', 'G5905/8G/256G SSD/核显', 73, 'singleHost'),
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/HP/HP_680G3/HP_680G3_Swiper1.jpg', '惠普HP 680G3', '惠普HP 680G3 单主机电脑租赁', 'I5-6/8G/256G SSD/核显', 83, 'singleHost'),
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Link/Link_S20/Link_S20_Swiper1.jpg', 'Link S20', 'Link S20 单主机电脑租赁', '14900K/64G/4T SSD/RTX A100', 1899, 'singleHost'),
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Dell/Dell_CM3991/Dell_CM3991_Swiper1.jpg', '戴尔Dell 成铭3991', '戴尔Dell 成铭3991 单主机电脑租赁', 'I3-10100/8G/256G SSD/核显', 88, 'singleHost'),
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/HP/HP_288G6/HP_288G6_Swiper1.jpg', '惠普HP 288G6', '惠普HP 288G6 单主机电脑租赁', 'I5-10500/8G/256G SSD/核显', 103, 'singleHost'),
 ]
 
 // 笔记本分类
@@ -218,8 +218,8 @@ export const printerClassify: equipmentSynopsis[] = [
 // 单主机分类
 export const singleHostClassify: equipmentSynopsis[] = [
   new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Link/Link_S20/Link_S20_Swiper1.jpg', 'Link S20', 'Link S20 单主机电脑租赁', 'G4900/8G/240G SSD/核显', 48, 'singleHost'),
-  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Lenovo/Lenove_E96X/Lenove_E96X_Swiper1.png', '联想Lenovo E96X', '联想Lenovo E96X 单主机电脑租赁', ' G4900/8G/256G SSD/核显', 63, 'singleHost'),
-  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/HP/HP_288G4/HP_288G4_Swiper1.jpg', '惠普HP 288G4', '惠普HP 288G4 单主机电脑租赁', 'G4900/8G/256G SSD/核显', 63, 'AllInOneMachine'),
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Lenovo/Lenove_E96X/Lenove_E96X_Swiper1.png', '联想Lenovo E96X', '联想Lenovo E96X 单主机电脑租赁', 'G4900/8G/256G SSD/核显', 63, 'singleHost'),
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/HP/HP_288G4/HP_288G4_Swiper1.jpg', '惠普HP 288G4', '惠普HP 288G4 单主机电脑租赁', 'G4900/8G/256G SSD/核显', 63, 'singleHost'),
   new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Dell/Dell_3967MT/Dell_3967MT_Swiper1.jpg', '戴尔Dell 3967MT', '戴尔Dell 3967MT 单主机电脑租赁', 'I5-6/8G/256G SSD/核显', 65, 'singleHost'),
   new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Lenovo/Lenove_E97/Lenove_E97_Swiper1.png', '联想Lenovo E97', '联想Lenovo E97 单主机电脑租赁', 'G5905/8G/256G SSD/核显', 73, 'singleHost'),
   new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Lenovo/Lenove_E98/Lenove_E98_Swiper1.png', '联想Lenovo E98', '联想Lenovo E98 单主机电脑租赁', 'G5905/8G/256G SSD/核显', 73, 'singleHost'),
@@ -228,13 +228,12 @@ export const singleHostClassify: equipmentSynopsis[] = [
   new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Dell/Dell_CM3991/Dell_CM3991_Swiper1.jpg', '戴尔Dell 成铭3991', '戴尔Dell 成铭3991 单主机电脑租赁', 'I3-10100/8G/256G SSD/核显', 88, 'singleHost'),
   new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/HP/HP_288G6/HP_288G6_Swiper1.jpg', '惠普HP 288G6', '惠普HP 288G6 单主机电脑租赁', 'I5-10500/8G/256G SSD/核显', 103, 'singleHost'),
 
-  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/HP/HP_680G3/HP_680G3_Swiper1.jpg', '惠普HP 680G3', '惠普HP 680G3 单主机电脑租赁', 'I5-6/8G/256G SSD/核显', 83, 'AllInOneMachine'),
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/HP/HP_680G3/HP_680G3_Swiper1.jpg', '惠普HP 680G3', '惠普HP 680G3 单主机电脑租赁', 'I5-6/8G/256G SSD/核显', 83, 'singleHost'),
   new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/HP/HP_400G9_SFF_R/HP_400G9_SFF_R_Swiper1.jpg', '惠普HP 400G9', '惠普HP 400G9 SFF R单主机电脑租赁', 'I3-13100/8G/512G SSD/核显/WIFI6+BT5.3', 108, 'singleHost'),
-  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/HP/HP_288G9/HP_288G9_Swiper1.jpg', '惠普HP 288G9', '惠普HP 288G9 单主机电脑租赁', 'I3-12100/8G/256G SSD/核显', 93, 'AllInOneMachine'),
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/HP/HP_288G9/HP_288G9_Swiper1.jpg', '惠普HP 288G9', '惠普HP 288G9 单主机电脑租赁', 'I3-12100/8G/256G SSD/核显', 93, 'singleHost'),
   new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/HP/HP_Z2G9_Gen2/HP_Z2G9_Gen2_Swiper1.jpg', '惠普HP Z2G9', '惠普HP Z2G9 Gen2 工作站租赁', 'I7-13700K/32G/1T SSD/RTX4060 8G独显', 483, 'singleHost'),
   new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Lenovo/Lenove_M930T/Lenove_M930T_Swiper1.jpg', '联想Lenovo M930t', '联想Lenovo M930t 单主机电脑租赁', 'I5-10400/16G/1T SSD/GT1030 2G独显', 148, 'singleHost'),
-  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Lenovo/Lenove_M930T/Lenove_M930T_Swiper1.jpg', '联想Lenovo M930t', '联想Lenovo M930t 单主机电脑租赁', 'I5-10400/16G/1T SSD/GT1030 2G独显', 148, 'singleHost'),
-  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Link/Link_S20/Link_S20_Swiper1.jpg', 'Link S20', 'Link S20 单主机电脑租赁', '14900K/64G/4T SSD/RTX A100', 1899, 'AllInOneMachine'),
+  new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Link/Link_S20/Link_S20_Swiper1.jpg', 'Link S20', 'Link S20 单主机电脑租赁', '14900K/64G/4T SSD/RTX A100', 1899, 'singleHost'),
   new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/HP/HP_Z2G9_Gen2/HP_Z2G9_Gen2_Swiper1.jpg', '惠普HP Z2G9 Gen2', '惠普HP Z2G9 Gen2 工作站租赁', 'I7-13700K/32G/1T SSD/RTX4060 8G独显', 483, 'singleHost'),
 
   new equipmentSynopsis('../../resources/rawfile/ProductDetails/SingleHost/Link/Link_S20/Link_S20_Swiper1.jpg', 'Link S20', 'Link S20 单主机电脑租赁', 'G4900/8G/240G SSD/核显', 48, 'singleHost'),

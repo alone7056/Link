@@ -324,7 +324,7 @@ struct ProductDetailsPage {
       }
       .width('100%')
       .layoutWeight(13)
-      .edgeEffect(EdgeEffect.None)
+      .edgeEffect(EdgeEffect.Fade)
       .scrollBar(BarState.Off)
       .backgroundColor('#ffeae9e9')
 
