@@ -47,10 +47,22 @@ export class RdbUtil{
   }
 
   //删除
-  async delete(tableName:string,id : number){
+  async delete(tableName: string, id: number){
     try {
       const p = new relationalStore.RdbPredicates(tableName) //谓词
-      p.equalTo('id',id)
+      p.equalTo('id', id)
+      await this.rdbStore.delete(p)
+      return true
+    }catch(err){
+      console.error('关系型数据库删除错误(RdbUtil):'+JSON.parse(err))
+    }
+  }
+
+  // 根据名称删除
+  async deleteAccordingToTheName(tableName: string, theNameOfTheDevice: string){
+    try {
+      const p = new relationalStore.RdbPredicates(tableName)
+      p.equalTo('theNameOfTheDevice', theNameOfTheDevice)
       await this.rdbStore.delete(p)
       return true
     }catch(err){

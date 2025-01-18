@@ -80,6 +80,15 @@ struct HomeSwiper {
                 // 点击对应的导航栏图标时更新下标索引值完成切换页面
                 this.currentIndex = index
                 this.swiperIndex = index
+
+                let paramsInfo: currentIndex = {
+                  type: 'swiperIndex',
+                  currentClassify: 2
+                }
+
+                if (this.currentIndex == 2 && this.currentIndex == 2) {
+                  router.replaceUrl({url: 'pages/HomeSwiper', params: paramsInfo})
+                }
               })
           })
 

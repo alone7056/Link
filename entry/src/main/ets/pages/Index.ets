@@ -1,5 +1,6 @@
 import router from '@ohos.router'
 import { userAddressDb } from '../db/UserAddressDb'
+import { shoppingCartDb } from '../db/ShoppingCartDb'
 import { userDb } from '../db/UserDb'
 import { PreferencesUtil } from '../utils/PreferencesUtil'
 
@@ -18,6 +19,7 @@ struct Index {
   async aboutToAppear() {
     // 1.建库建表
     await userDb.createUserTable()
+    await shoppingCartDb.createUserTable()
     // await userAddressDb.createUserAddressTable()
 
     /* 进入登录页面、首页

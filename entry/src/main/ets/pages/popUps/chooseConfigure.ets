@@ -8,6 +8,10 @@ import { allInOneMachineDetails } from '../../common/AllInOneDataSheet'
 import { conferenceScreenDetails } from '../../common/ConferenceDashboardDataSheet'
 import { printerDetails } from '../../common/PrinterDatasheet'
 import { singleHostDetails } from '../../common/SingleHostDatasheet'
+import { scd } from '../../model/ShoppingCartData'
+import { shoppingCartDb } from '../../db/ShoppingCartDb';
+import LoadingDialog from '../../utils/TipsDialog';
+
 
 @CustomDialog
 export struct chooseConfigure {
@@ -17,6 +21,7 @@ export struct chooseConfigure {
   cancel?: () => void;
 
   @Consume('theNameOfTheDevice') theNameOfTheDevice: string; // 设备名称
+  @Consume('propagandaHeadline') propagandaHeadline: string; // 设备标题
   @Consume('introductionToParameters') introductionToParameters: string; // 参数简介
   @Consume('monthlyPrice') monthlyPrice: number; // 月租价格
   @Consume('equipmentType') equipmentType: string; // 设备类型
@@ -191,12 +196,78 @@ export struct chooseConfigure {
 
         }.width('100%').padding(12)
 
-
       }.width('100%').layoutWeight(6)
 
       Row(){
-        Text('加入购物车').fontColor('#ffffff')
-      }.width('100%').layoutWeight(1).backgroundColor('#ff38baf3').justifyContent(FlexAlign.Center)
+        Button('加入购物车')
+          .fontColor('#ffffff')
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#0d87fc')
+          .type(ButtonType.Normal)
+          .onClick(async ()=>{
+            // 购物车添加设备
+            await this.addDevice()
+          })
+      }.width('100%').layoutWeight(1).justifyContent(FlexAlign.Center)
     }.width('100%').height('60%').backgroundColor('#ffffff')
+  }
+
+  async addDevice(){
+    // 图片地址
+    scd.iconSrc = AppStorage.Get('picturesOfTheDevice')
+    // 设备名称
+    scd.theNameOfTheDevice = this.theNameOfTheDevice
+    // 设备标题
+    scd.propagandaHeadline = this.propagandaHeadline
+    // 参数简介
+    scd.introductionToParameters = this.introductionToParameters
+    // 月租价格
+    scd.monthlyPrice = this.monthlyPrice
+    // 租期
+    scd.lease = this.leaseIndex == 0 ? 12 : 24
+    // 押金
+    if (this.monthlyPrice < 50) {
+      scd.deposit = 500
+    } else if (this.monthlyPrice < 100){
+      scd.deposit = 1800
+    } else if (this.monthlyPrice < 150){
+      scd.deposit = 3000
+    } else if (this.monthlyPrice < 200){
+      scd.deposit = 3800
+    } else if (this.monthlyPrice < 250){
+      scd.deposit = 5000
+    } else if (this.monthlyPrice < 300){
+      scd.deposit = 5700
+    } else if (this.monthlyPrice < 400){
+      scd.deposit = 7000
+    } else if (this.monthlyPrice < 500){
+      scd.deposit = 9000
+    } else {
+      scd.deposit = 10000
+    }
+    // 租借数量
+    scd.numberOfLeases = this.numberOfLeases
+    // 设备类型
+    scd.equipmentType = this.equipmentType
+
+    console.log('(chooseConfigure)theNameOfTheDevice:' + this.theNameOfTheDevice)
+    console.log('(chooseConfigure)propagandaHeadline:' + this.propagandaHeadline)
+    console.log('(chooseConfigure)introductionToParameters:' + this.introductionToParameters)
+    console.log('(chooseConfigure)monthlyPrice:' + this.monthlyPrice)
+    console.log('(chooseConfigure)lease:' + scd.lease)
+    console.log('(chooseConfigure)deposit:' + scd.deposit)
+    console.log('(chooseConfigure)numberOfLeases:' + scd.numberOfLeases)
+    console.log('(chooseConfigure)equipmentType:' + scd.equipmentType)
+
+    const result = await shoppingCartDb.add(scd)
+    if (result) {
+      LoadingDialog.showSuccess('添加成功')
+      // 关闭弹窗
+      this.controller.close()
+    } else {
+      LoadingDialog.showFailure('添加失败')
+    }
+    console.log('查询(chooseConfigure)：' + JSON.stringify(await shoppingCartDb.queryShoppingCartInformation()))
   }
 }

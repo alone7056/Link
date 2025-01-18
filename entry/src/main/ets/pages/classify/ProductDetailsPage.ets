@@ -6,17 +6,17 @@ import { LaptopDetails, LaptopParameterInformation } from '../../common/Notebook
 import { DisplayDetails, DisplayParameterInformation } from '../../common/DisplayDatasheet'
 import { DesktopDetails, DesktopParameterInformation } from '../../common/DesktopDataSheet'
 import { allInOneMachineDetails, allInOneMachineParameterInformation } from '../../common/AllInOneDataSheet'
-import { conferenceScreenDetails, conferenceScreenParameterInformation } from '../../common/ConferenceDashboardDataSheet'
+import {conferenceScreenDetails,conferenceScreenParameterInformation} from '../../common/ConferenceDashboardDataSheet'
 import { printerDetails, printerParameterInformation } from '../../common/PrinterDatasheet'
-import { singleHostDetails, singleHostParameterInformation} from '../../common/SingleHostDatasheet'
+import { singleHostDetails, singleHostParameterInformation } from '../../common/SingleHostDatasheet'
+import { shoppingCartDb } from '../../db/ShoppingCartDb';
 
 
 @Entry
 @Component
 struct ProductDetailsPage {
-
   @Provide('theNameOfTheDevice') theNameOfTheDevice: string = ''; // 设备名称
-  @State propagandaHeadline: string = ''; // 设备标题
+  @Provide('propagandaHeadline') propagandaHeadline: string = ''; // 设备标题
   @Provide('introductionToParameters') introductionToParameters: string = '' // 参数简介
   @Provide('monthlyPrice') monthlyPrice: number = 0 // 月租价格
   @Provide('equipmentType') equipmentType: string = ''; // 设备类型
@@ -53,7 +53,7 @@ struct ProductDetailsPage {
 
       console.log('(ProductDetailsPage):' + this.theNameOfTheDevice + '|' + this.propagandaHeadline + '|' + this.introductionToParameters + '|' + this.monthlyPrice + '|' + this.equipmentType)
     } catch (err) {
-      console.log('路由传参报错')
+      console.log('路由传参报错(ProductDetailsPage)')
     }
 
     // 笔记本类
@@ -112,7 +112,7 @@ struct ProductDetailsPage {
           this.currentDeviceParameters[indexMax][indexMin] = this.currentDeviceParameters[indexMax][indexMin] + '#'
           this.currentDeviceParameters[indexMax][indexMin] = this.currentDeviceParameters[indexMax][indexMin].slice(0, this.currentDeviceParameters[indexMax][indexMin].indexOf('#'))
           // 拼接字段与数据
-          this.currentDeviceParameters[indexMax][indexMin] +=  '#' + this.rendering[0].ProductParameters[indexMax][indexMin - 1]
+          this.currentDeviceParameters[indexMax][indexMin] += '#' + this.rendering[0].ProductParameters[indexMax][indexMin - 1]
           // 控制台打印调试
           console.log(`(ProductDetailsPage)this.rendering[0].ProductParameters[${indexMax}][${indexMin - 1}]=${this.rendering[0].ProductParameters[indexMax][indexMin - 1]}`)
           console.log(`(ProductDetailsPage)this.currentDeviceParameters[${indexMax}][${indexMin}]=${this.currentDeviceParameters[indexMax][indexMin]}`)
@@ -123,7 +123,7 @@ struct ProductDetailsPage {
   }
 
   // 页面销毁执行
-  aboutToDisappear(){
+  aboutToDisappear() {
 
   }
 
@@ -184,7 +184,7 @@ struct ProductDetailsPage {
               Text() {
                 Span('￥').fontSize(14).fontColor('#f9543d')
                 // 如果租期是24个月每个月租期优惠10元 但如果是显示器租期为24个月每个月优惠5元
-                Span(this.lease[2] == 24 ? this.monthlyPrice <= 40 ? this.monthlyPrice - 5 + '.' : this.monthlyPrice - 10 + '.'  : this.monthlyPrice + '.')
+                Span(this.lease[2] == 24 ? this.monthlyPrice <= 40 ? this.monthlyPrice - 5 + '.' : this.monthlyPrice - 10 + '.' : this.monthlyPrice + '.')
                   .fontSize(20)
                   .fontColor('#f9543d')
                   .fontWeight(500)
@@ -234,7 +234,8 @@ struct ProductDetailsPage {
                   Row() {
                     Text() {
                       Span('首月租金：')
-                      Span(this.lease[2] == 24 ? this.monthlyPrice <= 40 ? '￥' + (this.monthlyPrice - 5) : '￥' + (this.monthlyPrice - 10) : '￥' + this.monthlyPrice).fontColor('#f9543d')
+                      Span(this.lease[2] == 24 ? this.monthlyPrice <= 40 ? '￥' + (this.monthlyPrice - 5) : '￥' + (this.monthlyPrice - 10) : '￥' + this.monthlyPrice)
+                        .fontColor('#f9543d')
                       Span(' ，租期')
                       Span(this.lease[2] + '').fontColor('#f9543d')
                       Span('个月 ')
@@ -243,7 +244,9 @@ struct ProductDetailsPage {
                   }.width('100%').layoutWeight(1)
 
                   Row() {
-                    Text('到期归还Link，租期未满'+ this.lease[2] +'个月需自行垫付运费等相关费用').width('95%').fontSize(15)
+                    Text('到期归还Link，租期未满' + this.lease[2] + '个月需自行垫付运费等相关费用')
+                      .width('95%')
+                      .fontSize(15)
                   }.width('100%').layoutWeight(1).opacity(0.7)
                 }.width('100%').layoutWeight(2)
               }.height('100%').layoutWeight(4)
@@ -253,11 +256,11 @@ struct ProductDetailsPage {
 
             // 搭配配件弹窗
             Row() {
-              Row(){
+              Row() {
                 Text('配送至').fontSize(15).opacity(0.7)
               }.height('100%').layoutWeight(1).justifyContent(FlexAlign.End).padding(10)
 
-              Row(){
+              Row() {
 
               }.height('100%').layoutWeight(4)
             }.width('100%').height(50).backgroundColor('#ffffff')
@@ -305,7 +308,7 @@ struct ProductDetailsPage {
                             .textOverflow({ overflow: TextOverflow.Ellipsis })
                             .maxLines(2)
                             .backgroundColor('#ffffff')
-                            .padding({ left: 10, right: 10})
+                            .padding({ left: 10, right: 10 })
                             .fontSize(15)
                             .opacity(0.8)
                             .border({
@@ -341,7 +344,7 @@ struct ProductDetailsPage {
         .alignItems(HorizontalAlign.Center)
         .onClick(() => {
           // 跳转至商城页面点击事件
-          router.replaceUrl({url: 'pages/HomeSwiper'}) // 销毁跳转
+          router.replaceUrl({ url: 'pages/HomeSwiper' }) // 销毁跳转
         })
 
         Column({ space: 5 }) {
@@ -359,32 +362,40 @@ struct ProductDetailsPage {
             currentClassify: 0
           }
           // 路由跳转刷新HomeSwiper其子组件才会跟着刷新数据
-          router.replaceUrl({ url: 'pages/HomeSwiper' , params: paramsInfo })
+          router.replaceUrl({ url: 'pages/HomeSwiper', params: paramsInfo })
         })
 
         Row() {
-          Text('立即租赁').fontColor('#ffffff')
+          Button('立即租赁')
+            .width('100%')
+            .height('100%')
+            .fontColor('#ffffff')
+            .backgroundColor('#2e99ff')
+            .type(ButtonType.Normal)
+            .onClick(() => {
+              // 立即租赁点击事件
+
+            })
         }
         .layoutWeight(2)
         .height('100%')
-        .backgroundColor('#2e99ff')
         .justifyContent(FlexAlign.Center)
-        .onClick(() => {
-          // 立即租赁点击事件
-
-        })
 
         Row() {
-          Text('加入购物车').fontColor('#ffffff')
+          Button('加入购物车')
+            .type(ButtonType.Normal)
+            .fontColor('#ffffff')
+            .width('100%')
+            .height('100%')
+            .backgroundColor('#0d87fc')
+            .onClick(() => {
+              // 加入购物车打开选择配置弹窗点击事件
+              this.chooseConfigure.open()
+            })
         }
         .layoutWeight(2)
         .height('100%')
-        .backgroundColor('#0d87fc')
         .justifyContent(FlexAlign.Center)
-        .onClick(() => {
-          // 加入购物车打开选择配置弹窗点击事件
-          this.chooseConfigure.open()
-        })
       }.width('100%').layoutWeight(1).backgroundColor('#ffffff')
 
     }.width('100%').height('100%')

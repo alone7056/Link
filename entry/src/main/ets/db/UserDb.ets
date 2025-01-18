@@ -23,6 +23,7 @@ export class UserDb {
   async createUserTable() {
     try {
       await this.RdbUtil.createTable(CREATE_USER_SQL)
+      console.log('用户表建表成功(UserDb)')
     } catch (err) {
       console.error('用户表建表错误(UserDb):'+JSON.parse(err))
     }
@@ -64,6 +65,9 @@ export class UserDb {
     p.equalTo('phone', phone)
     return await this.RdbUtil.update(user, p)
   }
+
+  // 删除
+
 }
 
 export const userDb = new UserDb()

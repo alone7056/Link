@@ -307,7 +307,8 @@ export struct Classify {
               equipmentType: item.equipmentType
             }
             // 测试输出
-            console.log('(Classify)theNameOfTheDevice图片地址：'+item.picturesOfTheDevice)
+            console.log('(Classify)当前选中设备图片地址：'+item.picturesOfTheDevice)
+            AppStorage.SetOrCreate('picturesOfTheDevice', item.picturesOfTheDevice)
             router.pushUrl({ url: 'pages/classify/ProductDetailsPage', params: paramsInfo })
           })
         })

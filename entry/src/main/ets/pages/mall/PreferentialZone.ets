@@ -85,6 +85,7 @@ export struct PreferentialZone {
             }
             // 测试输出
             console.log('(PreferentialZone)theNameOfTheDevice图片地址：' + item.icon)
+            AppStorage.SetOrCreate('picturesOfTheDevice', item.icon)
             router.pushUrl({ url: 'pages/classify/ProductDetailsPage', params: paramsInfo })
           })
         })
