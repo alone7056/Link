@@ -260,7 +260,9 @@ export struct chooseConfigure {
     console.log('(chooseConfigure)numberOfLeases:' + scd.numberOfLeases)
     console.log('(chooseConfigure)equipmentType:' + scd.equipmentType)
 
+    // 添加
     const result = await shoppingCartDb.add(scd)
+
     if (result) {
       LoadingDialog.showSuccess('添加成功')
       // 关闭弹窗
