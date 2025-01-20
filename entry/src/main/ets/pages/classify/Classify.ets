@@ -4,6 +4,9 @@ import { equipmentSynopsis } from '../../model/EquipmentSynopsis'
 import LoadingDialog from '../../utils/TipsDialog'
 import { ClassifyComponent } from './ClassifyComponent'
 import { DeviceInformation } from '../../model/RoutingData'
+import { scd } from '../../model/ShoppingCartData'
+import { shoppingCartDb } from '../../db/ShoppingCartDb'
+import { userDb } from '../../db/UserDb'
 
 @Component
 export struct Classify {
@@ -286,9 +289,22 @@ export struct Classify {
                 .backgroundColor('#fa6d4b')
                 .justifyContent(FlexAlign.Center)
                 .borderRadius(99)
-                .onClick(() => {
+                .onClick(async () => {
                   // 添加至购物车点击事件
-
+                  AppStorage.SetOrCreate('picturesOfTheDevice', item.picturesOfTheDevice)
+                  const queryResult = await userDb.queryAllUser()
+                  // 找出登录状态的账号 确认用户是否登录 登录用户则执行添加
+                  if (queryResult.length > 0) {
+                    for (let index = 0; index < queryResult.length; index++) {
+                      if (Number(queryResult[index].whetherLogin) == 1) {
+                        this.addDevice(item.theNameOfTheDevice, item.propagandaHeadline, item.introductionToParameters, item.monthlyPrice, item.equipmentType)
+                      } else {
+                        LoadingDialog.showFailure('添加失败，请先注册登录')
+                      }
+                    }
+                  } else {
+                    LoadingDialog.showFailure('添加失败，请先注册登录')
+                  }
                 })
               }.height('100%').layoutWeight(1).justifyContent(FlexAlign.SpaceAround).alignItems(HorizontalAlign.Center)
             }.width('100%').height('100%')
@@ -360,6 +376,64 @@ export struct Classify {
       // 单主机分类
       this.rendering = singleHostClassify
     }
+  }
+
+  async addDevice(theNameOfTheDevice: string, propagandaHeadline: string, introductionToParameters: string, monthlyPrice: number, equipmentType: string){
+    // 图片地址
+    scd.iconSrc = AppStorage.Get('picturesOfTheDevice')
+    // 设备名称
+    scd.theNameOfTheDevice = theNameOfTheDevice + introductionToParameters
+    // 设备标题
+    scd.propagandaHeadline = propagandaHeadline
+    // 参数简介
+    scd.introductionToParameters = introductionToParameters
+    // 月租价格
+    scd.monthlyPrice = monthlyPrice
+    // 租期
+    scd.lease = 12
+    // 押金
+    if (monthlyPrice < 50) {
+      scd.deposit = 500
+    } else if (monthlyPrice < 100){
+      scd.deposit = 1800
+    } else if (monthlyPrice < 150){
+      scd.deposit = 3000
+    } else if (monthlyPrice < 200){
+      scd.deposit = 3800
+    } else if (monthlyPrice < 250){
+      scd.deposit = 5000
+    } else if (monthlyPrice < 300){
+      scd.deposit = 5700
+    } else if (monthlyPrice < 400){
+      scd.deposit = 7000
+    } else if (monthlyPrice < 500){
+      scd.deposit = 9000
+    } else {
+      scd.deposit = 10000
+    }
+    // 租借数量
+    scd.numberOfLeases = 1
+    // 设备类型
+    scd.equipmentType = equipmentType
+
+    console.log('(Classify)theNameOfTheDevice:' + theNameOfTheDevice)
+    console.log('(Classify)propagandaHeadline:' + propagandaHeadline)
+    console.log('(Classify)introductionToParameters:' + introductionToParameters)
+    console.log('(Classify)monthlyPrice:' + monthlyPrice)
+    console.log('(Classify)lease:' + scd.lease)
+    console.log('(Classify)deposit:' + scd.deposit)
+    console.log('(Classify)numberOfLeases:' + scd.numberOfLeases)
+    console.log('(Classify)equipmentType:' + scd.equipmentType)
+
+    // 添加
+    const result = await shoppingCartDb.add(scd)
+
+    if (result) {
+      LoadingDialog.showSuccess('添加购物车成功')
+    } else {
+      LoadingDialog.showFailure('添加购物车失败')
+    }
+    console.log('查询(Classify)：' + JSON.stringify(await shoppingCartDb.queryShoppingCartInformation()))
   }
 
   obtainClassifyComponent() {

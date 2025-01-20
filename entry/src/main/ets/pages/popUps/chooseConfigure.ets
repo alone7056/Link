@@ -11,6 +11,7 @@ import { singleHostDetails } from '../../common/SingleHostDatasheet'
 import { scd } from '../../model/ShoppingCartData'
 import { shoppingCartDb } from '../../db/ShoppingCartDb';
 import LoadingDialog from '../../utils/TipsDialog';
+import { userDb } from '../../db/UserDb';
 
 
 @CustomDialog
@@ -206,8 +207,20 @@ export struct chooseConfigure {
           .backgroundColor('#0d87fc')
           .type(ButtonType.Normal)
           .onClick(async ()=>{
-            // 购物车添加设备
-            await this.addDevice()
+            // 购物车添加设备点击事件
+            const queryResult = await userDb.queryAllUser()
+            // 找出登录状态的账号 确认用户是否登录 登录用户则执行添加
+            if (queryResult.length > 0) {
+              for (let index = 0; index < queryResult.length; index++) {
+                if (Number(queryResult[index].whetherLogin) == 1) {
+                  await this.addDevice()
+                } else {
+                  LoadingDialog.showFailure('添加失败，请先注册登录')
+                }
+              }
+            } else {
+              LoadingDialog.showFailure('添加失败，请先注册登录')
+            }
           })
       }.width('100%').layoutWeight(1).justifyContent(FlexAlign.Center)
     }.width('100%').height('60%').backgroundColor('#ffffff')
@@ -217,7 +230,7 @@ export struct chooseConfigure {
     // 图片地址
     scd.iconSrc = AppStorage.Get('picturesOfTheDevice')
     // 设备名称
-    scd.theNameOfTheDevice = this.theNameOfTheDevice
+    scd.theNameOfTheDevice = this.theNameOfTheDevice + this.introductionToParameters
     // 设备标题
     scd.propagandaHeadline = this.propagandaHeadline
     // 参数简介
@@ -264,12 +277,42 @@ export struct chooseConfigure {
     const result = await shoppingCartDb.add(scd)
 
     if (result) {
-      LoadingDialog.showSuccess('添加成功')
-      // 关闭弹窗
+      LoadingDialog.showSuccess('添加购物车成功')
       this.controller.close()
     } else {
-      LoadingDialog.showFailure('添加失败')
+      LoadingDialog.showFailure('添加购物车失败')
     }
+
+    // const queryResult: shoppingCartDeviceInformation[] = await shoppingCartDb.queryShoppingCartInformation()
+    // // 操作——false代表添加/true代表修改
+    // let  operation: boolean = false
+    // for (let index = 0; index < queryResult.length; index++) {
+    //   // 购物车已有的则修改
+    //   if ((this.theNameOfTheDevice + this.introductionToParameters) == queryResult[index].theNameOfTheDevice) {
+    //     operation = true
+    //   } else {
+    //     operation = false
+    //   }
+    // }
+    // // 修改或者添加是否成功
+    // let result: boolean = false
+    // // true 执行添加 / false执行修改
+    // if (operation) {
+    //   // 修改
+    //   result = await shoppingCartDb.updateShoppingCart(scd, this.theNameOfTheDevice)
+    // } else {
+    //   // 添加
+    //   result = await shoppingCartDb.add(scd)
+    // }
+    //
+    // if (result) {
+    //   LoadingDialog.showSuccess('添加购物车成功')
+    //   // 关闭弹窗
+    //   this.controller.close()
+    // } else {
+    //   LoadingDialog.showFailure('添加购物车失败')
+    // }
+
     console.log('查询(chooseConfigure)：' + JSON.stringify(await shoppingCartDb.queryShoppingCartInformation()))
   }
 }
