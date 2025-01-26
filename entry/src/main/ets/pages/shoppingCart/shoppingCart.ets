@@ -4,7 +4,6 @@ import { shoppingCartDb } from '../../db/ShoppingCartDb'
 import { currentIndex } from '../../model/RoutingData';
 import { scd, shoppingCartDeviceInformation } from '../../model/ShoppingCartData';
 import LoadingDialog from '../../utils/TipsDialog';
-import { Details } from '../popUps/Details';
 
 
 @Component
@@ -26,6 +25,8 @@ export struct ShoppingCart {
   @State leaseArray: number[] = []
   // 押金数组 存储所有设备的押金
   @State depositArray: number[] = []
+  // 金额数组 存储单个设备的总金额
+  @State amountArray: number[] = []
 
 
   // 总金额
@@ -43,39 +44,18 @@ export struct ShoppingCart {
 
   }
 
-  // 退出登录弹窗
-  chooseConfigure: CustomDialogController = new CustomDialogController({
-    builder: Details({
-      save: () => this.onAccept(),
-      cancel: () => this.onCancel()
-    }),
-    alignment: DialogAlignment.Bottom, // 弹窗对齐方式
-    offset: { dx: 0, dy: 0 }, // 设置弹窗的偏移量，这里 dy 为 50 表示弹窗底部距离屏幕底部有 50px 的间隔
-    customStyle: true, // 是否自定义样式
-  })
-
-  // 确认方法
-  async onAccept() {
-
-  }
-
-  // 取消方法
-  onCancel() {
-    this.chooseConfigure.close()
-  }
-
   build() {
     Column() {
       Row() {
         Text('Link-购物车').fontSize(20)
-      }.width('100%').justifyContent(FlexAlign.Center).layoutWeight(1).backgroundColor('#ffffff')
+      }.width('100%').justifyContent(FlexAlign.Center).layoutWeight(1).backgroundColor('#ffffff').border({width: {bottom: 1}, color: '#cccccc'})
 
-      if (this.rendering.length == 0){
-        Column({space: 20}){
+      if (this.rendering.length == 0) {
+        Column({ space: 20 }) {
           Image($r('app.media.EmptyShoppingCart')).width('40%').objectFit(ImageFit.Contain)
           Text('购物车是空的，您还没有添加任何商品')
-          Button('去逛逛').width('30%').onClick(()=>{
-            router.replaceUrl({url: 'pages/HomeSwiper'})
+          Button('去逛逛').width('30%').onClick(() => {
+            router.replaceUrl({ url: 'pages/HomeSwiper' })
           })
         }.width('100%').layoutWeight(12).justifyContent(FlexAlign.Center).alignItems(HorizontalAlign.Center)
       } else {
@@ -98,6 +78,7 @@ export struct ShoppingCart {
                           counter++
                         }
                       }
+                      // 如果计数器的长度等于当前渲染数组的长度则全选
                       if (counter == this.rendering.length) {
                         this.selectAllOrNot = true
                       } else {
@@ -106,10 +87,12 @@ export struct ShoppingCart {
 
                       // 总金额
                       if (this.whetherSelectedArray[index]) {
-                        this.theTotalAmount += (Number(Number(item.monthlyPrice * item.lease) + Number(item.deposit)) * this.numberOfLeasesArray[index])
+                        this.amountArray[index] = (Number(Number(item.monthlyPrice * item.lease) + Number(item.deposit)) * this.numberOfLeasesArray[index])
+                        this.theTotalAmount += this.amountArray[index]
+                        console.log(`(ShoppingCart)this.amountArray[${index}]:${this.amountArray[index]}`)
                       } else {
                         if (this.theTotalAmount != 0) {
-                          this.theTotalAmount -= (Number(Number(item.monthlyPrice * item.lease) + Number(item.deposit)) * this.numberOfLeasesArray[index])
+                          this.theTotalAmount -= this.amountArray[index]
                         }
                       }
                     })
@@ -213,7 +196,7 @@ export struct ShoppingCart {
       }
 
       Row() {
-        Row({space: 10}){
+        Row({ space: 10 }) {
           Checkbox({ name: 'selectAllOrNot', group: 'selectAllOrNot' })
             .width(15)
             .select(this.selectAllOrNot)
@@ -221,7 +204,6 @@ export struct ShoppingCart {
             .onClick(() => {
               this.selectAllOrNot = !this.selectAllOrNot
               for (let index = 0; index < this.rendering.length; index++) {
-                this.whetherSelectedArray[index] = this.selectAllOrNot ? true : false
                 if (this.selectAllOrNot) {
                   this.whetherSelectedArray[index] = true
                   this.theTotalAmount += Number(Number(this.rendering[index].monthlyPrice * this.rendering[index].lease) + Number(this.rendering[index].deposit)) * this.numberOfLeasesArray[index]
@@ -233,30 +215,19 @@ export struct ShoppingCart {
               }
             })
 
-          Text(){
+          Text() {
             Span('合计：')
             Span(this.theTotalAmount + '').fontColor('#4a9df6')
           }
-        }.height('100%').layoutWeight(1).justifyContent(FlexAlign.Start).padding({left: 10})
+        }.height('100%').layoutWeight(1).justifyContent(FlexAlign.Start).padding({ left: 10 })
 
-        Row(){
-          Row({space: 8}){
-            Text('明细')
-            Image($r('app.media.img_1'))
-              .rotate({ angle: -90 })
-              .width(10)
-              .height(10)
-              .onClick(()=>{
+        Button('租\t赁')
+          .type(ButtonType.Normal)
+          .height('100%')
+          .layoutWeight(1)
+          .onClick(() => {
 
-              })
-          }.padding({left: 10})
-
-          Button('免押金租赁').type(ButtonType.Normal)
-            .height('100%')
-            .onClick(() => {
-
-            })
-        }.height('100%').layoutWeight(1).justifyContent(FlexAlign.SpaceBetween)
+          })
       }.width('100%').layoutWeight(1).justifyContent(FlexAlign.SpaceBetween)
     }.width('100%').height('100%')
   }
@@ -276,8 +247,7 @@ export struct ShoppingCart {
             type: 'swiperIndex',
             currentClassify: 2
           }
-          router.replaceUrl({url: 'pages/HomeSwiper', params: paramsInfo})
-
+          router.replaceUrl({ url: 'pages/HomeSwiper', params: paramsInfo })
           // this.initializationMethod()
           this.selectAllOrNot = false
         }

@@ -28,7 +28,7 @@ export class UserAddressDb{
 
   // 新增方法
   async add(user_address: UserAddress) {
-    return await this.RdbUtil.add(tableName, UserAddress) > 0
+    return await this.RdbUtil.add(tableName, user_address) > 0
   }
 
   // 查询所有用户地址方法

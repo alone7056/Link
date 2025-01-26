@@ -1,12 +1,12 @@
 import { RdbUtil } from '../utils/RdbUtil'
-import { shoppingCartDeviceInformation } from '../model/ShoppingCartData'
+import { orderDeviceInformation } from '../model/orderData'
 
 // 表名
-const tableName = 'shoppingCart'
+const tableName = 'OrdersDb'
 
 //建表语句
 const CREATE_USER_SQL = `
-  CREATE TABLE IF NOT EXISTS shoppingCart(
+  CREATE TABLE IF NOT EXISTS orders(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     iconSrc TEXT(255),
     theNameOfTheDevice TEXT(255),
@@ -14,51 +14,51 @@ const CREATE_USER_SQL = `
     introductionToParameters TEXT(255),
     monthlyPrice INTEGER,
     lease INTEGER,
-    deposit INTEGER,
     numberOfLeases INTEGER,
-    equipmentType TEXT(255)
   );`
 
-export class ShoppingCartDb {
+export class OrdersDb {
   RdbUtil: RdbUtil = new RdbUtil()
 
-  // 创建购物车表
+  // 创建订单表
   async createUserTable() {
     try {
       await this.RdbUtil.createTable(CREATE_USER_SQL)
-      console.log('购物车表建表成功(ShoppingCartDb)')
+      console.log('订单表建表成功(OrdersDb)')
     } catch (err) {
-      console.error('购物车表建表错误(ShoppingCartDb):'+JSON.parse(err))
+      console.error('订单表建表错误(OrdersDb):'+JSON.parse(err))
     }
   }
 
   // 新增方法
-  async add(SCD: shoppingCartDeviceInformation) {
+  async add(odi: orderDeviceInformation) {
     try {
-      return await this.RdbUtil.add(tableName, SCD) > 0
+      return await this.RdbUtil.add(tableName, odi) > 0
     } catch (err) {
-      console.log('add方法报错(ShoppingCartDb)')
+      console.log('add方法报错(OrdersDb)')
     }
   }
 
-  // 查询购物购物车设备方法
-  async queryShoppingCartInformation() {
+  // 查询订单设备方法
+  async inquireAboutOrderInformation() {
     const p = this.RdbUtil.getRdbPredicates(tableName)
     const list = await this.RdbUtil.query(p)
     return list
   }
 
   // 更新数据方法
-  async updateShoppingCart(SCD: shoppingCartDeviceInformation, theNameOfTheDevice: string) {
+  // updateTheOrder
+  async updateTheOrder(odi: orderDeviceInformation, theNameOfTheDevice: string) {
     const p = this.RdbUtil.getRdbPredicates(tableName)
     p.equalTo('theNameOfTheDevice', theNameOfTheDevice)
-    return await this.RdbUtil.update(SCD, p)
+    return await this.RdbUtil.update(odi, p)
   }
 
   // 删除数据
-  async deleteShoppingCart(theNameOfTheDevice: string){
+  // deleteTheOrder
+  async deleteTheOrder(theNameOfTheDevice: string){
     return await this.RdbUtil.deleteAccordingToTheName(tableName, theNameOfTheDevice)
   }
 }
 
-export const shoppingCartDb = new ShoppingCartDb()
+export const ordersDb = new OrdersDb()

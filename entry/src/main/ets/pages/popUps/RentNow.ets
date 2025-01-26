@@ -15,8 +15,8 @@ import { userDb } from '../../db/UserDb';
 
 
 @CustomDialog
-// 配置选择弹窗
-export struct chooseConfigure {
+  // 配置选择弹窗
+export struct RentNow {
   // 控制器
   controller: CustomDialogController
   save?: () => void;
@@ -38,10 +38,10 @@ export struct chooseConfigure {
 
   // 弹窗记载前执行
   aboutToAppear(){
-    console.log('(chooseConfigure)加载了')
+    console.log('(RentNow)加载了')
 
     // 笔记本
-    console.log('(chooseConfigure):' + this.theNameOfTheDevice + '|'  + this.introductionToParameters + '|' + this.monthlyPrice + '|' + this.equipmentType)
+    console.log('(RentNow):' + this.theNameOfTheDevice + '|'  + this.introductionToParameters + '|' + this.monthlyPrice + '|' + this.equipmentType)
     if (this.equipmentType == 'Laptop') {
       this.rendering = LaptopDetails.filter(Laptop => Laptop.TheNameOfTheDevice.includes(this.theNameOfTheDevice));
     }
@@ -74,7 +74,7 @@ export struct chooseConfigure {
 
   // 弹窗销毁后执行
   aboutToDisappear(){
-    console.log('(chooseConfigure)销毁了')
+    console.log('(RentNow)销毁了')
     if (this.leaseIndex == 1) {
       this.lease[2] = 24
     } else {
@@ -201,7 +201,7 @@ export struct chooseConfigure {
       }.width('100%').layoutWeight(6)
 
       Row(){
-        Button('加入购物车')
+        Button('立即租赁')
           .fontColor('#ffffff')
           .width('100%')
           .height('100%')
@@ -265,55 +265,25 @@ export struct chooseConfigure {
     // 设备类型
     scd.equipmentType = this.equipmentType
 
-    console.log('(chooseConfigure)theNameOfTheDevice:' + this.theNameOfTheDevice)
-    console.log('(chooseConfigure)propagandaHeadline:' + this.propagandaHeadline)
-    console.log('(chooseConfigure)introductionToParameters:' + this.introductionToParameters)
-    console.log('(chooseConfigure)monthlyPrice:' + this.monthlyPrice)
-    console.log('(chooseConfigure)lease:' + scd.lease)
-    console.log('(chooseConfigure)deposit:' + scd.deposit)
-    console.log('(chooseConfigure)numberOfLeases:' + scd.numberOfLeases)
-    console.log('(chooseConfigure)equipmentType:' + scd.equipmentType)
+    console.log('(RentNow)theNameOfTheDevice:' + this.theNameOfTheDevice)
+    console.log('(RentNow)propagandaHeadline:' + this.propagandaHeadline)
+    console.log('(RentNow)introductionToParameters:' + this.introductionToParameters)
+    console.log('(RentNow)monthlyPrice:' + this.monthlyPrice)
+    console.log('(RentNow)lease:' + scd.lease)
+    console.log('(RentNow)deposit:' + scd.deposit)
+    console.log('(RentNow)numberOfLeases:' + scd.numberOfLeases)
+    console.log('(RentNow)equipmentType:' + scd.equipmentType)
 
     // 添加
     const result = await shoppingCartDb.add(scd)
 
     if (result) {
-      LoadingDialog.showSuccess('添加购物车成功')
+      LoadingDialog.showSuccess('订单提交成功')
       this.controller.close()
     } else {
-      LoadingDialog.showFailure('添加购物车失败')
+      LoadingDialog.showFailure('订单提交失败')
     }
 
-    // const queryResult: shoppingCartDeviceInformation[] = await shoppingCartDb.queryShoppingCartInformation()
-    // // 操作——false代表添加/true代表修改
-    // let  operation: boolean = false
-    // for (let index = 0; index < queryResult.length; index++) {
-    //   // 购物车已有的则修改
-    //   if ((this.theNameOfTheDevice + this.introductionToParameters) == queryResult[index].theNameOfTheDevice) {
-    //     operation = true
-    //   } else {
-    //     operation = false
-    //   }
-    // }
-    // // 修改或者添加是否成功
-    // let result: boolean = false
-    // // true 执行添加 / false执行修改
-    // if (operation) {
-    //   // 修改
-    //   result = await shoppingCartDb.updateShoppingCart(scd, this.theNameOfTheDevice)
-    // } else {
-    //   // 添加
-    //   result = await shoppingCartDb.add(scd)
-    // }
-    //
-    // if (result) {
-    //   LoadingDialog.showSuccess('添加购物车成功')
-    //   // 关闭弹窗
-    //   this.controller.close()
-    // } else {
-    //   LoadingDialog.showFailure('添加购物车失败')
-    // }
-
-    console.log('查询(chooseConfigure)：' + JSON.stringify(await shoppingCartDb.queryShoppingCartInformation()))
+    console.log('查询(RentNow)：' + JSON.stringify(await shoppingCartDb.queryShoppingCartInformation()))
   }
 }

@@ -1,4 +1,4 @@
-// 笔记本类
+// 设备详细信息
 export class deviceDetails {
   TheNameOfTheDevice: string; // 设备名称
   particularsSwiper: ResourceStr[] | string[]; // 轮播图片资源

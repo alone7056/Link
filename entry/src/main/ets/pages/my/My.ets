@@ -27,7 +27,7 @@ export struct My {
       Column() {
         // 用户头像手机号码
         Row({ space: 15 }) {
-          Image($rawfile('My/tx.jpg')).objectFit(ImageFit.Contain).width(50).borderRadius(99)
+          Image($r('app.media.icon')).objectFit(ImageFit.Contain).width(50).borderRadius(99)
           Text(this.phone == '游客用户' ? this.phone : this.phone.substring(0, 3) + '****' + this.phone.substring(7, 12)).fontSize(20)
         }
         .width('100%')

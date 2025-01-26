@@ -1,6 +1,7 @@
 
 import router from '@ohos.router';
 import { currentIndex } from '../../model/RoutingData'
+import LoadingDialog from '../../utils/TipsDialog';
 
 @Component
 export struct Capabilities {
@@ -44,6 +45,11 @@ export struct Capabilities {
               Text(item[1]).fontSize(12)
             }
           }.onClick(()=>{
+
+            if (index < 4) {
+              LoadingDialog.showFailure('功能尚未开发，请等待')
+            }
+
             if (index == 4) {
               // 关于作者页面
 

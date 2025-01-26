@@ -5,6 +5,7 @@ import { AccountInfo } from '../../model/RoutingData'
 import LoadingDialog from '../../utils/TipsDialog';
 import { userDb } from '../../db/UserDb';
 import { user } from '../../model/User';
+import promptAction from '@ohos.promptAction';
 
 /*
  * PersistentStorage：持久化存储UI状态
@@ -136,7 +137,7 @@ struct Login {
 
         // 找回密码和注册账号事件
         Row() {
-          Text('找回密码').fontColor('#ff706d6d').fontSize(14)
+          Text('重置密码').fontColor('#ff706d6d').fontSize(14)
             .onClick(() => {
               router.pushUrl({url: 'pages/login/BackPassword'})
             })
@@ -173,7 +174,7 @@ struct Login {
         .border({ width: 1, color: '#ff706d6d' })
         .borderRadius(10)
         .onClick(() => {
-
+          promptAction.showToast({message: '微信登录暂未开发', bottom: 370})
         })
       }.margin({ top: 70 })
 
@@ -255,7 +256,7 @@ struct Login {
 @CustomDialog
 struct MoreLogin {
   controller: CustomDialogController
-  label: string[] = ['注册', '手机登录', '直接试用', '取消']
+  label: string[] = ['注册', '重置密码', '直接试用', '取消']
 
   build() {
     Column() {
@@ -268,8 +269,8 @@ struct MoreLogin {
               this.controller.close()
             }
 
-            if (label == '手机登录') {
-
+            if (label == '重置密码') {
+              router.replaceUrl({url: 'pages/login/BackPassword'})
             }
 
             if (label == '直接试用') {

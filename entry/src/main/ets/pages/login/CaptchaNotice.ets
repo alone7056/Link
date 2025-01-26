@@ -5,8 +5,8 @@ export class CaptchaNotice{
 
   // 通知验证码
   notifyTheVerificationCode(){
-    // 生成随机六位验证码
-    let captcha = Math.floor(100000 + Math.random() * 900000)
+    // 生成随机四位验证码
+    let captcha = Math.floor(1000 + Math.random() * 9000)
     // 组件间传输验证码值
     AppStorage.SetOrCreate('captcha', captcha)
     let notificationRequest: notificationManager.NotificationRequest = {

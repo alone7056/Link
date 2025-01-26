@@ -8,7 +8,7 @@ import { exitLogin } from '../../popUps/exitlogin'
 struct SetPage {
 
   // 选项数组
-  private SetOptionsArr: string[] = ['个人信息', '关于作者', '隐私协议', '个人信息手机清单', '第三方信息共享清单']
+  private SetOptionsArr: string[] = ['个人信息', '关于作者', '隐私协议', '地址管理']
 
   // 当前用户手机号码
   @State phone: string = ''

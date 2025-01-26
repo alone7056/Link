@@ -9,7 +9,7 @@ import { allInOneMachineDetails, allInOneMachineParameterInformation } from '../
 import {conferenceScreenDetails,conferenceScreenParameterInformation} from '../../common/ConferenceDashboardDataSheet'
 import { printerDetails, printerParameterInformation } from '../../common/PrinterDatasheet'
 import { singleHostDetails, singleHostParameterInformation } from '../../common/SingleHostDatasheet'
-import { shoppingCartDb } from '../../db/ShoppingCartDb';
+import { RentNow } from '../popUps/RentNow';
 
 
 @Entry
@@ -127,7 +127,7 @@ struct ProductDetailsPage {
 
   }
 
-  // 退出登录弹窗
+  // 选择配置弹窗
   chooseConfigure: CustomDialogController = new CustomDialogController({
     builder: chooseConfigure({
       save: () => this.onAccept(),
@@ -146,6 +146,28 @@ struct ProductDetailsPage {
   // 取消方法
   onCancel() {
     this.chooseConfigure.close()
+  }
+
+
+  // 立即租赁弹窗
+  RentNow: CustomDialogController = new CustomDialogController({
+    builder: RentNow({
+      save: () => this.onAccept2(),
+      cancel: () => this.onCancel2()
+    }),
+    alignment: DialogAlignment.Bottom, // 弹窗对齐方式
+    offset: { dx: 0, dy: 0 }, // 设置弹窗的偏移量，这里 dy 为 50 表示弹窗底部距离屏幕底部有 50px 的间隔
+    customStyle: true, // 是否自定义样式
+  })
+
+  // 确认方法
+  async onAccept2() {
+
+  }
+
+  // 取消方法
+  onCancel2() {
+    this.RentNow.close()
   }
 
   build() {
@@ -251,19 +273,6 @@ struct ProductDetailsPage {
                 }.width('100%').layoutWeight(2)
               }.height('100%').layoutWeight(4)
             }.width('100%').height(120).backgroundColor('#ffffff').padding(8)
-
-            Divider().width('100%')
-
-            // 搭配配件弹窗
-            Row() {
-              Row() {
-                Text('配送至').fontSize(15).opacity(0.7)
-              }.height('100%').layoutWeight(1).justifyContent(FlexAlign.End).padding(10)
-
-              Row() {
-
-              }.height('100%').layoutWeight(4)
-            }.width('100%').height(50).backgroundColor('#ffffff')
           }
 
           // 导航栏 商品详情/商品参数
@@ -374,7 +383,7 @@ struct ProductDetailsPage {
             .type(ButtonType.Normal)
             .onClick(() => {
               // 立即租赁点击事件
-
+              this.RentNow.open()
             })
         }
         .layoutWeight(2)
