@@ -1,4 +1,4 @@
-export class equipmentSynopsis{
+export class equipmentSynopsis {
   // 设备 equipment
   // 简介 synopsis
   picturesOfTheDevice: string | ResourceStr; // 设备图片

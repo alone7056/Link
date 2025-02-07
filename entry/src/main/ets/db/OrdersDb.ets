@@ -2,7 +2,7 @@ import { RdbUtil } from '../utils/RdbUtil'
 import { orderDeviceInformation } from '../model/orderData'
 
 // 表名
-const tableName = 'OrdersDb'
+const tableName = 'orders'
 
 //建表语句
 const CREATE_USER_SQL = `
@@ -13,15 +13,14 @@ const CREATE_USER_SQL = `
     propagandaHeadline TEXT(255),
     introductionToParameters TEXT(255),
     monthlyPrice INTEGER,
-    lease INTEGER,
-    numberOfLeases INTEGER,
+    numberOfLeases INTEGER
   );`
 
 export class OrdersDb {
   RdbUtil: RdbUtil = new RdbUtil()
 
-  // 创建订单表
-  async createUserTable() {
+  // 创建订单表 createAnOrderForm
+  async createAnOrderForm() {
     try {
       await this.RdbUtil.createTable(CREATE_USER_SQL)
       console.log('订单表建表成功(OrdersDb)')
@@ -47,15 +46,13 @@ export class OrdersDb {
   }
 
   // 更新数据方法
-  // updateTheOrder
   async updateTheOrder(odi: orderDeviceInformation, theNameOfTheDevice: string) {
     const p = this.RdbUtil.getRdbPredicates(tableName)
     p.equalTo('theNameOfTheDevice', theNameOfTheDevice)
     return await this.RdbUtil.update(odi, p)
   }
 
-  // 删除数据
-  // deleteTheOrder
+  // 删除订单
   async deleteTheOrder(theNameOfTheDevice: string){
     return await this.RdbUtil.deleteAccordingToTheName(tableName, theNameOfTheDevice)
   }

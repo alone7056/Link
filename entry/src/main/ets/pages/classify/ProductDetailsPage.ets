@@ -14,6 +14,7 @@ import { RentNow } from '../popUps/RentNow';
 
 @Entry
 @Component
+// 产品详情页面
 struct ProductDetailsPage {
   @Provide('theNameOfTheDevice') theNameOfTheDevice: string = ''; // 设备名称
   @Provide('propagandaHeadline') propagandaHeadline: string = ''; // 设备标题

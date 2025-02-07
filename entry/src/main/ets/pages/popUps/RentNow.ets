@@ -12,6 +12,8 @@ import { scd } from '../../model/ShoppingCartData'
 import { shoppingCartDb } from '../../db/ShoppingCartDb';
 import LoadingDialog from '../../utils/TipsDialog';
 import { userDb } from '../../db/UserDb';
+import { odi } from '../../model/orderData'
+import { ordersDb } from '../../db/OrdersDb'
 
 
 @CustomDialog
@@ -229,53 +231,20 @@ export struct RentNow {
 
   async addDevice(){
     // 图片地址
-    scd.iconSrc = AppStorage.Get('picturesOfTheDevice')
+    odi.iconSrc = AppStorage.Get('picturesOfTheDevice')
     // 设备名称
-    scd.theNameOfTheDevice = this.theNameOfTheDevice + this.introductionToParameters
+    odi.theNameOfTheDevice = this.theNameOfTheDevice + this.introductionToParameters
     // 设备标题
-    scd.propagandaHeadline = this.propagandaHeadline
+    odi.propagandaHeadline = this.propagandaHeadline
     // 参数简介
-    scd.introductionToParameters = this.introductionToParameters
+    odi.introductionToParameters = this.introductionToParameters
     // 月租价格
-    scd.monthlyPrice = this.monthlyPrice
-    // 租期
-    scd.lease = this.leaseIndex == 0 ? 12 : 24
-    // 押金
-    if (this.monthlyPrice < 50) {
-      scd.deposit = 500
-    } else if (this.monthlyPrice < 100){
-      scd.deposit = 1800
-    } else if (this.monthlyPrice < 150){
-      scd.deposit = 3000
-    } else if (this.monthlyPrice < 200){
-      scd.deposit = 3800
-    } else if (this.monthlyPrice < 250){
-      scd.deposit = 5000
-    } else if (this.monthlyPrice < 300){
-      scd.deposit = 5700
-    } else if (this.monthlyPrice < 400){
-      scd.deposit = 7000
-    } else if (this.monthlyPrice < 500){
-      scd.deposit = 9000
-    } else {
-      scd.deposit = 10000
-    }
+    odi.monthlyPrice = this.monthlyPrice
     // 租借数量
-    scd.numberOfLeases = this.numberOfLeases
-    // 设备类型
-    scd.equipmentType = this.equipmentType
-
-    console.log('(RentNow)theNameOfTheDevice:' + this.theNameOfTheDevice)
-    console.log('(RentNow)propagandaHeadline:' + this.propagandaHeadline)
-    console.log('(RentNow)introductionToParameters:' + this.introductionToParameters)
-    console.log('(RentNow)monthlyPrice:' + this.monthlyPrice)
-    console.log('(RentNow)lease:' + scd.lease)
-    console.log('(RentNow)deposit:' + scd.deposit)
-    console.log('(RentNow)numberOfLeases:' + scd.numberOfLeases)
-    console.log('(RentNow)equipmentType:' + scd.equipmentType)
+    odi.numberOfLeases = this.numberOfLeases
 
     // 添加
-    const result = await shoppingCartDb.add(scd)
+    const result = await ordersDb.add(odi)
 
     if (result) {
       LoadingDialog.showSuccess('订单提交成功')

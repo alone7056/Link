@@ -5,17 +5,17 @@ export class orderDeviceInformation {
   propagandaHeadline: string; // 设备标题
   introductionToParameters: string; // 参数简介
   monthlyPrice: number; // 月租价格
-  lease: number; // 租期
   numberOfLeases: number; // 租借设备数量
+  amountArray: number; // 总金额
 
-  constructor(iconSrc?: string, theNameOfTheDevice?: string, propagandaHeadline?: string, introductionToParameters?: string, monthlyPrice?: number, lease?: number, numberOfLeases?: number) {
+  constructor(iconSrc?: string, theNameOfTheDevice?: string, propagandaHeadline?: string, introductionToParameters?: string, monthlyPrice?: number, numberOfLeases?: number, amountArray?: number) {
     this.iconSrc = iconSrc;
     this.theNameOfTheDevice = theNameOfTheDevice;
     this.propagandaHeadline = propagandaHeadline;
     this.introductionToParameters = introductionToParameters;
     this.monthlyPrice = monthlyPrice;
-    this.lease = lease;
     this.numberOfLeases = numberOfLeases;
+    this.amountArray = amountArray;
   }
 }
 

@@ -2,6 +2,7 @@ import router from '@ohos.router'
 import { userAddressDb } from '../db/UserAddressDb'
 import { shoppingCartDb } from '../db/ShoppingCartDb'
 import { userDb } from '../db/UserDb'
+import { ordersDb } from '../db/OrdersDb'
 import { PreferencesUtil } from '../utils/PreferencesUtil'
 
 
@@ -20,6 +21,7 @@ struct Index {
     // 1.建库建表
     await userDb.createUserTable()
     await shoppingCartDb.createUserTable()
+    await ordersDb.createAnOrderForm()
     // await userAddressDb.createUserAddressTable()
 
     /* 进入登录页面、首页
