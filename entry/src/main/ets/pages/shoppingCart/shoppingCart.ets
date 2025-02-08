@@ -325,10 +325,38 @@ export struct ShoppingCart {
                   odi.introductionToParameters = this.leaseRendering[index].introductionToParameters
                   odi.monthlyPrice = this.leaseRendering[index].monthlyPrice
                   odi.numberOfLeases = this.leaseRendering[index].numberOfLeases
-
+                  // 删除已添加订单的购物车内容
+                  await shoppingCartDb.deleteShoppingCart(odi.theNameOfTheDevice)
                   // 添加至订单表
                   await ordersDb.add(odi)
+
                 }
+
+                const resultSet = await ordersDb.inquireAboutOrderInformation()
+                if (resultSet.length) {
+                  LoadingDialog.showSuccess('订单添加成功')
+                } else {
+                  LoadingDialog.showFailure('订单添加失败，请售后再试')
+                }
+
+                let timer = 1000
+                const timeId = setInterval(()=>{
+                  if (timer === 0) {
+                    // 清空定时器
+                    clearInterval(timeId)
+                    // 关闭确认页面
+                    this.switch = false
+                    // 刷新购物车页面
+                    let paramsInfo: currentIndex = {
+                      type: 'swiperIndex',
+                      currentClassify: 2
+                    }
+                    router.replaceUrl({ url: 'pages/HomeSwiper', params: paramsInfo })
+                  } else {
+                    timer -= 1000
+                  }
+                }, 1000)
+
               } catch (err) {
                 console.log('提交订单点击事件报错(ShoppingCart)')
               }
@@ -347,7 +375,7 @@ export struct ShoppingCart {
         startIcon: $r('app.media.delete'),
         content: '删除'
       }).onClick(async () => {
-        const results = shoppingCartDb.deleteShoppingCart(theNameOfTheDevice)
+        const results = await shoppingCartDb.deleteShoppingCart(theNameOfTheDevice)
         if (results) {
           promptAction.showToast({ message: '移除成功', bottom: 370 })
           let paramsInfo: currentIndex = {

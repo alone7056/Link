@@ -8,14 +8,13 @@ export class orderDeviceInformation {
   numberOfLeases: number; // 租借设备数量
   amountArray: number; // 总金额
 
-  constructor(iconSrc?: string, theNameOfTheDevice?: string, propagandaHeadline?: string, introductionToParameters?: string, monthlyPrice?: number, numberOfLeases?: number, amountArray?: number) {
+  constructor(iconSrc?: string, theNameOfTheDevice?: string, propagandaHeadline?: string, introductionToParameters?: string, monthlyPrice?: number, numberOfLeases?: number) {
     this.iconSrc = iconSrc;
     this.theNameOfTheDevice = theNameOfTheDevice;
     this.propagandaHeadline = propagandaHeadline;
     this.introductionToParameters = introductionToParameters;
     this.monthlyPrice = monthlyPrice;
     this.numberOfLeases = numberOfLeases;
-    this.amountArray = amountArray;
   }
 }
 
