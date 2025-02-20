@@ -52,7 +52,7 @@ export struct Capabilities {
 
             if (index == 4) {
               // 关于作者页面
-
+              router.pushUrl({url: 'pages/my/set/ConcerningAuthor'})
             }
 
             if (index > 4 && index <= this.capabilitiesArr.length) {

@@ -8,7 +8,7 @@ import { exitLogin } from '../../popUps/exitlogin'
 struct SetPage {
 
   // 选项数组
-  private SetOptionsArr: string[] = ['个人信息', '关于作者', '隐私协议', '地址管理']
+  private SetOptionsArr: string[] = ['个人信息', '关于作者', '隐私协议']
 
   // 当前用户手机号码
   @State phone: string = ''
@@ -70,12 +70,15 @@ struct SetPage {
             if (index == 0) {
               router.pushUrl({url: 'pages/my/set/PersonalInformation'})
             }
+            if (index == 1) {
+              router.pushUrl({url: 'pages/my/set/ConcerningAuthor'})
+            }
             if (index == 2) {
               router.pushUrl({url: 'pages/my/set/PrivacyManagement'})
             }
           })
         })
-      }.width('100%').layoutWeight(8).backgroundColor('#ffffff')
+      }.width('100%').layoutWeight(6).backgroundColor('#ffffff')
 
       Blank().layoutWeight(1)
 
@@ -85,7 +88,7 @@ struct SetPage {
           this.exitLogin.open()
         })
 
-      Blank().layoutWeight(6)
+      Blank().layoutWeight(8)
 
     }.width('100%').height('100%').backgroundColor('#ffe2e0e0')
   }
